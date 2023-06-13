@@ -1,0 +1,99 @@
+.login{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login_child{
+    background-color: white;
+    padding: 20px 20px;
+    width: 400px;
+    border: 1px solid rgb(190, 186, 186);
+}
+.login_inputs{
+    margin-top: 10px;
+    padding: 5px;
+    
+}
+.login_inputs input{
+    /* border: 1px solid black; */
+    border: none;
+    outline: none;
+    padding: 4px 0px;
+    width: 100%;
+    font-size: 17px;
+   
+}
+
+.inputs{
+    display: flex;
+    border: 2px solid black;
+    padding: 1px 3px;
+    border-radius: 5px;
+    margin-top: 2px;
+    outline: none;
+    margin-bottom: 10px;
+    align-items: center;
+    position: relative;
+    
+    
+}
+.eye{
+    cursor: pointer;
+ position: absolute;
+ right: 10px;
+}
+.login_inputs svg{
+ cursor: pointer;
+ margin-left: 5px;
+
+}
+.login_inputs button{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.login_inputs p{
+    color: red;
+    margin: 10px 0px;
+    text-align: center;
+
+}
+
+.login_inputs p font{
+    color: #0F48DD;
+    cursor: pointer;
+}
+
+
+/* -------------------- singnup  */
+.image{
+    display: flex;
+    align-items: center;
+}
+.image img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+.image svg{
+    width: 40px;
+    height: 40px;
+}
+
+
+/* --------------------- media  */
+@media(max-width : 410px){
+      .login_child{
+        width: 100%;
+        margin: 0px 4px;
+        padding: 20px 8px;
+      }
+}

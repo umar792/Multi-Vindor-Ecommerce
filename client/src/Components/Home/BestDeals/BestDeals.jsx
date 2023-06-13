@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { productData } from '../../../DataStatic/Data';
+import React, { useState } from "react";
+import { productData } from "../../../DataStatic/Data";
+import AllProductrView from "../../AllProductView/AllProductrView";
+import "./BestDeals.css";
 
 const BestDeals = () => {
-    const [data,setData] = useState([]);
-    const d = productData && productData.sort((a,b)=> b.total_sell - a.total_sell);
-    const sliceData = d.slice(0,4) 
-  console.log(d);
+  const d =
+    productData && productData.sort((a, b) => b.total_sell - a.total_sell);
+  const sliceData = d.slice(0, 5);
   return (
-    <div>BestDeals</div>
-  )
-}
+    <div className="BestDeals">
+      <h2 className="BestDeals_heading">Best Deals</h2>
+      <AllProductrView data={sliceData} />
+    </div>
+  );
+};
 
-export default BestDeals
+export default BestDeals;

@@ -117,7 +117,7 @@ const BottomHeader = ({ showmenus, setShowMenu, showSearch, setSearch }) => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/">Best Selling</NavLink>
+            <NavLink to="/bestSelling">Best Selling</NavLink>
           </li>
           <li>
             <NavLink to="/products">Products</NavLink>

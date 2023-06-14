@@ -14,10 +14,11 @@ const EventCard = ({ data }) => {
           {data.name}
         </h2>
         <p>{data.description}</p>
+
         <div className="flex py-2 justify-between">
           <div className="flex">
             <h5 className="font-[500] text-[18px] text-[#d55b45] pr-3 line-through">
-              {data.price}$
+              {data.price ? data.price + "$" : null}
             </h5>
             <h5 className="font-bold text-[20px] text-[#333] font-Roboto">
               {data.discount_price}$

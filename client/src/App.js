@@ -11,6 +11,8 @@ import Header from "./Components/Layout/Header/Header";
 import BottomHeader from "./Components/Layout/BottomHeader/BottomHeader";
 import Allevents from "./Components/Home/Events/Allevents";
 import Products from "./Components/Products/Products";
+import Footer from "./Components/Layout/Footer/Footer";
+import BestSelling from "./Components/Products/BestSelling";
 
 const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
@@ -40,12 +42,14 @@ const App = () => {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Events" element={<Allevents />} />
         <Route exact path="/products" element={<Products />} />
+        <Route exact path="/bestSelling" element={<BestSelling />} />
         <Route
           exact
           path="/activation/:activation_Token"
           element={<ActivateAccount />}
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

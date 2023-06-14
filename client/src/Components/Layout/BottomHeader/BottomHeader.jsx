@@ -125,9 +125,9 @@ const BottomHeader = ({ showmenus, setShowMenu, showSearch, setSearch }) => {
           <li>
             <NavLink to="/Events">Event</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/">FAQ</NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
       {/* ---------------- right  */}

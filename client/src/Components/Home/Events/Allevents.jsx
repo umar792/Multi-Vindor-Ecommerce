@@ -1,12 +1,10 @@
 import React from "react";
-import EventCard from "./EventCard";
 import { productData } from "../../../DataStatic/Data";
-
-const Events = () => {
+import EventCard from "./EventCard";
+const Allevents = () => {
   const EventProduct = productData.filter((item) => {
     return item.Event === true;
   });
-
   return (
     <div>
       <div>
@@ -17,9 +15,10 @@ const Events = () => {
         </div>
 
         <div className="w-full grid">
-          {EventProduct.length !== 0 && (
-            <EventCard data={EventProduct && EventProduct[0]} />
-          )}
+          {EventProduct.length !== 0 &&
+            EventProduct.map((item) => {
+              return <EventCard data={item} />;
+            })}
           <h4>{EventProduct?.length === 0 && "No Events have!"}</h4>
         </div>
       </div>
@@ -27,4 +26,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default Allevents;

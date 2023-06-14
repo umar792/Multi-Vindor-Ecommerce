@@ -9,6 +9,8 @@ import ActivateAccount from "./Components/Account/ActivateAccount";
 import { UseUserContext } from "./ContextAoi/Context/UserContext";
 import Header from "./Components/Layout/Header/Header";
 import BottomHeader from "./Components/Layout/BottomHeader/BottomHeader";
+import Allevents from "./Components/Home/Events/Allevents";
+import Products from "./Components/Products/Products";
 
 const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
@@ -36,6 +38,8 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/signup" element={<Registration />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/Events" element={<Allevents />} />
+        <Route exact path="/products" element={<Products />} />
         <Route
           exact
           path="/activation/:activation_Token"

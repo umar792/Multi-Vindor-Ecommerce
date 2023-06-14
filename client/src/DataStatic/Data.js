@@ -291,6 +291,7 @@ export const productData = [
     rating: 4,
     total_sell: 35,
     stock: 10,
+    Event: true,
   },
   {
     id: 2534545,
@@ -321,6 +322,7 @@ export const productData = [
     total_sell: 80,
     stock: 10,
     category: "Mobile & Tablets",
+    Event: true,
   },
   {
     id: 1353534,

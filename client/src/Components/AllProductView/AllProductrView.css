@@ -13,6 +13,7 @@
     padding: 8px;
    box-shadow: 0 0px 0px 1px rgba(0, 0, 0, .5);
    cursor: pointer;
+   position: relative;
 }
 .All_product_data_child:hover{
     transform: translateY(10px);
@@ -46,6 +47,22 @@
     margin-top: 15px;
     font-weight: bold;
 }
+.All_product_data_price .line_price{
+    color: gray;
+    font-weight: 500;
+    position: relative;
+
+}
+.All_product_data_price .line_price::before{
+   content:  " ";
+   position: absolute;
+   left: 0;
+   top: 13px;
+   background-color: red;
+   height: 2px;
+   width: 100%;
+   z-index: 1;
+}
 
 .price_all{
     display: flex;
@@ -54,5 +71,24 @@
     margin-left: 10px;
 }
 .sold{
+     color: rgb(104 210 132);
+}
+.All_product_data_icon{
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+.All_product_data_icon svg{
+    font-size: 23px;
+    margin-top: 10px;
+}
+.All_product_data_icon svg:hover{
     color: red;
+}
+
+
+@media(max-width : 955px){
+    .All_product_data_child{
+        width: 250px;
+    }
 }

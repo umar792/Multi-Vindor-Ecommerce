@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CountDown from "./CountDown";
 
 const EventCard = ({ data }) => {
   return (

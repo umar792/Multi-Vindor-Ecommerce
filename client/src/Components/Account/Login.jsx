@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UseUserContext } from "../../ContextAoi/Context/UserContext";
 
 const Login = () => {
-  const { LoginUser, loading } = UseUserContext();
+  const navigate = useNavigate();
+  const { LoginUser, loading, Authanticated } = UseUserContext();
   const [passShow, setPassShow] = useState(false);
   const [data, setdata] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (Authanticated === true) {
+      navigate("/");
+    }
+  }, []);
 
   const dataChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +27,6 @@ const Login = () => {
     });
   };
 
-  const navigate = useNavigate();
   const datasend = () => {
     LoginUser(data.email, data.password, navigate);
   };

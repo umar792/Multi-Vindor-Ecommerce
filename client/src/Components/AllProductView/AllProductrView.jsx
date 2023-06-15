@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AllProductrView.css";
 import { AiOutlineEye, AiOutlineShoppingCart } from "react-icons/ai";
 import QuickView from "../Products/QuickView/QuickView";
+import { NavLink } from "react-router-dom";
 
 const AllProductrView = ({ data }) => {
   const [showQuick, SetShowQuick] = useState(false);
@@ -17,14 +18,19 @@ const AllProductrView = ({ data }) => {
         data.map((item) => {
           return (
             <>
-              <div className="All_product_data_child">
-                <div className="All_product_data_image">
+              <div className="All_product_data_child" key={item.id}>
+                <NavLink
+                  to={`singleProduct/${item.id}`}
+                  className="All_product_data_image"
+                >
                   <img src={item.image_Url && item.image_Url[0].url} alt="" />
-                </div>
+                </NavLink>
                 {/* ----------- content  */}
                 <div className="All_product_data_content">
                   <p className="shop_name">{item.shop.name}</p>
-                  <h2>{item.name.slice(0, 38)}..</h2>
+                  <NavLink to={`singleProduct/${item.id}`}>
+                    <h2>{item.name.slice(0, 38)}..</h2>
+                  </NavLink>
                   <div className="All_product_data_price">
                     <div className="price_all">
                       <p>{item.discount_price}$</p>

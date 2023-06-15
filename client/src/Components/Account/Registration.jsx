@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { UseUserContext } from "../../ContextAoi/Context/UserContext";
 
 const Registration = () => {
+  const { Authanticated } = UseUserContext();
   const [loading, setloading] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -42,6 +44,12 @@ const Registration = () => {
         toast.error(error.response.data.message);
       });
   };
+
+  useEffect(() => {
+    if (Authanticated === true) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>

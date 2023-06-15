@@ -5,6 +5,7 @@ import QuickView from "../Products/QuickView/QuickView";
 import { NavLink } from "react-router-dom";
 
 const AllProductrView = ({ data }) => {
+  console.log(data);
   const [showQuick, SetShowQuick] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -20,7 +21,7 @@ const AllProductrView = ({ data }) => {
             <>
               <div className="All_product_data_child" key={item.id}>
                 <NavLink
-                  to={`singleProduct/${item.id}`}
+                  to={`/singleProduct/${item.id}`}
                   className="All_product_data_image"
                 >
                   <img src={item.image_Url && item.image_Url[0].url} alt="" />
@@ -28,7 +29,7 @@ const AllProductrView = ({ data }) => {
                 {/* ----------- content  */}
                 <div className="All_product_data_content">
                   <p className="shop_name">{item.shop.name}</p>
-                  <NavLink to={`singleProduct/${item.id}`}>
+                  <NavLink to={`/singleProduct/${item.id}`}>
                     <h2>{item.name.slice(0, 38)}..</h2>
                   </NavLink>
                   <div className="All_product_data_price">

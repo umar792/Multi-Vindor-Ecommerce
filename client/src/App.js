@@ -15,6 +15,7 @@ import Footer from "./Components/Layout/Footer/Footer";
 import BestSelling from "./Components/Products/BestSelling";
 import SingleProduct from "./Components/Products/singleProduct/SingleProduct";
 import { ScrollToTop } from "react-router-scroll-to-top";
+import Profile from "./Components/Account/Profile/Profile";
 
 const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
@@ -56,6 +57,8 @@ const App = () => {
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/bestSelling" element={<BestSelling />} />
         <Route exact path="/singleProduct/:id" element={<SingleProduct />} />
+        <Route exact path="/profile" element={<Profile />} />
+
         <Route
           exact
           path="/activation/:activation_Token"

@@ -182,7 +182,7 @@ const BottomHeader = ({
           <NavLink to="/profile">
             <img
               className="user_img"
-              src={`http://localhost:4000//${user.avatar}`}
+              src={`http://localhost:4000/${user.avatar}`}
             />
           </NavLink>
         ) : (

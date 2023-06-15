@@ -7,7 +7,7 @@
     position: sticky;
     top: 0;
     background-color: #F6F6F5;
-    z-index: 10;
+    z-index: 99;
 }
 .header h1{
     font-size: 30px;
@@ -136,6 +136,7 @@
         width: 100%;
         background: transparent;
         padding: 15px 10px;
+        z-index: 99;
         
     }
     .responsive_header_main{
@@ -152,15 +153,17 @@
     }
     .header_search{
         display: block;
-        z-index: 99;
         width: 100%;
-        top: -200%;
-        display: grid;
+        top: 70px;
+        display: grid; 
+        z-index: 100;
         grid-template-columns: 1fr .01fr;
+        
     }
     .search_data_show{
         margin-left: 50px;
         width: 100%;
+        top: 70px;
         
     }
     .showserach{

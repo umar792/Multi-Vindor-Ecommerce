@@ -20,6 +20,9 @@ const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
   const [showmenus, setShowMenu] = useState(false);
   const [showSearch, setSearch] = useState(false);
+  const [cartOpen, setOpenCart] = useState(false);
+  const [searchitem, SetSearchItem] = useState("");
+
   useEffect(() => {
     loadUser();
   }, []);
@@ -32,12 +35,18 @@ const App = () => {
         setShowMenu={setShowMenu}
         showSearch={showSearch}
         setSearch={setSearch}
+        cartOpen={cartOpen}
+        setOpenCart={setOpenCart}
+        searchitem={searchitem}
+        SetSearchItem={SetSearchItem}
       />
       <BottomHeader
         showmenus={showmenus}
         setShowMenu={setShowMenu}
         showSearch={showSearch}
         setSearch={setSearch}
+        cartOpen={cartOpen}
+        setOpenCart={setOpenCart}
       />
       <Routes>
         <Route exact path="/" element={<Home />} />

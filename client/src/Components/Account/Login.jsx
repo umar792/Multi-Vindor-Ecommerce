@@ -12,12 +12,11 @@ const Login = () => {
     email: "",
     password: "",
   });
-
   useEffect(() => {
     if (Authanticated === true) {
       navigate("/");
     }
-  }, []);
+  }, [Authanticated]);
 
   const dataChange = (e) => {
     const { name, value } = e.target;

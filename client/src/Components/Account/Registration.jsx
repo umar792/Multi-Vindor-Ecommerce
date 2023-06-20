@@ -42,6 +42,7 @@ const Registration = () => {
       })
       .catch((error) => {
         toast.error(error.response.data.message);
+        setloading(false);
       });
   };
 
@@ -49,7 +50,7 @@ const Registration = () => {
     if (Authanticated === true) {
       navigate("/");
     }
-  }, []);
+  }, [Authanticated]);
 
   return (
     <>

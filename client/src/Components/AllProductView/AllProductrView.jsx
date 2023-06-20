@@ -5,7 +5,6 @@ import QuickView from "../Products/QuickView/QuickView";
 import { NavLink } from "react-router-dom";
 
 const AllProductrView = ({ data }) => {
-  console.log(data);
   const [showQuick, SetShowQuick] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 

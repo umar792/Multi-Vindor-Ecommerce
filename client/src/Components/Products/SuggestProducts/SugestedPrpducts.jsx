@@ -14,7 +14,7 @@ const SugestedPrpducts = ({ data }) => {
   return (
     <div>
       {data ? (
-        <div className={`p-4 `}>
+        <div className={`p-4`}>
           <h2 className={`text-[25px] font-[500] border-b mb-5`}>
             Related Product
           </h2>

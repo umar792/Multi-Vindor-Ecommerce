@@ -67,6 +67,18 @@
     
 }
 
+.other_images img{
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    opacity: 0.3;
+    cursor: pointer;
+
+}
+.other_images img:hover{
+    opacity: 1;
+}
+
 
 @media(max-width : 800px){
     .single_page{

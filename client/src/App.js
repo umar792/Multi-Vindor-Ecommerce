@@ -20,7 +20,7 @@ import Profile from "./Components/Account/Profile/Profile";
 const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
   const [showmenus, setShowMenu] = useState(false);
-  const [showSearch, setSearch] = useState(false);
+  const [showSearch, setSearch] = useState(true);
   const [cartOpen, setOpenCart] = useState(false);
   const [searchitem, SetSearchItem] = useState("");
 

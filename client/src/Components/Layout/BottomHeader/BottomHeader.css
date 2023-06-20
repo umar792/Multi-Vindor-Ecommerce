@@ -34,7 +34,7 @@
     left: 0;
     height: 100vh;
     transition: transform .2s ease-in-out;
-    z-index:101;
+    z-index:101;overflow: auto;
 
 }
 .menus svg{

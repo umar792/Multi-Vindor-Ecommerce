@@ -15,7 +15,7 @@ const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initilaValue);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("myecomtoken");
     if (token) {
       dispatch({ type: "AUTH_SUCCESS", payload: true });
     }
@@ -42,7 +42,7 @@ const UserContextProvider = ({ children }) => {
       } else {
         toast.success(data.message);
         navigate("/");
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("myecomtoken", data.token);
       }
       dispatch({ type: "USER_LOGIN_SUCCESS", payload: data.user });
     } catch (error) {
@@ -58,7 +58,7 @@ const UserContextProvider = ({ children }) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
+          token: localStorage.getItem("myecomtoken"),
         },
       });
       dispatch({ type: "USER_LOAD_FAIL" });

@@ -11,12 +11,12 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-const ProfileContent = ({ active }) => {
+const ProfileContent = ({ active, setShowProfile, showProfiletoggle }) => {
   const { user } = UseUserContext();
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
-  const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState(null);
 
@@ -29,16 +29,21 @@ const ProfileContent = ({ active }) => {
     setAvatar(file);
   };
 
+  console.log(showProfiletoggle);
   return (
     <div className="w-full">
       {/* profile */}
       {active === 1 && (
         <>
           <div className="flex justify-center w-full">
+            <RxHamburgerMenu
+              className="burger"
+              onClick={() => setShowProfile(true)}
+            />
             <div className="relative">
               <img
                 src={`http://localhost:4000/${user.avatar}`}
-                className="w-[150px] h-[150px] rounded-full object-cover border-[3px] border-[#3ad132]"
+                className="w-[100px] h-[100px] rounded-full object-cover border-[3px] border-[#3ad132] z-[-1]"
                 alt=""
               />
               <div className="w-[30px] h-[30px] bg-[#E3E9EE] rounded-full flex items-center justify-center cursor-pointer absolute bottom-[5px] right-[5px]">
@@ -82,17 +87,6 @@ const ProfileContent = ({ active }) => {
               </div>
 
               <div className="w-full 800px:flex block pb-3">
-                <div className=" w-[100%] 800px:w-[50%]">
-                  <label className="block pb-2">Phone Number</label>
-                  <input
-                    type="number"
-                    className={` !w-[95%] mb-4 800px:mb-0`}
-                    required
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                  />
-                </div>
-
                 <div className=" w-[100%] 800px:w-[50%]">
                   <label className="block pb-2">Enter your password</label>
                   <input

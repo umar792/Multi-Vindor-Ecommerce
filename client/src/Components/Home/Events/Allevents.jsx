@@ -17,7 +17,7 @@ const Allevents = () => {
         <div className="w-full grid">
           {EventProduct.length !== 0 &&
             EventProduct.map((item) => {
-              return <EventCard data={item} />;
+              return <EventCard data={item} days={30} />;
             })}
           <h4>{EventProduct?.length === 0 && "No Events have!"}</h4>
         </div>

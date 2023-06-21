@@ -18,7 +18,7 @@ const Events = () => {
 
         <div className="w-full grid">
           {EventProduct.length !== 0 && (
-            <EventCard data={EventProduct && EventProduct[0]} />
+            <EventCard data={EventProduct && EventProduct[0]} days={30} />
           )}
           <h4>{EventProduct?.length === 0 && "No Events have!"}</h4>
         </div>

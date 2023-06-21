@@ -1,0 +1,20 @@
+.timer{
+    display: flex;
+    margin: 10px 0px;
+    justify-content: center;
+    align-items: center;
+}
+.timer p{
+    border: 1px solid gray;
+    margin: 2px 6px;
+    padding: 7px;
+    font-weight: bold;
+}
+.timer_parent{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.t_show{
+    font-weight: bold;
+}

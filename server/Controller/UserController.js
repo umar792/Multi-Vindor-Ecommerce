@@ -40,7 +40,6 @@ module.exports = {
             console.log("file deleted successfuly");
             // res.status(400).json({ message: "file deleting" });
           }
-          
         });
         return res.status(400).json({
           success: false,
@@ -189,6 +188,7 @@ module.exports = {
       });
       res.status(200).cookie("token", token).json({
         success: true,
+        message: "Login Successfuly",
         token,
         user,
       });

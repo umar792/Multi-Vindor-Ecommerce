@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Registration from "./Components/Account/Registration";
 import Login from "./Components/Account/Login";
@@ -16,6 +22,11 @@ import BestSelling from "./Components/Products/BestSelling";
 import SingleProduct from "./Components/Products/singleProduct/SingleProduct";
 import { ScrollToTop } from "react-router-scroll-to-top";
 import Profile from "./Components/Account/Profile/Profile";
+import UserOrder from "./Components/Account/Profile/UserOrder/UserOrder";
+import CategoryProducts from "./Components/Products/CategosryProduct/CategoryProducts";
+import SellerAccountCreate from "./Components/SellerPages/SellerAccountCreate";
+import ShopOTPVerify from "./Components/SellerPages/ShopOTPVerify";
+import SellerLogin from "./Components/SellerPages/SellerLogin";
 
 const App = () => {
   const { Authanticated, loadUser, user } = UseUserContext();
@@ -23,6 +34,11 @@ const App = () => {
   const [showSearch, setSearch] = useState(true);
   const [cartOpen, setOpenCart] = useState(false);
   const [searchitem, SetSearchItem] = useState("");
+  const [showProfiletoggle, setShowProfile] = useState(false);
+
+  const PrivateRoute = () => {
+    return !Authanticated ? <Navigate to="/" replace /> : <Outlet />;
+  };
 
   useEffect(() => {
     loadUser();
@@ -55,15 +71,54 @@ const App = () => {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/Events" element={<Allevents />} />
         <Route exact path="/products" element={<Products />} />
+        <Route
+          exact
+          path="/categosryProduct/:category"
+          element={<CategoryProducts />}
+        />
         <Route exact path="/bestSelling" element={<BestSelling />} />
         <Route exact path="/singleProduct/:id" element={<SingleProduct />} />
-        <Route exact path="/profile" element={<Profile />} />
+        {/* ---------------- profile Routes  */}
+        <Route path="/profile" exact element={<PrivateRoute />}>
+          <Route
+            path="/profile"
+            exact
+            element={
+              <Profile
+                showProfiletoggle={showProfiletoggle}
+                setShowProfile={setShowProfile}
+              />
+            }
+          />
+        </Route>
+        <Route path="/user/order" exact element={<PrivateRoute />}>
+          <Route
+            path="/user/order"
+            exact
+            element={
+              <UserOrder
+                showProfiletoggle={showProfiletoggle}
+                setShowProfile={setShowProfile}
+              />
+            }
+          />
+        </Route>
 
+        {/* ------------------------- Active Account  */}
         <Route
           exact
           path="/activation/:activation_Token"
           element={<ActivateAccount />}
         />
+
+        {/* -------------------------- seller routes  */}
+        <Route
+          path="/Create/seller/account"
+          exact
+          element={<SellerAccountCreate />}
+        />
+        <Route path="/shop/OTP/verify" exact element={<ShopOTPVerify />} />
+        <Route path="/shop/login" exact element={<SellerLogin />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { UserContextProvider } from "./ContextAoi/Context/UserContext";
 import { Provider } from "react-redux";
 import Store from "./redux/Store";
+import { ShopContextPrpvider } from "./ContextAoi/Context/ShopContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <UserContextProvider>
     <Provider store={Store}>
-      <App />
+      <ShopContextPrpvider>
+        <App />
+      </ShopContextPrpvider>
     </Provider>
   </UserContextProvider>
   // </React.StrictMode>

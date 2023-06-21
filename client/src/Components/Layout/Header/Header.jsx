@@ -70,7 +70,9 @@ const Header = ({
           ) : null}
         </div>
         {/* -------------- seller button  */}
-        <button>Become Seller</button>
+        <NavLink to="/Create/seller/account">
+          <button>Become Seller</button>
+        </NavLink>
       </div>
       {/* ---------------------- repnsive header  */}
       <div className="responsive_header_main">

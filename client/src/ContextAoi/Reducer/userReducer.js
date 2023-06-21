@@ -51,6 +51,21 @@ const UserReducer = (state, action) => {
       return {
         ...state,
       };
+
+    // ------------ logout user
+    case "LOGOUT_LOAD":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "USER_LOGOUT_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        Authanticated: false,
+        user: {},
+      };
+
     default:
       return state;
   }

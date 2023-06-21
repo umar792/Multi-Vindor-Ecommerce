@@ -1,0 +1,78 @@
+.showimage img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: transparent;
+}
+.invintory_item{
+    height: 65vh;
+    overflow: auto;
+    max-width: 90%;
+    margin-top: 30px;
+  }
+.user_name p{
+    font-size: 22px;
+}
+.user_name p font{
+    color: #C41849;
+    font-weight: bold;
+}
+.user_name button{
+    padding: 7px 35px;
+    border: none;
+    outline: none;
+    background-color: #C41849;
+    color: white;
+    cursor: pointer;
+}
+.seractdata{
+    width: 200px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    width: 15%;
+    text-align: left;
+    padding: 8px;
+  }
+  td {
+    width: 15%;
+    padding: 8px;
+    border-bottom: 1px solid gray;
+  }
+  .invintory_item{
+    height: 65vh;
+    overflow: auto;
+  }
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: max-content;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .table-container {
+      overflow-x: scroll;
+    }
+    
+    table {
+      width: 100%;
+    }
+    
+    th, td {
+      white-space: nowrap;
+    }
+  }

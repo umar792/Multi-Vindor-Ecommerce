@@ -74,8 +74,18 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  // ----------------------------- Logout User
+
+  const Logout = async (navigate) => {
+    dispatch({ type: "LOGOUT_LOAD" });
+    localStorage.removeItem("myecomtoken");
+    dispatch({ type: "USER_LOGOUT_SUCCESS" });
+    toast.success("Logout Successfuly");
+    navigate("/");
+  };
+
   return (
-    <UserContext.Provider value={{ ...state, LoginUser, loadUser }}>
+    <UserContext.Provider value={{ ...state, LoginUser, loadUser, Logout }}>
       {children}
     </UserContext.Provider>
   );

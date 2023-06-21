@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 app.use("/", express.static("./uploads"));
+const cloudinary = require("cloudinary");
 
 // ---------------- dotenv
 require("dotenv").config();
@@ -20,9 +21,16 @@ app.use(cors());
 var bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+// ======== cloudinary
+cloudinary.config({
+  cloud_name: "dvgvcifrd",
+  api_key: "651412252829259",
+  api_secret: "RC4IM6i6t_oginPt9h1os5C5BBw",
+});
 
 // -------------------- Router
 app.use("/user", require("./router/UserRouter"));
+app.use("/shop", require("./router/ShopRouter"));
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`Express Server runing on port ${process.env.PORT}`);

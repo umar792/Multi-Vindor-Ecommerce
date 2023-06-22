@@ -19,6 +19,21 @@ const ShopReducer = createReducer(initailValue, {
     state.shopLoading = false;
     state.ERROR = action.payload;
   },
+
+  // ------------------------------------- Create Shop Owner Product
+  LoadOwnerCreateProduct: (state) => {
+    state.shopLoading = true;
+  },
+  ShopOwnerCreateProductFail: (state) => {
+    state.shopLoading = false;
+  },
+  CreateShopOwnerProductSuccess: (state) => {
+    state.shopLoading = false;
+  },
+  CreateOwnerProductError: (state, action) => {
+    state.shopLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ShopReducer;

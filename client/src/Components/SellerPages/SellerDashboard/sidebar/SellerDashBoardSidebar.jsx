@@ -62,7 +62,7 @@ const menus = [
   },
 ];
 
-const SellerDashBoardSidebar = () => {
+const SellerDashBoardSidebar = ({ select, setSelect }) => {
   return (
     <div className="SellerDashBoardSidebar">
       <NavLink to="/">
@@ -71,13 +71,20 @@ const SellerDashBoardSidebar = () => {
 
       {/* ------------- menus  */}
       <ul>
-        {menus.map((item) => {
+        {menus.map((item, index) => {
           return (
-            <div className="dashoard_menus" key={item.id}>
-              <NavLink to={`/${item.path}`} className="dash_menus_item">
+            <div
+              className="dashoard_menus"
+              key={item.id}
+              onClick={() => setSelect(index)}
+            >
+              <div
+                className="dash_menus_item cursor-pointer"
+                style={select === index ? { color: "red" } : { color: "black" }}
+              >
                 <p>{item.icon}</p>
                 <li>{item.title}</li>
-              </NavLink>
+              </div>
             </div>
           );
         })}

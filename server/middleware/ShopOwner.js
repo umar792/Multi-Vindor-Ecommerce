@@ -13,6 +13,12 @@ const ShopTokenVerify = async (req, res, next) => {
 
     const decoded = await jwt.verify(token, process.env.jwt_shop);
     req.user = await ShopModal.findById(decoded._id);
+    if (!req.user) {
+      return res.status(400).json({
+        success: false,
+        message: "Token Expire",
+      });
+    }
     next();
   } catch (error) {
     res.status(400).json({

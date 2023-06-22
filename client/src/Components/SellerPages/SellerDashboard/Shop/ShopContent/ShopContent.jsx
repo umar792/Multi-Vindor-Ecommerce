@@ -4,11 +4,13 @@ import { UseShopContext } from "../../../../../ContextAoi/Context/ShopContext";
 import { useSelector } from "react-redux";
 import AllProductrView from "../../../../AllProductView/AllProductrView";
 import { NavLink } from "react-router-dom";
+import ShopProductView from "../ShopProductView/ShopProductView";
 
 const ShopContent = () => {
   const { ShopAuthanticated } = UseShopContext();
   const [select, setSelect] = useState(0);
   const owner = useSelector((state) => state.shop.SingelShopOwner);
+  // console.log(owner);
   return (
     <div className="ShopContent">
       <div className="shopconetent_header">
@@ -41,7 +43,7 @@ const ShopContent = () => {
       {/* ------------------------ shop products  */}
       {select === 0 ? (
         owner && owner.products.length > 0 ? (
-          owner.products.map((item) => <AllProductrView data={item} />)
+          <ShopProductView data={owner && owner.products} />
         ) : (
           <p className="p-4 bg-[gray] mt-4 text-white">
             This Shop has no products

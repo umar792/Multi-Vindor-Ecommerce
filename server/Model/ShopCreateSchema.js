@@ -49,7 +49,13 @@ const ShopCreateschema = new Schema({
   products: [
     {
       type: mongoose.Types.ObjectId,
-      ref: "products",
+      ref: "product",
+    },
+  ],
+  Events: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Event",
     },
   ],
   shopDescription: {

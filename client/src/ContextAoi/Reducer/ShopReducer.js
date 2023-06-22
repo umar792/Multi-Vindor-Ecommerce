@@ -24,6 +24,7 @@ const ShopReducer = (state, action) => {
         ...state,
         shopLoading: false,
         ShopAuthanticated: true,
+        ShopOwner: action.payload,
       };
 
     case "SHOP_OWNER_LOGIN_ERROR":

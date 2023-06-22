@@ -1,5 +1,3 @@
-import server from "../server";
-
 export const GetSingleShopOwner = (id) => async (dispatch) => {
   try {
     dispatch({ type: "LoadShopOwnerRequest" });
@@ -20,4 +18,12 @@ export const GetSingleShopOwner = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: "ShopOwnerGetError", payload: Error.message });
   }
+};
+
+// ------------------------ create Shop Owner Product
+
+export const CreateShopProduct = () => async (dispatch) => {
+  try {
+    dispatch({ type: "LoadOwnerCreateProduct" });
+  } catch (error) {}
 };

@@ -2,8 +2,9 @@ import React from "react";
 import "./SellerDashBoardContent.css";
 import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
 import { NavLink } from "react-router-dom";
+import CreateProduct from "../CreateProduct/CreateProduct";
 
-const SellerDashBoardContent = () => {
+const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
   return (
     <div className="SellerDashBoardContent">
@@ -18,6 +19,11 @@ const SellerDashBoardContent = () => {
           <img src={ShopOwner.avatar && ShopOwner.avatar.url} alt="" />
         </NavLink>
       </div>
+      {/* ------------------------------------ dashboard  */}
+      {select === 0 ? "Dashboard" : null}
+
+      {/* ------------------ create Product  */}
+      {select === 1 ? <CreateProduct /> : null}
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { BsSearch } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { UseShopContext } from "../../../ContextAoi/Context/ShopContext";
+import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
 
 const Header = ({
   showmenus,
@@ -17,6 +19,8 @@ const Header = ({
   setOpenCart,
 }) => {
   const [serachData, setSerachData] = useState(null);
+  const { ShopAuthanticated } = UseShopContext();
+  const { Authanticated } = UseUserContext();
 
   // ------------------SerachItemChange
   const SerachItemChange = (e) => {
@@ -70,9 +74,15 @@ const Header = ({
           ) : null}
         </div>
         {/* -------------- seller button  */}
-        <NavLink to="/Create/seller/account">
-          <button>Become Seller</button>
-        </NavLink>
+        {ShopAuthanticated ? (
+          <NavLink to="/Shop/Owner/Dashboard">
+            <button>DashBoard</button>
+          </NavLink>
+        ) : (
+          <NavLink to="/Create/seller/account">
+            <button>Become Seller</button>
+          </NavLink>
+        )}
       </div>
       {/* ---------------------- repnsive header  */}
       <div className="responsive_header_main">

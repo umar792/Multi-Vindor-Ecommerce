@@ -45,7 +45,6 @@ const App = () => {
   const ShopOwnerPrivateRoute = () => {
     return !ShopAuthanticated ? <Navigate to="/" replace /> : <Outlet />;
   };
-  console.log(ShopOwner);
 
   useEffect(() => {
     loadUser();

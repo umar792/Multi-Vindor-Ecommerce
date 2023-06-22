@@ -6,7 +6,7 @@ const ShopReducer = (state, action) => {
         ...state,
         ShopAuthanticated: true,
       };
-
+    // --------------------------- shop Login
     case "SHOP_OWNEER_LOGIN_LOAD":
       return {
         ...state,
@@ -23,13 +23,14 @@ const ShopReducer = (state, action) => {
       return {
         ...state,
         shopLoading: false,
-        ShopAuthenticatd: true,
-        ShopOwner: action.payload,
+        ShopAuthanticated: true,
       };
+
     case "SHOP_OWNER_LOGIN_ERROR":
       return {
         ...state,
         shopLoading: false,
+        ShopAuthanticated: false,
         ERROR: action.payload,
       };
 

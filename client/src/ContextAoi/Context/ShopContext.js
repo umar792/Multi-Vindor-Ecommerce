@@ -42,6 +42,7 @@ const ShopContextPrpvider = ({ children }) => {
       } else {
         toast.success(data.message);
         localStorage.setItem("shopownerToken", data.Token);
+        console.log(state.ShopAuthenticatd);
         navigate("/Shop/Owner/Dashboard");
       }
       dispatch({ type: "SHOP_OWNER_LOGIN_SUCCESS", payload: data.ShopOwner });
@@ -72,6 +73,11 @@ const ShopContextPrpvider = ({ children }) => {
       dispatch({ type: "SHOP_OWNER_GET_ERROR", payload: error.message });
     }
   };
+
+  // ------------- logout
+  // const ShopLogout = async()=>{
+  //   dispatch({type  : "LOGOUT_US"})
+  // }
 
   return (
     <ShopContext.Provider value={{ ...state, LoginUser, getOwner }}>

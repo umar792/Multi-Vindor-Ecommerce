@@ -1,0 +1,37 @@
+.SellerDashBoardSidebar{
+    border-right: 1px solid gray;
+    height: 100vh;
+    padding: 10px;
+}
+.SellerDashBoardSidebar button{
+    background-color: black;
+    color: white;
+    padding: 6px 30px;
+    margin-bottom: 15px;
+}
+
+/* ---------------- dashoard_menus  */
+.dashoard_menus{
+    padding: 10px 5px;
+}
+.dash_menus_item{
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
+    align-items: center;
+}
+.dash_menus_item li{
+    padding: 1px;
+}
+.dash_menus_item svg{
+    font-size: 23px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.dash_menus_item :active{
+    color: red;
+}
+.dash_menus_item li:hover{
+    border-bottom: 1px solid gray;
+    color: red;
+}

@@ -3,6 +3,7 @@ const UserModel = require("../Model/UserSchema");
 const cloudinary = require("cloudinary");
 const sendMail = require("../Utils/SendEmail");
 const jwt = require("jsonwebtoken");
+const brypt = require("bcrypt");
 
 // const twilio = require("twilio");
 
@@ -173,21 +174,29 @@ module.exports = {
         });
       }
 
-      const user = await UserModel.findOne({ email });
-      (user.role = "seller"), await user.save();
-      const Token = await jwt.sign(
-        { _id: ShopOwner._id },
-        process.env.jwt_shop,
-        {
-          expiresIn: "7d",
-        }
-      );
-      res.status(200).json({
-        success: true,
-        message: "Login to shop Successfuly",
-        Token,
-        ShopOwner,
-      });
+      const isMatch = await brypt.compare(password, ShopOwner.password);
+      if (!isMatch) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese Enter Valid Email or Password",
+        });
+      } else {
+        const user = await UserModel.findOne({ email });
+        (user.role = "seller"), await user.save();
+        const Token = await jwt.sign(
+          { _id: ShopOwner._id },
+          process.env.jwt_shop,
+          {
+            expiresIn: "7d",
+          }
+        );
+        res.status(200).json({
+          success: true,
+          message: "Login to shop Successfuly",
+          Token,
+          ShopOwner,
+        });
+      }
     } catch (error) {
       res.status(400).json({
         success: false,

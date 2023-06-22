@@ -1,0 +1,24 @@
+.SellerDashBoardContent{
+    padding: 0px 5px;
+}
+.SellerDashBoardContent_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    border-bottom: 1px solid gray;
+}
+.SellerDashBoardContent_header h2{
+    font-size: 20px;
+    font-weight: bold;
+}
+.SellerDashBoardContent_header font{
+    color: red;
+    font-size: 27px;
+}
+.SellerDashBoardContent_header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+}

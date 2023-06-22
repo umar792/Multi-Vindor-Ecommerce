@@ -3,7 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
-import { UseShopContext } from "../../ContextAoi/Context/ShopContext";
+import { UseShopContext } from "../../../ContextAoi/Context/ShopContext";
 
 const SellerAccountCreate = () => {
   const navigate = useNavigate();

@@ -3,6 +3,7 @@ import "./Login.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UseUserContext } from "../../ContextAoi/Context/UserContext";
+import Loading from "../Loading/Loading";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Login = () => {
   return (
     <>
       {loading ? (
-        "Loading"
+        <Loading />
       ) : (
         <div className="login bg-gray-200">
           <div className="login_child">

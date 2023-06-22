@@ -24,11 +24,11 @@ import { ScrollToTop } from "react-router-scroll-to-top";
 import Profile from "./Components/Account/Profile/Profile";
 import UserOrder from "./Components/Account/Profile/UserOrder/UserOrder";
 import CategoryProducts from "./Components/Products/CategosryProduct/CategoryProducts";
-import SellerAccountCreate from "./Components/SellerPages/SellerAccountCreate";
 import ShopOTPVerify from "./Components/SellerPages/ShopOTPVerify";
 import SellerLogin from "./Components/SellerPages/SellerLogin";
 import SellerDashBoard from "./Components/SellerPages/SellerDashboard/SellerDashBoard";
 import { UseShopContext } from "./ContextAoi/Context/ShopContext";
+import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/SellerAccountCreate";
 
 const App = () => {
   const { Authanticated, loadUser } = UseUserContext();

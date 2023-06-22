@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "../Reducer/ShopReducer";
 import { toast } from "react-toastify";
 
@@ -13,6 +13,13 @@ const initialValue = {
 
 const ShopContextPrpvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialValue);
+
+  useEffect(() => {
+    const token = localStorage.getItem("shopownerToken");
+    if (token) {
+      dispatch({ type: "AUTH_SUCCESS_Shop", payload: true });
+    }
+  }, []);
 
   //   ----------------------- login User
   const LoginUser = async (email, password, navigate) => {
@@ -43,8 +50,31 @@ const ShopContextPrpvider = ({ children }) => {
     }
   };
 
+  // ---------------- get ShopOwner
+  const getOwner = async () => {
+    try {
+      dispatch({ type: "SHOP_OWNEER_GET_LOAD" });
+      const res = await fetch("http://localhost:4000/shop/ShowOwner", {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("shopownerToken"),
+        },
+      });
+      dispatch({ type: "SHOP_OWNEER_GET_LOAD_FETCH_ERROR" });
+      const data = await res.json();
+      if (res.status === 400 || !data) {
+        return;
+      } else {
+      }
+      dispatch({ type: "SHOP_OWNER_GET_SUCCESS", payload: data.owner });
+    } catch (error) {
+      dispatch({ type: "SHOP_OWNER_GET_ERROR", payload: error.message });
+    }
+  };
+
   return (
-    <ShopContext.Provider value={{ ...state, LoginUser }}>
+    <ShopContext.Provider value={{ ...state, LoginUser, getOwner }}>
       {children}
     </ShopContext.Provider>
   );

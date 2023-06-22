@@ -27,9 +27,12 @@ import CategoryProducts from "./Components/Products/CategosryProduct/CategoryPro
 import SellerAccountCreate from "./Components/SellerPages/SellerAccountCreate";
 import ShopOTPVerify from "./Components/SellerPages/ShopOTPVerify";
 import SellerLogin from "./Components/SellerPages/SellerLogin";
+import SellerDashBoard from "./Components/SellerPages/SellerDashboard/SellerDashBoard";
+import { UseShopContext } from "./ContextAoi/Context/ShopContext";
 
 const App = () => {
-  const { Authanticated, loadUser, user } = UseUserContext();
+  const { Authanticated, loadUser } = UseUserContext();
+  const { getOwner, ShopAuthanticated, ShopOwner } = UseShopContext();
   const [showmenus, setShowMenu] = useState(false);
   const [showSearch, setSearch] = useState(true);
   const [cartOpen, setOpenCart] = useState(false);
@@ -39,9 +42,14 @@ const App = () => {
   const PrivateRoute = () => {
     return !Authanticated ? <Navigate to="/" replace /> : <Outlet />;
   };
+  const ShopOwnerPrivateRoute = () => {
+    return !ShopAuthanticated ? <Navigate to="/" replace /> : <Outlet />;
+  };
+  console.log(ShopOwner);
 
   useEffect(() => {
     loadUser();
+    getOwner();
   }, []);
   return (
     <BrowserRouter>
@@ -119,6 +127,17 @@ const App = () => {
         />
         <Route path="/shop/OTP/verify" exact element={<ShopOTPVerify />} />
         <Route path="/shop/login" exact element={<SellerLogin />} />
+        <Route
+          path="/Shop/Owner/Dashboard"
+          exact
+          element={<ShopOwnerPrivateRoute />}
+        >
+          <Route
+            path="/Shop/Owner/Dashboard"
+            exact
+            element={<SellerDashBoard />}
+          />
+        </Route>
       </Routes>
       <Footer />
     </BrowserRouter>

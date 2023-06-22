@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
+import { UseShopContext } from "../../ContextAoi/Context/ShopContext";
 
 const SellerAccountCreate = () => {
   const navigate = useNavigate();
+  const { ShopAuthanticated } = UseShopContext();
   const [email, setEmail] = useState("");
   const [shopName, setName] = useState("");
   const [number, setnumber] = useState();
@@ -16,6 +18,12 @@ const SellerAccountCreate = () => {
   const [shopDescription, setshopDescription] = useState("");
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (ShopAuthanticated === true) {
+      navigate("/Shop/Owner/Dashboard");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { UseShopContext } from "../../ContextAoi/Context/ShopContext";
 
 const SellerLogin = () => {
+  const { ShopAuthanticated } = UseShopContext();
   const { LoginUser } = UseShopContext();
   const navigate = useNavigate();
   const [passShow, setPassShow] = useState(false);
@@ -20,6 +21,12 @@ const SellerLogin = () => {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    if (ShopAuthanticated === true) {
+      navigate("/Shop/Owner/Dashboard");
+    }
+  }, []);
 
   const datasend = () => {
     LoginUser(data.email, data.password, navigate);

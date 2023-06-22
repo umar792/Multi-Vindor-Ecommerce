@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "../Reducer/userReducer";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 const server = "http://localhost:4000";
 const initilaValue = {
@@ -64,9 +63,9 @@ const UserContextProvider = ({ children }) => {
       dispatch({ type: "USER_LOAD_FAIL" });
       const data = await res.json();
       if (res.status === 400 || !data) {
-        return console.log(data.message);
+        return; //console.log(data.message);
       } else {
-        console.log(data.message);
+        // console.log(data.message);
       }
       dispatch({ type: "USER_LOAD_SUCCESS", payload: data.user });
     } catch (error) {

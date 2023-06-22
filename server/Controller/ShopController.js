@@ -195,4 +195,20 @@ module.exports = {
       });
     }
   },
+
+  // ---------------- get Shop Owner
+  getShopOwner: async (req, res) => {
+    try {
+      const owner = await ShopModal.findById(req.user._id); //.populate("products");
+      res.status(200).json({
+        success: true,
+        owner,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };

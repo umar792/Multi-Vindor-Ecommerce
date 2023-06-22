@@ -29,6 +29,7 @@ import SellerLogin from "./Components/SellerPages/SellerLogin";
 import SellerDashBoard from "./Components/SellerPages/SellerDashboard/SellerDashBoard";
 import { UseShopContext } from "./ContextAoi/Context/ShopContext";
 import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/SellerAccountCreate";
+import Shop from "./Components/SellerPages/SellerDashboard/Shop/Shop";
 
 const App = () => {
   const { Authanticated, loadUser } = UseUserContext();
@@ -137,6 +138,9 @@ const App = () => {
             element={<SellerDashBoard />}
           />
         </Route>
+
+        {/* -------------------- shop  */}
+        <Route path="/shop/:id" exact element={<Shop />} />
       </Routes>
       <Footer />
     </BrowserRouter>

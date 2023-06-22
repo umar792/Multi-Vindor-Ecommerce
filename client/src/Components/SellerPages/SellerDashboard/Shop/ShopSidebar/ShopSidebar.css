@@ -1,0 +1,36 @@
+.shopSidebar{
+    border-right: 1px solid gray;
+    height: 100vh;
+    padding: 6px 15px;
+}
+.shopSidebar button{
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+    padding: 7px 30px;
+    cursor: pointer;
+}
+.shopSidebar img{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    border: 5px solid gray;
+    margin-bottom: 20px;
+}
+.sidebar_conent{
+    margin: 10px;
+}
+.sidebar_conent p{
+    margin: 25px 0px;
+    font-weight: bold;
+}
+.sidebar_conent p span{
+    width: 100%;
+    display: block;
+    font-weight: normal;
+}
+.shop_btn{
+    width: 100%;
+}

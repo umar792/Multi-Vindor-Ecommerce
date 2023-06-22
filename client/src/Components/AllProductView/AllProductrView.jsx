@@ -15,6 +15,7 @@ const AllProductrView = ({ data }) => {
   return (
     <div className="All_product_data">
       {data &&
+        data.length &&
         data.map((item) => {
           return (
             <>

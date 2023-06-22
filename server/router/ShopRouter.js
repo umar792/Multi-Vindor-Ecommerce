@@ -11,4 +11,6 @@ router.post("/logintoshop", controller.LoginShop);
 
 router.get("/ShowOwner", ShopTokenVerify, controller.getShopOwner);
 
+router.get("/singleowner/:id", controller.getSingleOwner);
+
 module.exports = router;

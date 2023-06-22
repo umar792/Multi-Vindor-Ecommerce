@@ -14,11 +14,7 @@ const SellerDashBoardContent = () => {
           <font> {ShopOwner && ShopOwner.shopName}</font>
         </h2>
         {/* ---------- */}
-        <NavLink
-          to={`/shop/${ShopOwner && ShopOwner.shopName}/${
-            ShopOwner && ShopOwner._id
-          }`}
-        >
+        <NavLink to={`/shop/${ShopOwner && ShopOwner._id}`}>
           <img src={ShopOwner.avatar && ShopOwner.avatar.url} alt="" />
         </NavLink>
       </div>

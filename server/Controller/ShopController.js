@@ -220,4 +220,23 @@ module.exports = {
       });
     }
   },
+
+  // ----------------------------- get single owner
+  getSingleOwner: async (req, res) => {
+    try {
+      const owner = await ShopModal.findById(req.params.id);
+      if (!owner) {
+        return res.status(401).send("No such shop exists");
+      }
+      res.status(200).json({
+        success: true,
+        owner,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };

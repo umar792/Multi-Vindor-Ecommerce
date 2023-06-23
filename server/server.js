@@ -32,6 +32,7 @@ cloudinary.config({
 app.use("/user", require("./router/UserRouter"));
 app.use("/shop", require("./router/ShopRouter"));
 app.use("/product", require("./router/ProductRouter"));
+app.use("/event", require("./router/EventRouter"));
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`Express Server runing on port ${process.env.PORT}`);

@@ -1,13 +1,13 @@
 import React from "react";
 import "./ShopSidebar.css";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UseShopContext } from "../../../../../ContextAoi/Context/ShopContext";
 
 const ShopSidebar = () => {
   const owner = useSelector((state) => state.shop.SingelShopOwner);
-  const { ShopAuthanticated } = UseShopContext();
-
+  const { ShopAuthanticated, LogoutShop } = UseShopContext();
+  const navigate = useNavigate();
   return (
     <div className="shopSidebar">
       <NavLink to="/">
@@ -30,7 +30,9 @@ const ShopSidebar = () => {
         {ShopAuthanticated && (
           <>
             <button className="shop_btn">Edit Shop</button>
-            <button className="shop_btn">Logout</button>
+            <button className="shop_btn" onClick={() => LogoutShop(navigate)}>
+              Logout
+            </button>
           </>
         )}
       </div>

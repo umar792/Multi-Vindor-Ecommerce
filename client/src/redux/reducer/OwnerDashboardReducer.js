@@ -34,6 +34,21 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },
+
+  // ------------------------------------- Create Evenst Product
+  LoadEventCreateProduct: (state) => {
+    state.ownerLoading = true;
+  },
+  ShopEventCreateProductFail: (state) => {
+    state.ownerLoading = false;
+  },
+  CreateEventProductSuccess: (state) => {
+    state.ownerLoading = false;
+  },
+  CreateEventProductError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ownerReducer;

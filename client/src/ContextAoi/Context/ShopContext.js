@@ -74,13 +74,18 @@ const ShopContextPrpvider = ({ children }) => {
     }
   };
 
-  // ------------- logout
-  // const ShopLogout = async()=>{
-  //   dispatch({type  : "LOGOUT_US"})
-  // }
+  // ----------------------------- Logout Shop
+
+  const LogoutShop = async (navigate) => {
+    dispatch({ type: "LOGOUT_LOAD" });
+    localStorage.removeItem("shopownerToken");
+    dispatch({ type: "USER_LOGOUT_SUCCESS" });
+    toast.success("Logout Successfuly");
+    navigate("/");
+  };
 
   return (
-    <ShopContext.Provider value={{ ...state, LoginUser, getOwner }}>
+    <ShopContext.Provider value={{ ...state, LoginUser, getOwner, LogoutShop }}>
       {children}
     </ShopContext.Provider>
   );

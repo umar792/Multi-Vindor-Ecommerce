@@ -56,6 +56,20 @@ const ShopReducer = (state, action) => {
         ERROR: action.payload,
       };
 
+    // ------------ logout SHOP
+    case "LOGOUT_LOAD":
+      return {
+        ...state,
+        shopLoading: true,
+      };
+    case "USER_LOGOUT_SUCCESS":
+      return {
+        ...state,
+        shopLoading: false,
+        ShopAuthanticated: false,
+        ShopOwner: {},
+      };
+
     default:
       return state;
   }

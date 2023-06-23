@@ -4,6 +4,7 @@ import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
 import { NavLink } from "react-router-dom";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import OwnerAllProducts from "../OwnerAllProducts/OwnerAllProducts";
+import CreaventEvents from "../CreateEvents/CreaventEvents";
 
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
@@ -29,6 +30,10 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       {/* ---------------------------- owner all products  */}
       {select === 2 ? (
         <OwnerAllProducts select={select} setSelect={setSelect} />
+      ) : null}
+      {/* ---------------------------- Create Events  */}
+      {select === 5 ? (
+        <CreaventEvents select={select} setSelect={setSelect} />
       ) : null}
     </div>
   );

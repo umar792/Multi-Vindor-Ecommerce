@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import "../../../../AllProductView/AllProductrView.css";
-import { AiOutlineEye, AiOutlineShoppingCart } from "react-icons/ai";
-import QuickView from "../../../../Products/QuickView/QuickView";
+import "../../../AllProductView/AllProductrView.css";
+import {
+  AiOutlineEye,
+  AiOutlineShoppingCart,
+  AiOutlineDelete,
+} from "react-icons/ai";
+import QuickView from "../../../Products/QuickView/QuickView";
 import { NavLink } from "react-router-dom";
 
-const ShopProductView = ({ data }) => {
+const DashboardAllProductView = ({ data }) => {
+  console.log(data);
   const [showQuick, SetShowQuick] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -13,10 +18,10 @@ const ShopProductView = ({ data }) => {
     SetShowQuick(true);
   };
   return (
-    <div className="All_product_data ]">
+    <div className="All_product_data">
       {data &&
-        data.products.length &&
-        data.products.map((item) => {
+        data.length > 0 &&
+        data.map((item) => {
           return (
             <>
               <div className="All_product_data_child w-[250px]" key={item.id}>
@@ -28,9 +33,9 @@ const ShopProductView = ({ data }) => {
                 </NavLink>
                 {/* ----------- content  */}
                 <div className="All_product_data_content">
-                  <NavLink to={`/shop/${item.owner}`}>
+                  <NavLink to={`/shop/${item.owner._id}`}>
                     <p className="shop_name">
-                      {data.shopName && data.shopName}
+                      {item.owner && item.owner.shopName}
                     </p>
                   </NavLink>
                   <NavLink to={`/singleProduct/${item.id}`}>
@@ -56,6 +61,7 @@ const ShopProductView = ({ data }) => {
                     onClick={() => handleQuickView(item)}
                   />
                   <AiOutlineShoppingCart title="Buy Now" />
+                  <AiOutlineDelete className="text-[red]" />
                 </div>
               </div>
               <QuickView
@@ -70,4 +76,4 @@ const ShopProductView = ({ data }) => {
   );
 };
 
-export default ShopProductView;
+export default DashboardAllProductView;

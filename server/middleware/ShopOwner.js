@@ -7,7 +7,7 @@ const ShopTokenVerify = async (req, res, next) => {
     if (!token) {
       return res.status(400).json({
         success: false,
-        message: "Token Expire Plaese Login",
+        message: "Please Login Your Token Is Expire",
       });
     }
 

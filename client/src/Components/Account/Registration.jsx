@@ -5,6 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { UseUserContext } from "../../ContextAoi/Context/UserContext";
+import Loading from "../Loading/Loading";
 
 const Registration = () => {
   const { Authanticated } = UseUserContext();
@@ -37,7 +38,7 @@ const Registration = () => {
       .post(`${server}/user/registration`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
-        navigate("/login");
+        navigate("/userOTPverify");
         setloading(false);
       })
       .catch((error) => {
@@ -55,7 +56,7 @@ const Registration = () => {
   return (
     <>
       {loading ? (
-        "Loading"
+        <Loading />
       ) : (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">

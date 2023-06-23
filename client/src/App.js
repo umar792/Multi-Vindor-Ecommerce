@@ -30,6 +30,7 @@ import SellerDashBoard from "./Components/SellerPages/SellerDashboard/SellerDash
 import { UseShopContext } from "./ContextAoi/Context/ShopContext";
 import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/SellerAccountCreate";
 import Shop from "./Components/SellerPages/SellerDashboard/Shop/Shop";
+import UserOTPVerify from "./Components/Account/UserOTPVerify";
 
 const App = () => {
   const { Authanticated, loadUser } = UseUserContext();
@@ -77,6 +78,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/signup" element={<Registration />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/userOTPverify" element={<UserOTPVerify />} />
         <Route exact path="/Events" element={<Allevents />} />
         <Route exact path="/products" element={<Products />} />
         <Route

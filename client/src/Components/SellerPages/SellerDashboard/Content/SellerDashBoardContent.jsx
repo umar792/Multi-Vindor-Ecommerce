@@ -3,6 +3,7 @@ import "./SellerDashBoardContent.css";
 import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
 import { NavLink } from "react-router-dom";
 import CreateProduct from "../CreateProduct/CreateProduct";
+import OwnerAllProducts from "../OwnerAllProducts/OwnerAllProducts";
 
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
@@ -24,6 +25,9 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
 
       {/* ------------------ create Product  */}
       {select === 1 ? <CreateProduct /> : null}
+
+      {/* ---------------------------- owner all products  */}
+      {select === 2 ? <OwnerAllProducts /> : null}
     </div>
   );
 };

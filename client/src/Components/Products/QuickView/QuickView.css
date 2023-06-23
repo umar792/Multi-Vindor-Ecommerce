@@ -10,6 +10,8 @@
     overflow: auto;
     padding: 5px ;
     z-index: 99;
+    right: 30px;
+    padding: 10px ;
 }
 
 
@@ -30,9 +32,13 @@ cursor: pointer;
     margin-top: 40px;
 }
 .Quick_View_Content img{
-    width: 100%;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
     object-fit: contain;
     z-index: -1;
+}.Quick_Content{
+    max-width: 500px;
 }
 .Quick_View_Content h2{
     font-weight: bold;

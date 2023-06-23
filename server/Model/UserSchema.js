@@ -36,6 +36,16 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  OTP: {
+    type: Number,
+  },
+  Expire_otp: {
+    type: Date,
+  },
+  verify: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 UserSchema.pre("save", async function () {
@@ -43,6 +53,8 @@ UserSchema.pre("save", async function () {
     this.password = await bcrypt.hashSync(this.password, 10);
   }
 });
+
+UserSchema.index({ Expire_otp: 1 }, { expireAfterSeconds: 0 });
 
 const UserModel = mongoose.model("user", UserSchema);
 module.exports = UserModel;

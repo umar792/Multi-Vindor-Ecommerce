@@ -61,6 +61,14 @@ module.exports = {
           message: "Plaese Register Your Email First Then You will Create Shop",
         });
       }
+      const isNumber = await ShopModal.findOne({ number });
+      if (isNumber) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "this number already present in a shop plaese try another number",
+        });
+      }
 
       const IsShopEmail = await ShopModal.findOne({ email });
       if (IsShopEmail) {

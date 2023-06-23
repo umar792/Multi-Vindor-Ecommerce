@@ -6,7 +6,7 @@ const TokenVerfy = require("../middleware/VerifyToken");
 
 router.post("/registration", upload.single("file"), controller.createUser);
 
-router.post("/activationAccount", controller.activeUser);
+router.post("/verifyOTP", controller.verifyOTP);
 
 router.post("/login", controller.LoginUser);
 

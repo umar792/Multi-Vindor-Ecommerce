@@ -9,4 +9,5 @@
     height: 100vh;
     background-color: white;
     z-index: 97987;
+    overflow: auto;
 }

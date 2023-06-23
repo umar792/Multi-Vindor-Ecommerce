@@ -55,34 +55,38 @@ module.exports = {
         });
       }
       const fileUrl = path.join(filename);
+      const myOTP = Math.floor(Math.random() * 999 + 1000);
 
       const user = {
         name: name,
         email: email,
         password: password,
         avatar: fileUrl,
+        OTP: myOTP,
+        Expire_otp: Date.now() + 5 * 60 * 1000,
       };
 
       // --------------------------- ActivationTokon
-      const createActivationToken = async (user) => {
-        try {
-          const token = await jwt.sign(user, process.env.ACTIVATION_SECRET, {
-            expiresIn: "5m",
-          });
-          return token;
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
+      // const createActivationToken = async (user) => {
+      //   try {
+      //     const token = await jwt.sign(user, process.env.ACTIVATION_SECRET, {
+      //       expiresIn: "5m",
+      //     });
+      //     return token;
+      //   } catch (error) {
+      //     console.log(error.message);
+      //   }
+      // };
 
-      const ActivationTokon = await createActivationToken(user);
-      var ActivationUrl = `http://localhost:3000/activation/${ActivationTokon}`;
+      // const ActivationTokon = await createActivationToken(user);
+      // var ActivationUrl = `http://localhost:3000/activation/${ActivationTokon}`;
+      await UserModel.create(user);
 
       try {
         await sendMail({
           email: user.email,
           subject: "Active your Account from YourShop",
-          message: `Hello ${user.name} please Click On Link To Active Your Account ${ActivationUrl}`,
+          message: `Hello ${user.name} Your OTP is ${myOTP}`,
         });
         res.status(200).json({
           success: true,
@@ -94,11 +98,6 @@ module.exports = {
           message: error.message,
         });
       }
-      // await UserModel.create(user);
-      // res.status(200).json({
-      //   success: true,
-      //   message: "Registration Successfuly",
-      // });
     } catch (error) {
       if (error.code === 11000) {
         res.status(400).json({
@@ -114,42 +113,37 @@ module.exports = {
     }
   },
 
-  // -------------- Activate User
-
-  activeUser: async (req, res) => {
+  //   --------------------- verify OTP
+  verifyOTP: async (req, res) => {
     try {
-      const { activation_Token } = req.body;
+      const { OTP } = req.body;
+      if (!OTP) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese Enter OTP",
+        });
+      }
 
-      const user = await jwt.verify(
-        activation_Token,
-        process.env.ACTIVATION_SECRET
-      );
+      const user = await UserModel.findOne({ OTP });
       if (!user) {
         return res.status(400).json({
           success: false,
-          message: "Your Token Is Expire",
+          message: "OTP is incorrect plaese retry",
         });
       }
-
-      const { name, email, password, avatar } = user;
-      const ExistUser = await UserModel.findOne({ email });
-      if (ExistUser) {
-        return res.status(400).json({
+      if (user.OTP !== req.body.OTP) {
+        (user.Expire_otp = null), (user.OTP = null);
+        (user.verify = true), await user.save();
+        res.status(200).json({
+          success: true,
+          message: "Your Account  Craeted Successfuly",
+        });
+      } else {
+        res.status(400).json({
           success: false,
-          message: "User Alredy Exist Please Login",
+          message: "OTP is Incorrect",
         });
       }
-
-      const newUser = await UserModel.create({
-        name,
-        email,
-        password,
-        avatar,
-      });
-
-      res.status(200).json({
-        success: true,
-      });
     } catch (error) {
       res.status(400).json({
         success: false,

@@ -43,7 +43,7 @@ const ShopContent = () => {
       {/* ------------------------ shop products  */}
       {select === 0 ? (
         owner && owner.products.length > 0 ? (
-          <ShopProductView data={owner && owner.products} />
+          <ShopProductView data={owner && owner} />
         ) : (
           <p className="p-4 bg-[gray] mt-4 text-white">
             This Shop has no products

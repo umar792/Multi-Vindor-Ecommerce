@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const CountDown = ({ data }) => {
+const CountDown = ({ startDate, endDate }) => {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
+  // console.log(endDate);
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
@@ -15,13 +15,14 @@ const CountDown = ({ data }) => {
       typeof timeLeft.minutes === "undefined" &&
       typeof timeLeft.seconds === "undefined"
     ) {
-      //   axios.delete(`${server}/event/delete-shop-event/${data._id}`);
+      // axios.delete(`${server}/event/delete-shop-event/${data._id}`);
+      // alert("noting");
     }
     return () => clearTimeout(timer);
   });
 
   function calculateTimeLeft() {
-    const difference = +new Date(data.Finish_Date) - +new Date();
+    const difference = +new Date(endDate) - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {
@@ -51,7 +52,7 @@ const CountDown = ({ data }) => {
   return (
     <div>
       {timerComponents.length ? (
-        timerComponents
+        <p className="text-2xl ml-1">{timerComponents}</p>
       ) : (
         <span className="text-[red] text-[25px]">Time's Up</span>
       )}

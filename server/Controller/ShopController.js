@@ -232,9 +232,9 @@ module.exports = {
   // ----------------------------- get single owner
   getSingleOwner: async (req, res) => {
     try {
-      const owner = await ShopModal.findById(req.params.id).populate(
-        "products"
-      );
+      const owner = await ShopModal.findById(req.params.id)
+        .populate("products")
+        .populate("Events");
       if (!owner) {
         return res.status(401).send("No such shop exists");
       }

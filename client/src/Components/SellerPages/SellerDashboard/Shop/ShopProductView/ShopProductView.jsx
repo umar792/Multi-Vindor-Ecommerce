@@ -34,7 +34,9 @@ const ShopProductView = ({ data }) => {
                     </p>
                   </NavLink>
                   <NavLink to={`/singleProduct/${item.id}`}>
-                    <h2>{item.name.slice(0, 55)}..</h2>
+                    <h2>
+                      {item.description && item.description.slice(0, 55)}..
+                    </h2>
                   </NavLink>
                   <div className="All_product_data_price">
                     <div className="price_all">

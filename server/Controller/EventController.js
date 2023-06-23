@@ -1,4 +1,4 @@
-const ProductModel = require("../Model/ProductSchema");
+const EventModel = require("../Model/EventsSchema");
 const cloudinary = require("cloudinary");
 const ShopModal = require("../Model/ShopCreateSchema");
 
@@ -25,8 +25,8 @@ module.exports = {
         !originalPrice ||
         !discountPrice ||
         !stock ||
-        startDate ||
-        endDate
+        !startDate ||
+        !endDate
       ) {
         let missingFields = [];
         if (!name) {
@@ -51,12 +51,14 @@ module.exports = {
           missingFields.push("stock");
         }
         if (!startDate) {
-          missingFields.push("stock");
+          missingFields.push("startDate");
         }
         if (!endDate) {
-          missingFields.push("stock");
+          missingFields.push("EndDate");
         }
 
+        req.body.startDate = req.body.startDate.IOSString();
+        req.body.endDate = req.body.endDate.IOSString();
         return res.status(400).json({
           success: false,
           message: `Please enter the following fields: ${missingFields.join(
@@ -88,13 +90,13 @@ module.exports = {
       const ownerid = await ShopModal.findById(req.user._id);
       req.body.images = imagesLink;
       req.body.owner = ownerid._id;
-      const product = await ProductModel.create(req.body);
-      ownerid.products.push(product._id);
+      const Event = await EventModel.create(req.body);
+      ownerid.Events.push(Event._id);
       await ownerid.save();
 
       res.status(200).json({
         success: true,
-        message: "Product Create Successfuly",
+        message: "Event Create Successfuly",
       });
     } catch (error) {
       res.status(400).json({

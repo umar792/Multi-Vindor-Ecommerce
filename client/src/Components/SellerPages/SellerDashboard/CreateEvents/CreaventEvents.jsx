@@ -9,7 +9,7 @@ import { CreateEventProduct } from "../../../../redux/actions/OwnerDashboardActi
 
 const CreaventEvents = () => {
   const navigate = useNavigate();
-  const shopLoading = useSelector((state) => state.shop.shopLoading);
+  const ownerLoading = useSelector((state) => state.owner.ownerLoading);
 
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");
@@ -85,7 +85,7 @@ const CreaventEvents = () => {
 
   return (
     <>
-      {shopLoading ? (
+      {ownerLoading ? (
         <Loading />
       ) : (
         <div className="w-[100%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">

@@ -18,3 +18,11 @@
 .t_show{
     font-weight: bold;
 }
+.Event{
+    border: 1px solid gray;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0px;
+}

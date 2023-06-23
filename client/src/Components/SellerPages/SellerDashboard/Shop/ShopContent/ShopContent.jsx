@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import "./ShopContent.css";
 import { UseShopContext } from "../../../../../ContextAoi/Context/ShopContext";
 import { useSelector } from "react-redux";
-import AllProductrView from "../../../../AllProductView/AllProductrView";
 import { NavLink } from "react-router-dom";
 import ShopProductView from "../ShopProductView/ShopProductView";
+import EventCard from "../../../../Home/Events/EventCard";
 
 const ShopContent = () => {
   const { ShopAuthanticated } = UseShopContext();
   const [select, setSelect] = useState(0);
   const owner = useSelector((state) => state.shop.SingelShopOwner);
-  // console.log(owner);
   return (
     <div className="ShopContent">
       <div className="shopconetent_header">
@@ -53,7 +52,7 @@ const ShopContent = () => {
       {/* ----------------------------- events  */}
       {select === 1 ? (
         owner && owner.Events.length > 0 ? (
-          owner.products.map((item) => <AllProductrView data={item} />)
+          owner.Events.map((item) => <EventCard data={item} days={30} />)
         ) : (
           <p className="p-4 bg-[gray] mt-4 text-white">
             This Shop has no Events

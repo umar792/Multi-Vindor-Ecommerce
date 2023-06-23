@@ -5,7 +5,7 @@ import { OwnerAllProductsGetFunc } from "../../../../redux/actions/OwnerDashboar
 import DashboardAllProductView from "../DashboardAllProductView/DashboardAllProductView";
 import Loading from "../../../Loading/Loading";
 
-const OwnerAllProducts = () => {
+const OwnerAllProducts = ({ select, setSelect }) => {
   const dispatch = useDispatch();
 
   const OwnerAllProducts = useSelector((state) => state.owner.OwnerAllProducts);
@@ -30,7 +30,11 @@ const OwnerAllProducts = () => {
           </h1>
           <div className="">
             {OwnerAllProducts && OwnerAllProducts.length > 0 ? (
-              <DashboardAllProductView data={OwnerAllProducts} />
+              <DashboardAllProductView
+                data={OwnerAllProducts}
+                select={select}
+                setSelect={setSelect}
+              />
             ) : (
               <p className="text-white bg-[gray] p-4 m-3">
                 You have no products

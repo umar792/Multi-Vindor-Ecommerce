@@ -19,6 +19,21 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },
+
+  // ------------------------ delete products by owner
+  DeleteOwnerProductStart: (state) => {
+    state.ownerLoading = true;
+  },
+  DeleteOwnerProductFail: (state) => {
+    state.ownerLoading = false;
+  },
+  DeeleteOwnerProductSuccess: (state) => {
+    state.ownerLoading = false;
+  },
+  DeleteOwnerProductError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ownerReducer;

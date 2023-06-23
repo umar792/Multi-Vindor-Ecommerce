@@ -27,7 +27,9 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       {select === 1 ? <CreateProduct /> : null}
 
       {/* ---------------------------- owner all products  */}
-      {select === 2 ? <OwnerAllProducts /> : null}
+      {select === 2 ? (
+        <OwnerAllProducts select={select} setSelect={setSelect} />
+      ) : null}
     </div>
   );
 };

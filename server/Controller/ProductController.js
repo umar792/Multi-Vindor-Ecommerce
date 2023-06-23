@@ -125,7 +125,26 @@ module.exports = {
         });
       }
 
-      const owner = await ShopModal.findById(req.params._id);
+      const owner = await ShopModal.findById(req.user._id);
+      if (product.owner.toString() === owner._id.toString()) {
+        // Delete the product
+        await ProductModel.findByIdAndDelete(product._id);
+
+        // Remove the product ID from the user's myProducts array
+        owner.products = await owner.products.filter(
+          (productId) => productId.toString() !== product._id.toString()
+        );
+        await owner.save();
+        res.status(200).json({
+          success: true,
+          message: "Product Deleted Successfuly",
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "Sorry you cannot delete this product",
+        });
+      }
     } catch (error) {
       res.status(400).json({
         success: false,

@@ -1,5 +1,6 @@
 .SellerDashBoardContent{
     padding: 0px 5px;
+    /* overflow: auto; */
 }
 .SellerDashBoardContent_header{
     display: flex;

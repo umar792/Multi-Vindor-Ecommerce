@@ -9,7 +9,6 @@ import Loading from "../../../Loading/Loading";
 const CreateProduct = () => {
   const navigate = useNavigate();
   const shopLoading = useSelector((state) => state.shop.shopLoading);
-  console.log(shopLoading);
 
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");

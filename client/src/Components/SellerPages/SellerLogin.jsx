@@ -3,10 +3,13 @@ import "../Account/Login.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UseShopContext } from "../../ContextAoi/Context/ShopContext";
+import { UseUserContext } from "../../ContextAoi/Context/UserContext";
+import Loading from "../Loading/Loading";
 
 const SellerLogin = () => {
   const { ShopAuthanticated } = UseShopContext();
   const { LoginUser } = UseShopContext();
+  const {loading} = UseUserContext();
   const navigate = useNavigate();
   const [passShow, setPassShow] = useState(false);
   const [data, setdata] = useState({
@@ -33,7 +36,9 @@ const SellerLogin = () => {
   };
 
   return (
-    <div className="login bg-gray-200">
+    <>
+    {
+      loading ? <Loading/> : <div className="login bg-gray-200">
       <div className="login_child">
         <h1 className="text-2xl font-bold text-center mt-2">
           Login to your Shop Account
@@ -87,6 +92,8 @@ const SellerLogin = () => {
         </div>
       </div>
     </div>
+    }
+    </>
   );
 };
 

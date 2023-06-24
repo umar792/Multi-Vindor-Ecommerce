@@ -20,7 +20,7 @@ import Products from "./Components/Products/Products";
 import Footer from "./Components/Layout/Footer/Footer";
 import BestSelling from "./Components/Products/BestSelling";
 import SingleProduct from "./Components/Products/singleProduct/SingleProduct";
-import { ScrollToTop } from "react-router-scroll-to-top";
+// import { ScrollToTop } from "react-router-scroll-to-top";
 import Profile from "./Components/Account/Profile/Profile";
 import UserOrder from "./Components/Account/Profile/UserOrder/UserOrder";
 import CategoryProducts from "./Components/Products/CategosryProduct/CategoryProducts";
@@ -31,6 +31,7 @@ import { UseShopContext } from "./ContextAoi/Context/ShopContext";
 import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/SellerAccountCreate";
 import Shop from "./Components/SellerPages/SellerDashboard/Shop/Shop";
 import UserOTPVerify from "./Components/Account/UserOTPVerify";
+import ScrollToTop from "react-scroll-to-top";
 
 const App = () => {
   const { Authanticated, loadUser } = UseUserContext();
@@ -54,7 +55,7 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <ScrollToTop smooth />
       <ToastContainer position="top-right" theme="dark" />
       <Header
         showmenus={showmenus}

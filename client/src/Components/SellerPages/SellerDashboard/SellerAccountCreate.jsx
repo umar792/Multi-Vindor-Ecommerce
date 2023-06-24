@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { RxAvatar } from "react-icons/rx";
 import { UseShopContext } from "../../../ContextAoi/Context/ShopContext";
+import Loading from "../../Loading/Loading";
 
 const SellerAccountCreate = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ const SellerAccountCreate = () => {
   return (
     <>
       {loading ? (
-        "Loading"
+        <Loading/>
       ) : (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">

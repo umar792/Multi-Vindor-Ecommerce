@@ -24,7 +24,7 @@ const ShopProductView = ({ data }) => {
                   to={`/singleProduct/${item.id}`}
                   className="All_product_data_image"
                 >
-                  <img src={item && item.images && item.images[0].url} alt="" />
+                  <img src={item && item.images && item.images[item.images.length -1].url} alt="" />
                 </NavLink>
                 {/* ----------- content  */}
                 <div className="All_product_data_content">

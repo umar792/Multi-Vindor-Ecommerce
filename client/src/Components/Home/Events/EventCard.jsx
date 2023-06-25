@@ -10,8 +10,8 @@ const EventCard = ({ data }) => {
     >
       <div className="w-full lg:-w[50%] m-auto">
         <img
-          style={{ width: "250px", height: "250px", objectFit: "contain" }}
-          src={`${data.images && data.images[0].url}`}
+          style={{ width: "350px", height: "350px", objectFit: "contain" }}
+          src={`${data.images && data.images[data.images.length - 1].url}`}
           alt=""
         />
       </div>
@@ -19,7 +19,7 @@ const EventCard = ({ data }) => {
         <h2 className="my-[10px] font-bold text-[25px] mx-[0px] cursor-pointer">
           {data.name}
         </h2>
-        <p>{data.description}</p>
+        <p>{data.description.slice(0,500)}.....</p>
 
         <div className="flex py-2 justify-between">
           <div className="flex">

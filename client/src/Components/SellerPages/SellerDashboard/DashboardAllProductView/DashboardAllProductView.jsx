@@ -50,7 +50,7 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                       className="All_product_data_image"
                     >
                       <img
-                        src={item && item.images && item.images[0].url}
+                        src={item && item.images && item.images[item.images.length -1].url}
                         alt=""
                       />
                     </NavLink>

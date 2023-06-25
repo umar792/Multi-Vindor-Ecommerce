@@ -27,11 +27,11 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
           <RxCross1 onClick={() => SetShowQuick(!showQuick)} />
           <div className="Quick_View_Content">
             <div className="qucik_image">
-              <img src={item.images && item.images[0].url} alt="" />
+              <img src={item.images && item.images[item.images.length - 1].url} alt="" />
             </div>
             <div className="Quick_Content">
-              <h2>{item.name}</h2>
-              <p>{item.description}</p>
+              <h2>{item.name.slice(0,100)}...</h2>
+              <p>{item.description.slice(0,500)}....</p>
               <p className="quick_price">{item.discountPrice}$</p>
               <div className="buttons">
                 <div className="qucik_counter">

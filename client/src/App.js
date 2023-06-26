@@ -32,8 +32,15 @@ import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/Seller
 import Shop from "./Components/SellerPages/SellerDashboard/Shop/Shop";
 import UserOTPVerify from "./Components/Account/UserOTPVerify";
 import ScrollToTop from "react-scroll-to-top";
+import { useDispatch } from "react-redux";
+import {
+  AllProductsfun,
+  getAllEvents,
+} from "./redux/actions/OwnerDashboardAction";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   const { Authanticated, loadUser } = UseUserContext();
   const { getOwner, ShopAuthanticated } = UseShopContext();
   const [showmenus, setShowMenu] = useState(false);
@@ -52,6 +59,8 @@ const App = () => {
   useEffect(() => {
     loadUser();
     getOwner();
+    dispatch(AllProductsfun());
+    dispatch(getAllEvents());
   }, []);
   return (
     <BrowserRouter>

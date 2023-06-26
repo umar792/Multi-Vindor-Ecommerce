@@ -5,6 +5,7 @@ import QuickView from "../Products/QuickView/QuickView";
 import { NavLink } from "react-router-dom";
 
 const AllProductrView = ({ data }) => {
+  console.log(data);
   const [showQuick, SetShowQuick] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -24,23 +25,34 @@ const AllProductrView = ({ data }) => {
                   to={`/singleProduct/${item.id}`}
                   className="All_product_data_image"
                 >
-                  <img src={item.image_Url && item.image_Url[0].url} alt="" />
+                  <img
+                    src={
+                      data &&
+                      item.images &&
+                      item.images[item.image.length - 1].url
+                    }
+                    alt=""
+                  />
                 </NavLink>
                 {/* ----------- content  */}
                 <div className="All_product_data_content">
-                  <p className="shop_name">{item.shop.name}</p>
+                  <NavLink to={`/shop/${item.owner && item.owner._id}`}>
+                    <p className="shop_name">
+                      {item.owner && item.owner.shopName}
+                    </p>
+                  </NavLink>
                   <NavLink to={`/singleProduct/${item.id}`}>
-                    <h2>{item.name.slice(0, 38)}..</h2>
+                    <h2>{item.name && item.name.slice(0, 38)}..</h2>
                   </NavLink>
                   <div className="All_product_data_price">
                     <div className="price_all">
-                      <p>{item.discount_price}$</p>
+                      <p>{item.discount_price && item.discount_price}$</p>
                       <p className="line_price">
-                        {item.price ? item.price + "$" : null}
+                        {item.price && item.price ? item.price + "$" : null}
                       </p>
                     </div>
                     <div className="sold">
-                      <p>Sold {item.total_sell}</p>
+                      <p>Sold {item.total_sell && item.total_sell}</p>
                     </div>
                   </div>
                 </div>

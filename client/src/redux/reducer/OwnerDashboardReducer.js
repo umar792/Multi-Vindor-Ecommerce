@@ -80,6 +80,37 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },
+
+  // ---------------- get All Products
+  getAllProductsDataLoad: (state) => {
+    state.ownerLoading = true;
+  },
+  getAllProductsDataLoadFail: (state) => {
+    state.ownerLoading = false;
+  },
+  getAllProductsDataSuccess: (state, action) => {
+    state.ownerLoading = false;
+    state.AllProductsData = action.payload;
+  },
+  getAllProductsDataSuccessError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
+  // ---------------- get All Events
+  getAllEvenstDataLoad: (state) => {
+    state.ownerLoading = true;
+  },
+  getAllEvenstDataLoadFail: (state) => {
+    state.ownerLoading = false;
+  },
+  getAllEvenstDataSuccess: (state, action) => {
+    state.ownerLoading = false;
+    state.AllEventsData = action.payload;
+  },
+  getAllEvenstDataSuccessError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ownerReducer;

@@ -7,6 +7,8 @@ router.post("/createProduct", ShopTokenVerify, controller.createProducts);
 
 router.get("/getOwnerProducts", ShopTokenVerify, controller.ownerProducts);
 
+router.get("/allProducts", controller.AllProducts);
+
 router.delete(
   "/deleteproductbyOwner/:id",
   ShopTokenVerify,

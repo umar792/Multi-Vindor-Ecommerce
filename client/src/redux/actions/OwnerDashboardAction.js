@@ -165,3 +165,46 @@ export const deleteEventbyOwner = (id) => async (dispatch) => {
     dispatch({ type: "DeleteOwnerEventError", payload: Error.message });
   }
 };
+
+// ---------------- get all products
+export const AllProductsfun = () => async (dispatch) => {
+  try {
+    dispatch({ type: "getAllProductsDataLoad" });
+    const res = await fetch(`http://localhost:4000/product/allProducts`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch({ type: "getAllProductsDataLoadFail" });
+    const data = await res.json();
+    dispatch({ type: "getAllProductsDataSuccess", payload: data.products });
+  } catch (error) {
+    dispatch({
+      type: "getAllProductsDataSuccessError",
+      payload: error.message,
+    });
+  }
+};
+
+// ---------------- get all Events
+export const getAllEvents = () => async (dispatch) => {
+  try {
+    dispatch({ type: "getAllEvenstDataLoad" });
+    const res = await fetch(`http://localhost:4000/event/getAllEvents`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch({ type: "getAllEvenstDataLoadFail" });
+    const data = await res.json();
+    console.log(data);
+    dispatch({ type: "getAllEvenstDataSuccess", payload: data.products });
+  } catch (error) {
+    dispatch({
+      type: "getAllEvenstDataSuccessError",
+      payload: error.message,
+    });
+  }
+};

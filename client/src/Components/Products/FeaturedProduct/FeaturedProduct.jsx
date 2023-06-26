@@ -1,8 +1,12 @@
 import React from "react";
 import AllProductrView from "../../AllProductView/AllProductrView";
 import { productData } from "../../../DataStatic/Data";
+import { useSelector } from "react-redux";
+import DashboardAllProductView from "../../SellerPages/SellerDashboard/DashboardAllProductView/DashboardAllProductView";
 
 const FeaturedProduct = () => {
+  const AllProductsData = useSelector((state) => state.owner.AllProductsData);
+
   return (
     <div className="my-[50px]">
       <div className={``}>
@@ -13,7 +17,7 @@ const FeaturedProduct = () => {
         </div>
         {productData && productData.length !== 0 && (
           <>
-            <AllProductrView data={productData} />
+            <DashboardAllProductView data={AllProductsData} />
           </>
         )}
       </div>

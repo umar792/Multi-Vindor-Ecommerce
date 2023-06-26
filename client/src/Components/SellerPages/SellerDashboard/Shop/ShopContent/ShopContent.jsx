@@ -10,7 +10,6 @@ const ShopContent = () => {
   const { ShopAuthanticated } = UseShopContext();
   const [select, setSelect] = useState(0);
   const owner = useSelector((state) => state.shop.SingelShopOwner);
-  console.log(owner);
   return (
     <div className="ShopContent">
       <div className="shopconetent_header">

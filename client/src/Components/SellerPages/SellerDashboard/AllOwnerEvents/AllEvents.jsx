@@ -18,7 +18,7 @@ const AllEvents = () => {
         <Loading />
       ) : OwnerAllEvensts && OwnerAllEvensts.length !== 0 ? (
         OwnerAllEvensts.map((item) => {
-          return <EventCard data={item} days={30} key={item._id} />;
+          return <EventCard data={item} key={item._id} />;
         })
       ) : (
         <p className="text-white bg-[gray] p-4 m-3">No Evenet found</p>

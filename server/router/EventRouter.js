@@ -17,4 +17,6 @@ router.delete(
 
 router.get("/getOwnerEvents", ShopTokenVerify, controller.ownerEvensts);
 
+router.get("/getAllEvents", controller.ALLEvents);
+
 module.exports = router;

@@ -11,10 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteproductbyOwnerredux } from "../../../../redux/actions/OwnerDashboardAction";
 import Loading from "../../../Loading/Loading";
 import { OwnerAllProductsGetFunc } from "../../../../redux/actions/OwnerDashboardAction";
+import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
 
 const DashboardAllProductView = ({ data, select, setSelect }) => {
   const [showQuick, SetShowQuick] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const { ShopOwner } = UseShopContext();
 
   const handleQuickView = (product) => {
     setSelectedProduct(product);
@@ -30,6 +32,7 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
   };
 
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
+
   return (
     <>
       {ownerLoading ? (
@@ -87,10 +90,14 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                         onClick={() => handleQuickView(item)}
                       />
                       <AiOutlineShoppingCart title="Buy Now" />
-                      <AiOutlineDelete
-                        className="text-[red]"
-                        onClick={() => deleteproductbyOwner(item._id)}
-                      />
+                      {item &&
+                      item.owner &&
+                      item.owner._id === ShopOwner._id ? (
+                        <AiOutlineDelete
+                          className="text-[red]"
+                          onClick={() => deleteproductbyOwner(item._id)}
+                        />
+                      ) : null}
                     </div>
                   </div>
                   <QuickView

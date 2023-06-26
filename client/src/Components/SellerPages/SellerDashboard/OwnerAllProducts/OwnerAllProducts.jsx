@@ -10,7 +10,7 @@ const OwnerAllProducts = ({ select, setSelect }) => {
 
   const OwnerAllProducts = useSelector((state) => state.owner.OwnerAllProducts);
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
-  //   console.log(OwnerAllProducts);
+  // console.log(OwnerAllProducts);
 
   useEffect(() => {
     dispatch(OwnerAllProductsGetFunc());

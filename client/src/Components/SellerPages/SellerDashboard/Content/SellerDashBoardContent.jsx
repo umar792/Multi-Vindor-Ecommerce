@@ -5,9 +5,10 @@ import { NavLink } from "react-router-dom";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import OwnerAllProducts from "../OwnerAllProducts/OwnerAllProducts";
 import CreaventEvents from "../CreateEvents/CreaventEvents";
-
+import AllEvents from "../AllOwnerEvents/AllEvents";
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
+
   return (
     <div className="SellerDashBoardContent">
       <div className="SellerDashBoardContent_header">
@@ -35,6 +36,8 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       {select === 5 ? (
         <CreaventEvents select={select} setSelect={setSelect} />
       ) : null}
+      {/* --------------------------- dashboard all Event  */}
+      {select === 4 ? <AllEvents /> : null}
     </div>
   );
 };

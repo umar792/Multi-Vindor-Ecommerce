@@ -23,6 +23,30 @@ export const OwnerAllProductsGetFunc = () => async (dispatch) => {
   }
 };
 
+// ----------------- all evensts
+export const OwnerAllEvenstGetFunc = () => async (dispatch) => {
+  try {
+    dispatch({ type: "LoadGetOwnerEvent" });
+    const res = await fetch(`http://localhost:4000/event/getOwnerEvents`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("shopownerToken"),
+      },
+    });
+    const data = await res.json();
+    dispatch({ type: "OwnerEventGetFail" });
+    if (res.status === 400 || !data) {
+      return console.log(data.message);
+    } else {
+      //   console.log(");
+    }
+    dispatch({ type: "GetOwnerEventSuccess", payload: data.ownerEvents });
+  } catch (error) {
+    dispatch({ type: "OwnerAllEventGetError", payload: Error.message });
+  }
+};
+
 // ------------------ delete product by owner
 
 export const deleteproductbyOwnerredux =
@@ -70,7 +94,7 @@ export const CreateEventProduct =
     images,
     startDate,
     endDate,
-    navigate
+    setSelect
   ) =>
   async (dispatch) => {
     try {
@@ -104,9 +128,40 @@ export const CreateEventProduct =
       } else {
         toast.success(data.message);
         dispatch({ type: "CreateEventProductSuccess" });
-        navigate("/Shop/Owner/Dashboard");
+        setSelect(3);
       }
     } catch (error) {
       dispatch({ type: "CreateEventProductError", payload: error.message });
     }
   };
+
+// ------------------ delete Eventr by owner
+
+export const deleteEventbyOwner = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteOwnerEventStart" });
+    const res = await fetch(
+      `http://localhost:4000/event/deleteeventbyOwner/${id}`,
+      {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("shopownerToken"),
+        },
+      }
+    );
+    const data = await res.json();
+    dispatch({ type: "DeleteOwnerEventFail" });
+    if (res.status === 400 || !data) {
+      return toast.error(data.message);
+    } else {
+      toast.success(data.message);
+      // setSelect(0);
+    }
+    dispatch({
+      type: "DeeleteOwnerEventSuccess",
+    });
+  } catch (error) {
+    dispatch({ type: "DeleteOwnerEventError", payload: Error.message });
+  }
+};

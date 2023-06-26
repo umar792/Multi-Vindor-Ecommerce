@@ -20,6 +20,22 @@ const ownerReducer = createReducer(initailValue, {
     state.ERROR = action.payload;
   },
 
+  // ------------------------ owner all Evensts
+  LoadGetOwnerEvent: (state) => {
+    state.ownerLoading = true;
+  },
+  OwnerEventGetFail: (state) => {
+    state.ownerLoading = false;
+  },
+  GetOwnerEventSuccess: (state, action) => {
+    state.ownerLoading = false;
+    state.OwnerAllEvensts = action.payload;
+  },
+  OwnerAllEventGetError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
+
   // ------------------------ delete products by owner
   DeleteOwnerProductStart: (state) => {
     state.ownerLoading = true;
@@ -46,6 +62,21 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
   },
   CreateEventProductError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
+
+  // ------------------------ delete Event by owner
+  DeleteOwnerEventStart: (state) => {
+    state.ownerLoading = true;
+  },
+  DeleteOwnerEventFail: (state) => {
+    state.ownerLoading = false;
+  },
+  DeeleteOwnerEventSuccess: (state) => {
+    state.ownerLoading = false;
+  },
+  DeleteOwnerEventError: (state, action) => {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },

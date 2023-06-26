@@ -216,7 +216,9 @@ module.exports = {
   // ---------------- get Shop Owner
   getShopOwner: async (req, res) => {
     try {
-      const owner = await ShopModal.findById(req.user._id).populate("products");
+      const owner = await ShopModal.findById(req.user._id)
+        .populate("products")
+        .populate("events");
       res.status(200).json({
         success: true,
         owner,
@@ -234,7 +236,7 @@ module.exports = {
     try {
       const owner = await ShopModal.findById(req.params.id)
         .populate("products")
-        .populate("Events");
+        .populate("events");
       if (!owner) {
         return res.status(401).send("No such shop exists");
       }

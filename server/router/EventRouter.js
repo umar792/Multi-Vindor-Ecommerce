@@ -9,4 +9,12 @@ router.post(
   controller.createEventProducts
 );
 
+router.delete(
+  "/deleteeventbyOwner/:id",
+  ShopTokenVerify,
+  controller.deleteEventByOwner
+);
+
+router.get("/getOwnerEvents", ShopTokenVerify, controller.ownerEvensts);
+
 module.exports = router;

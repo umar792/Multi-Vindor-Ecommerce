@@ -40,17 +40,18 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
             data.length > 0 &&
             data.map((item) => {
               return (
-                <>
-                  <div
-                    className="All_product_data_child w-[250px]"
-                    key={item._id}
-                  >
+                <div key={item._id}>
+                  <div className="All_product_data_child w-[250px]">
                     <NavLink
                       to={`/singleProduct/${item.id}`}
                       className="All_product_data_image"
                     >
                       <img
-                        src={item && item.images && item.images[item.images.length -1].url}
+                        src={
+                          item &&
+                          item.images &&
+                          item.images[item.images.length - 1].url
+                        }
                         alt=""
                       />
                     </NavLink>
@@ -97,7 +98,7 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                     SetShowQuick={SetShowQuick}
                     item={selectedProduct}
                   />
-                </>
+                </div>
               );
             })}
         </div>

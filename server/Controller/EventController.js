@@ -91,12 +91,70 @@ module.exports = {
       req.body.images = imagesLink;
       req.body.owner = ownerid._id;
       const Event = await EventModel.create(req.body);
-      ownerid.Events.push(Event._id);
+      ownerid.events.push(Event._id);
       await ownerid.save();
 
       res.status(200).json({
         success: true,
         message: "Event Create Successfuly",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  // ------------------------ delete Event
+  deleteEventByOwner: async (req, res) => {
+    try {
+      const product = await EventModel.findById(req.params.id);
+      if (!product) {
+        return res.status(400).json({
+          success: false,
+          message: "No Event Found",
+        });
+      }
+
+      const owner = await ShopModal.findById(req.user._id);
+      if (product.owner.toString() === owner._id.toString()) {
+        // Delete the product
+        await EventModel.findByIdAndDelete(product._id);
+
+        // Remove the product ID from the user's myProducts array
+        owner.events = await owner.events.filter(
+          (productId) => productId.toString() !== product._id.toString()
+        );
+        await owner.save();
+        res.status(200).json({
+          success: true,
+          message: "Event Deleted Successfuly",
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "Sorry you cannot delete this product",
+        });
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  // ----------------------- get owner all Events
+
+  ownerEvensts: async (req, res) => {
+    try {
+      const ownerEvents = await EventModel.find({
+        owner: req.user._id,
+      }).populate("owner");
+
+      res.status(200).json({
+        ownerEvents,
       });
     } catch (error) {
       res.status(400).json({

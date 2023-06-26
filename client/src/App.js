@@ -35,7 +35,7 @@ import ScrollToTop from "react-scroll-to-top";
 
 const App = () => {
   const { Authanticated, loadUser } = UseUserContext();
-  const { getOwner, ShopAuthanticated, ShopOwner } = UseShopContext();
+  const { getOwner, ShopAuthanticated } = UseShopContext();
   const [showmenus, setShowMenu] = useState(false);
   const [showSearch, setSearch] = useState(true);
   const [cartOpen, setOpenCart] = useState(false);

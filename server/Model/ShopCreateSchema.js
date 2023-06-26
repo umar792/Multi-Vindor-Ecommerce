@@ -52,7 +52,7 @@ const ShopCreateschema = new Schema({
       ref: "product",
     },
   ],
-  Events: [
+  events: [
     {
       type: mongoose.Types.ObjectId,
       ref: "Event",

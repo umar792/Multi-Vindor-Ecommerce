@@ -3,11 +3,10 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { categoriesData } from "../../../../DataStatic/Data";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateShopProduct } from "../../../../redux/actions/ShopAction";
 import Loading from "../../../Loading/Loading";
 import { CreateEventProduct } from "../../../../redux/actions/OwnerDashboardAction";
 
-const CreaventEvents = () => {
+const CreaventEvents = ({ setSelect }) => {
   const navigate = useNavigate();
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
 
@@ -57,8 +56,8 @@ const CreaventEvents = () => {
         images,
         startDate,
         endDate,
-        navigate
-        // navigate,
+        navigate,
+        setSelect
       )
     );
   };

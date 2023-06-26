@@ -10,6 +10,7 @@ const ShopContent = () => {
   const { ShopAuthanticated } = UseShopContext();
   const [select, setSelect] = useState(0);
   const owner = useSelector((state) => state.shop.SingelShopOwner);
+  console.log(owner);
   return (
     <div className="ShopContent">
       <div className="shopconetent_header">
@@ -51,8 +52,8 @@ const ShopContent = () => {
       ) : null}
       {/* ----------------------------- events  */}
       {select === 1 ? (
-        owner && owner.Events.length > 0 ? (
-          owner.Events.map((item) => <EventCard data={item} days={30} />)
+        owner && owner.events.length > 0 ? (
+          owner.events.map((item) => <EventCard data={item} />)
         ) : (
           <p className="p-4 bg-[gray] mt-4 text-white">
             This Shop has no Events

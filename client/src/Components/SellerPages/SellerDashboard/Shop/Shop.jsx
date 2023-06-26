@@ -15,6 +15,7 @@ const Shop = () => {
   }, []);
 
   const owner = useSelector((state) => state.shop.SingelShopOwner);
+  // console.log(owner);
 
   return (
     <div className="Shop">

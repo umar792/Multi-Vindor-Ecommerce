@@ -31,7 +31,7 @@ import { UseShopContext } from "./ContextAoi/Context/ShopContext";
 import SellerAccountCreate from "./Components/SellerPages/SellerDashboard/SellerAccountCreate";
 import Shop from "./Components/SellerPages/SellerDashboard/Shop/Shop";
 import UserOTPVerify from "./Components/Account/UserOTPVerify";
-import ScrollToTop from "react-scroll-to-top";
+import { ScrollToTop } from "react-router-scroll-to-top";
 import { useDispatch } from "react-redux";
 import {
   AllProductsfun,
@@ -59,13 +59,16 @@ const App = () => {
   useEffect(() => {
     loadUser();
     getOwner();
+  }, []);
+
+  useEffect(() => {
     dispatch(AllProductsfun());
     dispatch(getAllEvents());
   }, []);
   return (
     <BrowserRouter>
-      <ScrollToTop smooth />
       <ToastContainer position="top-right" theme="dark" />
+      <ScrollToTop />
       <Header
         showmenus={showmenus}
         setShowMenu={setShowMenu}

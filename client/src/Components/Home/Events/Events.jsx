@@ -9,6 +9,16 @@ const Events = () => {
   // });
 
   const AllEventsData = useSelector((state) => state.owner.AllEventsData);
+  const productWithMostSales =
+    AllEventsData &&
+    AllEventsData &&
+    AllEventsData.reduce((maxSalesProduct, currentProduct) => {
+      if (currentProduct.soldOut > maxSalesProduct.soldOut) {
+        return currentProduct;
+      } else {
+        return maxSalesProduct;
+      }
+    });
   return (
     <div>
       <div>
@@ -19,10 +29,10 @@ const Events = () => {
         </div>
 
         <div className="w-full grid">
-          {AllEventsData && AllEventsData.length !== 0 && (
-            <EventCard data={AllEventsData && AllEventsData[0]} />
-          )}
-          <h4>{AllEventsData?.length === 0 && "No Events have!"}</h4>
+          {/* {AllEventsData && AllEventsData.length !== 0 && ( */}
+          <EventCard data={productWithMostSales} />
+          {/* )} */}
+          {/* <h4>{AllEventsData?.length === 0 && "No Events have!"}</h4> */}
         </div>
       </div>
     </div>

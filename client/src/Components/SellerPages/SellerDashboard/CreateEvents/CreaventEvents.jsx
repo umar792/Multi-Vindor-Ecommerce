@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { categoriesData } from "../../../../DataStatic/Data";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../../../Loading/Loading";
-import { CreateEventProduct } from "../../../../redux/actions/OwnerDashboardAction";
+import {
+  AllProductsfun,
+  CreateEventProduct,
+  getAllEvents,
+} from "../../../../redux/actions/OwnerDashboardAction";
 
 const CreaventEvents = ({ setSelect }) => {
   const navigate = useNavigate();
@@ -41,10 +45,10 @@ const CreaventEvents = ({ setSelect }) => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(
+    await dispatch(
       CreateEventProduct(
         name,
         description,
@@ -60,6 +64,8 @@ const CreaventEvents = ({ setSelect }) => {
         setSelect
       )
     );
+    await dispatch(AllProductsfun());
+    await dispatch(getAllEvents());
   };
 
   const handleStartDateChange = (event) => {

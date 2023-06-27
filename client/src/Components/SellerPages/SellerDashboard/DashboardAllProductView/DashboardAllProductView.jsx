@@ -8,7 +8,11 @@ import {
 import QuickView from "../../../Products/QuickView/QuickView";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteproductbyOwnerredux } from "../../../../redux/actions/OwnerDashboardAction";
+import {
+  AllProductsfun,
+  deleteproductbyOwnerredux,
+  getAllEvents,
+} from "../../../../redux/actions/OwnerDashboardAction";
 import Loading from "../../../Loading/Loading";
 import { OwnerAllProductsGetFunc } from "../../../../redux/actions/OwnerDashboardAction";
 import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
@@ -26,9 +30,11 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const deleteproductbyOwner = (id) => {
-    dispatch(deleteproductbyOwnerredux(id, navigate, setSelect));
-    dispatch(OwnerAllProductsGetFunc());
+  const deleteproductbyOwner = async (id) => {
+    await dispatch(deleteproductbyOwnerredux(id, navigate, setSelect));
+    await dispatch(OwnerAllProductsGetFunc());
+    await dispatch(AllProductsfun());
+    await dispatch(getAllEvents());
   };
 
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
@@ -43,10 +49,10 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
             data.length > 0 &&
             data.map((item) => {
               return (
-                <div key={item._id}>
+                <div key={item._id && item._id}>
                   <div className="All_product_data_child w-[250px]">
                     <NavLink
-                      to={`/singleProduct/${item.id}`}
+                      to={`/singleProduct/${item._id}`}
                       className="All_product_data_image"
                     >
                       <img
@@ -60,12 +66,12 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                     </NavLink>
                     {/* ----------- content  */}
                     <div className="All_product_data_content">
-                      <NavLink to={`/shop/${item.owner._id}`}>
+                      <NavLink to={`/shop/${item.owner && item.owner._id}`}>
                         <p className="shop_name">
                           {item.owner && item.owner.shopName}
                         </p>
                       </NavLink>
-                      <NavLink to={`/singleProduct/${item.id}`}>
+                      <NavLink to={`/singleProduct/${item._id}`}>
                         <h2>{item.name.slice(0, 55)}..</h2>
                       </NavLink>
                       <div className="All_product_data_price">
@@ -81,6 +87,15 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                           <p>Sold {item.sold_out}</p>
                         </div>
                       </div>
+                      <p>
+                        {item &&
+                        item.owner &&
+                        item.owner._id === ShopOwner._id ? (
+                          <p className=" font-bold text-[red] text-center">
+                            stock : {item.stock}{" "}
+                          </p>
+                        ) : null}
+                      </p>
                     </div>
 
                     {/* ------------- icons  */}

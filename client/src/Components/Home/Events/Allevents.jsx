@@ -1,10 +1,14 @@
 import React from "react";
 import { productData } from "../../../DataStatic/Data";
 import EventCard from "./EventCard";
+import { useSelector } from "react-redux";
 const Allevents = () => {
-  const EventProduct = productData.filter((item) => {
-    return item.Event === true;
-  });
+  // const EventProduct = productData.filter((item) => {
+  //   return item.Event === true;
+  // });
+
+  const AllEventsData = useSelector((state) => state.owner.AllEventsData);
+
   return (
     <div>
       <div>
@@ -15,11 +19,15 @@ const Allevents = () => {
         </div>
 
         <div className="w-full grid">
-          {EventProduct.length !== 0 &&
-            EventProduct.map((item) => {
+          {AllEventsData &&
+            AllEventsData.length !== 0 &&
+            AllEventsData &&
+            AllEventsData.map((item) => {
               return <EventCard data={item} days={30} />;
             })}
-          <h4>{EventProduct?.length === 0 && "No Events have!"}</h4>
+          <h4>
+            {AllEventsData && AllEventsData?.length === 0 && "No Events have!"}
+          </h4>
         </div>
       </div>
     </div>

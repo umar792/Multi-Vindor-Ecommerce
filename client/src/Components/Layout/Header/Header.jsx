@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./Header.css";
 import { productData } from "../../../DataStatic/Data";
-import { BsSearch } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { UseShopContext } from "../../../ContextAoi/Context/ShopContext";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = ({
   showmenus,
@@ -20,15 +19,15 @@ const Header = ({
 }) => {
   const [serachData, setSerachData] = useState(null);
   const { ShopAuthanticated } = UseShopContext();
-  const { Authanticated } = UseUserContext();
+  const AllProductsData = useSelector((state) => state.owner.AllProductsData);
 
   // ------------------SerachItemChange
   const SerachItemChange = (e) => {
     SetSearchItem(e.target.value);
 
     const filterProduct =
-      productData &&
-      productData.filter((item) =>
+      AllProductsData &&
+      AllProductsData.filter((item) =>
         item.name.toLowerCase().includes(searchitem)
       );
     setSerachData(filterProduct);
@@ -59,16 +58,18 @@ const Header = ({
             <div className="search_data_show">
               {serachData &&
                 serachData.map((item) => (
-                  <div
-                    key={item.name}
-                    className="search_data_show_item"
-                    onClick={() => SetSearchItem("")}
-                  >
-                    <img src={item.image_Url[0].url} alt="" />
-                    <div className="search_data_show_item_text">
-                      <h3>{item.name}</h3>
+                  <NavLink to={`/singleProduct/${item._id}`}>
+                    <div
+                      key={item.name}
+                      className="search_data_show_item"
+                      onClick={() => SetSearchItem("")}
+                    >
+                      <img src={item.images && item.images[0].url} alt="" />
+                      <div className="search_data_show_item_text">
+                        <h3>{item.name}</h3>
+                      </div>
                     </div>
-                  </div>
+                  </NavLink>
                 ))}
             </div>
           ) : null}

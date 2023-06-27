@@ -5,6 +5,10 @@ import { categoriesData } from "../../../../DataStatic/Data";
 import { useDispatch, useSelector } from "react-redux";
 import { CreateShopProduct } from "../../../../redux/actions/ShopAction";
 import Loading from "../../../Loading/Loading";
+import {
+  AllProductsfun,
+  getAllEvents,
+} from "../../../../redux/actions/OwnerDashboardAction";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -39,9 +43,9 @@ const CreateProduct = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
+    await dispatch(
       CreateShopProduct(
         name,
         description,
@@ -54,6 +58,8 @@ const CreateProduct = () => {
         navigate
       )
     );
+    await dispatch(AllProductsfun());
+    await dispatch(getAllEvents());
   };
 
   return (

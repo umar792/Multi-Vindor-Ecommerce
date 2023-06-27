@@ -111,6 +111,21 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },
+  // ---------------- get Single Product
+  getSingleProductDataLoad: (state) => {
+    state.ownerLoading = true;
+  },
+  getSingleProducttDataLoadFail: (state) => {
+    state.ownerLoading = false;
+  },
+  getSingleProductDataSuccess: (state, action) => {
+    state.ownerLoading = false;
+    state.singleProduct = action.payload;
+  },
+  getSingleProductDataSuccessError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ownerReducer;

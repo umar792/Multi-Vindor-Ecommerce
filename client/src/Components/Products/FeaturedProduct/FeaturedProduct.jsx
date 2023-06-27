@@ -1,5 +1,4 @@
 import React from "react";
-import AllProductrView from "../../AllProductView/AllProductrView";
 import { productData } from "../../../DataStatic/Data";
 import { useSelector } from "react-redux";
 import DashboardAllProductView from "../../SellerPages/SellerDashboard/DashboardAllProductView/DashboardAllProductView";

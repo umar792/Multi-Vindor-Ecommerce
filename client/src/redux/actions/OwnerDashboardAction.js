@@ -199,11 +199,34 @@ export const getAllEvents = () => async (dispatch) => {
     });
     dispatch({ type: "getAllEvenstDataLoadFail" });
     const data = await res.json();
-    console.log(data);
     dispatch({ type: "getAllEvenstDataSuccess", payload: data.products });
   } catch (error) {
     dispatch({
       type: "getAllEvenstDataSuccessError",
+      payload: error.message,
+    });
+  }
+};
+
+// ---------------- get all Events
+export const getSingleProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "getSingleProductDataLoad" });
+    const res = await fetch(
+      `http://localhost:4000/product/singleProduct/${id}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "getSingleProducttDataLoadFail" });
+    const data = await res.json();
+    dispatch({ type: "getSingleProductDataSuccess", payload: data.product });
+  } catch (error) {
+    dispatch({
+      type: "getSingleProductDataSuccessError",
       payload: error.message,
     });
   }

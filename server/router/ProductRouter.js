@@ -9,6 +9,8 @@ router.get("/getOwnerProducts", ShopTokenVerify, controller.ownerProducts);
 
 router.get("/allProducts", controller.AllProducts);
 
+router.get("/singleProduct/:id", controller.SingleProduct);
+
 router.delete(
   "/deleteproductbyOwner/:id",
   ShopTokenVerify,

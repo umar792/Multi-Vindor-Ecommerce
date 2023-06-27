@@ -11,7 +11,6 @@ import {
 } from "../../../redux/actions/OwnerDashboardAction";
 
 const EventCard = ({ data }) => {
-  console.log(data);
   const { ShopOwner } = UseShopContext();
   const dispatch = useDispatch();
 

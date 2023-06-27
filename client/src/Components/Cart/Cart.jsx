@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import "./Cart.css";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../redux/actions/CartAction";
+import { addTocart, removeFromCart } from "../../redux/actions/CartAction";
+import { toast } from "react-toastify";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 
 const Cart = ({ setOpenCart }) => {
   const cart = useSelector((state) => state.cart.cart);
@@ -14,11 +16,29 @@ const Cart = ({ setOpenCart }) => {
         <RxCross1 onClick={() => setOpenCart(false)} />
       </div>
       {/* ------------- content  */}
-      {cart &&
-        cart.map((item) => {
-          return <CartItems data={item} />;
-        })}
-      <button className="checkout">Check Out</button>
+      {cart.length !== 0 ? (
+        <>
+          {cart &&
+            cart.map((item) => {
+              return <CartItems data={item} />;
+            })}
+          <button className="checkout">Check Out</button>
+        </>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80%",
+            color: "red",
+            fontSize: "20px",
+          }}
+        >
+          <p className="font-bold mr-2">No item in card</p>
+          <MdOutlineRemoveShoppingCart className="text-2xl" />
+        </div>
+      )}
     </div>
   );
 };
@@ -30,6 +50,7 @@ const CartItems = ({ data }) => {
   const dispatch = useDispatch();
   const removeitemfromCart = (i) => {
     dispatch(removeFromCart(i));
+    toast.success("Product remove from card successfuly");
   };
   const decrement = (data) => {
     if (count === 1) {
@@ -44,6 +65,9 @@ const CartItems = ({ data }) => {
       setCount(`${data.stock}`);
     } else {
       setCount(count + 1);
+      const quantity = count + 1;
+      const allData = { ...data, quantity };
+      dispatch(addTocart(allData));
     }
   };
 

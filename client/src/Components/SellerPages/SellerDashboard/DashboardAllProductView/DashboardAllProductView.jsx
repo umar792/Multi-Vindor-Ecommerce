@@ -17,6 +17,7 @@ import Loading from "../../../Loading/Loading";
 import { OwnerAllProductsGetFunc } from "../../../../redux/actions/OwnerDashboardAction";
 import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
 import { addTocart } from "../../../../redux/actions/CartAction";
+import { toast } from "react-toastify";
 
 const DashboardAllProductView = ({ data, select, setSelect }) => {
   const [showQuick, SetShowQuick] = useState(false);
@@ -40,10 +41,11 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
 
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
 
-  const addItemtotheCart = (item) => {
+  const addItemtotheCart = async (item) => {
     const quantity = 1;
     const allData = { ...item, quantity };
-    dispatch(addTocart(allData));
+    await dispatch(addTocart(allData));
+    await toast.success("Product add to card successfuly");
   };
 
   return (

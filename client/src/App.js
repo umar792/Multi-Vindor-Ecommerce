@@ -49,6 +49,14 @@ const App = () => {
   const [searchitem, SetSearchItem] = useState("");
   const [showProfiletoggle, setShowProfile] = useState(false);
 
+  useEffect(() => {
+    if (cartOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [cartOpen]);
+
   const PrivateRoute = () => {
     return !Authanticated ? <Navigate to="/" replace /> : <Outlet />;
   };
@@ -67,7 +75,7 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      <ToastContainer position="top-right" theme="dark" />
+      <ToastContainer position="bottom-right" theme="colored" />
       <ScrollToTop />
       <Header
         showmenus={showmenus}

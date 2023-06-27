@@ -6,6 +6,7 @@ import ProductMoreInfo from "../singleProduct/ProductMoreInfo.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../../redux/actions/OwnerDashboardAction";
 import { addTocart } from "../../../redux/actions/CartAction";
+import { toast } from "react-toastify";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,11 @@ const SingleProduct = () => {
     }
   }, [singleProduct]);
   const incrementCount = () => {
-    setCount(count + 1);
+    if (singleProduct.stock > count) {
+      setCount(count + 1);
+    } else {
+      setCount(singleProduct.stock);
+    }
   };
 
   const decrementCount = () => {
@@ -44,6 +49,7 @@ const SingleProduct = () => {
     const quantity = count;
     const alldata = { ...i, quantity };
     dispatch(addTocart(alldata));
+    toast.success("Product add to card successfuly");
   };
 
   return (

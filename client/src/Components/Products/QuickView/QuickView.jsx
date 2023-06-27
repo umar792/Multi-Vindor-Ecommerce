@@ -3,6 +3,7 @@ import "./QuickView.css";
 import { RxCross1 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { addTocart } from "../../../redux/actions/CartAction";
+import { toast } from "react-toastify";
 
 const QuickView = ({ showQuick, SetShowQuick, item }) => {
   const [counter, setCounter] = useState(1);
@@ -22,10 +23,11 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
     }
   };
   const dispatch = useDispatch();
-  const addDataToCart = (i) => {
+  const addDataToCart = async (i) => {
     const quantity = counter;
     const alldata = { ...i, quantity };
-    dispatch(addTocart(alldata));
+    await dispatch(addTocart(alldata));
+    await toast.success("Product add to card successfuly");
   };
 
   return (

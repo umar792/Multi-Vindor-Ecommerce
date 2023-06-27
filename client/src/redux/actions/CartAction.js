@@ -8,7 +8,7 @@ export const addTocart = (data) => async (dispatch, getState) => {
   });
 
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cart));
-  toast.success("Product add to card Successfuly");
+  //   toast.success("Product add to card Successfuly");
   return data;
 };
 
@@ -18,7 +18,7 @@ export const removeFromCart = (data) => async (dispatch, getState) => {
     type: "removeFromCart",
     payload: data._id,
   });
-  toast.success("Product remove from cart");
+  //   toast.success("Product remove from cart");
   localStorage.setItem("cartItems", JSON.stringify(getState().cart.cart));
   return data;
 };

@@ -10,3 +10,29 @@
     grid-template-columns: .3fr 1fr;
     overflow: auto;
 }
+.dashboard_responsive{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    z-index: 99;
+    display: none;
+}
+
+@media(max-width : 800px){
+    .dashboard_responsive{
+        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+    }
+}

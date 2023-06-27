@@ -5,10 +5,11 @@
     width: 300px;
     height: 100vh;
     overflow: auto;
-    background-color: white;
+    background-color: whitesmoke;
     z-index: 999;
     color: black;
     padding: 10px 6px;
+    box-shadow: 10px 10px 30px 30px rgba(0, 0, 0, .3);
 }
 .cart .items_cart{
     display: flex;
@@ -51,8 +52,8 @@
     /* align-items: center; */
 }
 .cart_content img{
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     margin-left: 30px;
 }

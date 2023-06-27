@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./QuickView.css";
 import { RxCross1 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { addTocart } from "../../../redux/actions/CartAction";
 
 const QuickView = ({ showQuick, SetShowQuick, item }) => {
   const [counter, setCounter] = useState(1);
@@ -19,6 +21,12 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
       setCounter(counter + 1);
     }
   };
+  const dispatch = useDispatch();
+  const addDataToCart = (i) => {
+    const quantity = counter;
+    const alldata = { ...i, quantity };
+    dispatch(addTocart(alldata));
+  };
 
   return (
     <>
@@ -27,11 +35,14 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
           <RxCross1 onClick={() => SetShowQuick(!showQuick)} />
           <div className="Quick_View_Content">
             <div className="qucik_image">
-              <img src={item.images && item.images[item.images.length - 1].url} alt="" />
+              <img
+                src={item.images && item.images[item.images.length - 1].url}
+                alt=""
+              />
             </div>
             <div className="Quick_Content">
-              <h2>{item.name.slice(0,100)}...</h2>
-              <p>{item.description.slice(0,500)}....</p>
+              <h2>{item.name.slice(0, 100)}...</h2>
+              <p>{item.description.slice(0, 500)}....</p>
               <p className="quick_price">{item.discountPrice}$</p>
               <div className="buttons">
                 <div className="qucik_counter">
@@ -39,7 +50,7 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
                   <span>{counter}</span>
                   <font onClick={increament}>+</font>
                 </div>
-                <button>Buy Now</button>
+                <button onClick={() => addDataToCart(item)}>Add to cart</button>
               </div>
             </div>
           </div>

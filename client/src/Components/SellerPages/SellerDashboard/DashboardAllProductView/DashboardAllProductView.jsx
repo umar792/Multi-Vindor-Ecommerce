@@ -16,6 +16,7 @@ import {
 import Loading from "../../../Loading/Loading";
 import { OwnerAllProductsGetFunc } from "../../../../redux/actions/OwnerDashboardAction";
 import { UseShopContext } from "../../../../ContextAoi/Context/ShopContext";
+import { addTocart } from "../../../../redux/actions/CartAction";
 
 const DashboardAllProductView = ({ data, select, setSelect }) => {
   const [showQuick, SetShowQuick] = useState(false);
@@ -38,6 +39,12 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
   };
 
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
+
+  const addItemtotheCart = (item) => {
+    const quantity = 1;
+    const allData = { ...item, quantity };
+    dispatch(addTocart(allData));
+  };
 
   return (
     <>
@@ -104,7 +111,10 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
                         title="Quick View"
                         onClick={() => handleQuickView(item)}
                       />
-                      <AiOutlineShoppingCart title="Buy Now" />
+                      <AiOutlineShoppingCart
+                        title="Buy Now"
+                        onClick={() => addItemtotheCart(item)}
+                      />
                       {item &&
                       item.owner &&
                       item.owner._id === ShopOwner._id ? (

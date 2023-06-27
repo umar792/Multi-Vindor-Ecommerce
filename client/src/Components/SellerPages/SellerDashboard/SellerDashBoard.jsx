@@ -13,6 +13,10 @@ const SellerDashBoard = () => {
       <div>
         <SellerDashBoardContent select={select} setSelect={setSelect} />
       </div>
+      {/* ------------ for respnsive  */}
+      <div className="dashboard_responsive">
+        <p>Plaese Use Laptop Or Computer for access the dasahboard</p>
+      </div>
     </div>
   );
 };

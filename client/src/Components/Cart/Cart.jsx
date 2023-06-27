@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import "./Cart.css";
 import { RxCross1 } from "react-icons/rx";
-import { productData } from "../../DataStatic/Data";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../../redux/actions/CartAction";
 
 const Cart = ({ setOpenCart }) => {
+  const cart = useSelector((state) => state.cart.cart);
+
   return (
     <div className="cart">
       <div className="items_cart">
-        <p>Total Item : {productData && productData.length}</p>
+        <p>Total Item : {cart && cart.length}</p>
         <RxCross1 onClick={() => setOpenCart(false)} />
       </div>
       {/* ------------- content  */}
-      {productData &&
-        productData.map((item) => {
+      {cart &&
+        cart.map((item) => {
           return <CartItems data={item} />;
         })}
       <button className="checkout">Check Out</button>
@@ -24,6 +27,10 @@ const Cart = ({ setOpenCart }) => {
 
 const CartItems = ({ data }) => {
   const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  const removeitemfromCart = (i) => {
+    dispatch(removeFromCart(i));
+  };
   const decrement = (data) => {
     if (count === 1) {
       setCount(1);
@@ -49,12 +56,22 @@ const CartItems = ({ data }) => {
       </div>
       <div className="cart_content">
         <div>
-          <RxCross1 className="remove" />
-          <img src={data.image_Url && data.image_Url[0].url} alt="" />
-          <p className="font-bold my-2 mx-1 cursor-pointer">{data.name}</p>
+          <RxCross1
+            className="remove"
+            onClick={() => removeitemfromCart(data)}
+          />
+          <img
+            src={data.images && data.images[data.images.length - 1].url}
+            alt=""
+          />
+          <p className="font-bold my-2 mx-1 cursor-pointer">
+            {data.name.slice(0, 30)}...
+          </p>
         </div>
-        <p className="text-[gray] ">{`${data.discount_price} * ${count}`}</p>
-        <p className="font-bold">Total: {data.discount_price * count}</p>
+        <p className="text-[gray] ">{`${data.discountPrice}$ * ${data.quantity}`}</p>
+        <p className="font-bold">
+          Total: {data.discountPrice * data.quantity}$
+        </p>
       </div>
     </div>
   );

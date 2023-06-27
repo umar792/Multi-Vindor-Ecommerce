@@ -5,6 +5,7 @@ import SugestedPrpducts from "../SuggestProducts/SugestedPrpducts";
 import ProductMoreInfo from "../singleProduct/ProductMoreInfo.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../../redux/actions/OwnerDashboardAction";
+import { addTocart } from "../../../redux/actions/CartAction";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,12 @@ const SingleProduct = () => {
     }
   };
 
+  const additemTocard = (i) => {
+    const quantity = count;
+    const alldata = { ...i, quantity };
+    dispatch(addTocart(alldata));
+  };
+
   return (
     <>
       <div className="single_page">
@@ -71,7 +78,9 @@ const SingleProduct = () => {
             +
           </button>
           <div className="single_buttons">
-            <button>Ad to card</button>
+            <button onClick={() => additemTocard(singleProduct)}>
+              Ad to card
+            </button>
             <button className="mx-[20px] by_single">By Now</button>
           </div>
 

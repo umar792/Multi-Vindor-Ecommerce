@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
 import Cart from "../../Cart/Cart";
+import { useSelector } from "react-redux";
 
 const server = "localhost/4000/";
 
@@ -18,13 +19,13 @@ const BottomHeader = ({
   setSearch,
   cartOpen,
   setOpenCart,
-  searchitem,
-  SetSearchItem,
 }) => {
   const { user } = UseUserContext();
   const ShowHideSerach = () => {
     setSearch(!showSearch);
   };
+
+  const cart = useSelector((state) => state.cart.cart);
 
   return (
     <div className="bottomHeader">
@@ -175,7 +176,7 @@ const BottomHeader = ({
           <AiOutlineHeart />
         </div>
         <div className="relative">
-          <span>0</span>
+          <span>{cart.length}</span>
           <AiOutlineShoppingCart onClick={() => setOpenCart(!cartOpen)} />
         </div>
         {user.avatar && user.avatar ? (

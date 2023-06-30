@@ -10,7 +10,7 @@
     z-index: 999;
     color: black;
     padding: 10px 6px;
-    box-shadow: 10px 10px 30px 30px rgba(0, 0, 0, .3);
+    box-shadow: 10px 10px 30px 30px rgba(0, 0, 0, .7);
 }
 .cart .items_cart{
     display: flex;
@@ -67,12 +67,16 @@
     margin-top: 5px;
 }
 .checkout{
-    margin: 10px 0px;
-    padding: 6px 30px;
+    padding: 8px 30px;
     cursor: pointer;    
     background-color: black;
     color: white;
     width: 100%;
+    position: fixed;
+    bottom: 0;
+    width: 350px;
+    right: 0px;
+    margin-bottom: 2px;
 }
 .remove{
     position: absolute;

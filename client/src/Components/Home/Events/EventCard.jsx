@@ -29,7 +29,7 @@ const EventCard = ({ data }) => {
               onClick={() => deleteevent(data._id)}
               className="text-2xl mb-3 absolute right-[10px] top-[10px] cursor-pointer text-[red]"
             />
-          )}{" "}
+          )}
           <div className="w-full lg:-w[50%] m-auto image_event">
             <img
               style={{ width: "350px", height: "350px", objectFit: "contain" }}

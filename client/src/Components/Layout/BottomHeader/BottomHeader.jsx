@@ -171,10 +171,10 @@ const BottomHeader = ({
       {/* ---------------- right  */}
 
       <div className="right_bottom">
-        <div className="relative">
+        {/* <div className="relative">
           <span>0</span>
           <AiOutlineHeart />
-        </div>
+        </div> */}
         <div className="relative">
           <span>{cart.length}</span>
           <AiOutlineShoppingCart onClick={() => setOpenCart(!cartOpen)} />

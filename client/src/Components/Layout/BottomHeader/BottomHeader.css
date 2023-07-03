@@ -7,6 +7,9 @@
     padding-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 99;
 }
 .left_bootom{
     z-index: 99;
@@ -35,6 +38,7 @@
     height: 100vh;
     transition: transform .2s ease-in-out;
     z-index:101;overflow: auto;
+    box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, .4);
 
 }
 .menus svg{
@@ -60,7 +64,7 @@
     margin-right: 10px;
 }
 .mob{
-    transform: translateX(-100%);
+    transform: translateX(-120%);
     transition: transform .2s ease-in-out;
 }
 
@@ -96,6 +100,7 @@ display: flex;
 }
 .bottom_serach{
     display: none;
+   
 }
 
 .user_img{
@@ -123,14 +128,7 @@ display: flex;
 @media(max-width : 800px){
     .bottom_serach{
         display: block;
-    }
-    .left_bootom{
-        /* position: absolute;
-        top: 0;
-        left: 0;
-        width: 300px;
-        overflow: auto;
-        height: 100vh; */
+       
     }
     
     .bottomHeader__left_allcagetory{

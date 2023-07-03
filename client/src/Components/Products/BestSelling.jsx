@@ -10,8 +10,6 @@ const BestSelling = () => {
       return item.sold_out > 15;
     });
 
-  console.log(AllProductsData);
-
   return (
     <>
       <h2 className="text-center font-bold text-3xl my-3">

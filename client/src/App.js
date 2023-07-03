@@ -75,7 +75,7 @@ const App = () => {
   }, []);
   return (
     <BrowserRouter>
-      <ToastContainer position="bottom-right" theme="colored" />
+      <ToastContainer position="top-left" theme="colored" />
       <ScrollToTop />
       <Header
         showmenus={showmenus}

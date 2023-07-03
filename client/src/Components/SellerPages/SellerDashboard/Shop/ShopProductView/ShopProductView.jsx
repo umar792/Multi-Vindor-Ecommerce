@@ -3,6 +3,9 @@ import "../../../../AllProductView/AllProductrView.css";
 import { AiOutlineEye, AiOutlineShoppingCart } from "react-icons/ai";
 import QuickView from "../../../../Products/QuickView/QuickView";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addTocart } from "../../../../../redux/actions/CartAction";
 
 const ShopProductView = ({ data }) => {
   const [showQuick, SetShowQuick] = useState(false);
@@ -11,6 +14,13 @@ const ShopProductView = ({ data }) => {
   const handleQuickView = (product) => {
     setSelectedProduct(product);
     SetShowQuick(true);
+  };
+  const dispatch = useDispatch();
+  const additemTocard = (i) => {
+    const quantity = 1;
+    const alldata = { ...i, quantity };
+    dispatch(addTocart(alldata));
+    toast.success("Product add to card successfuly");
   };
   return (
     <div className="All_product_data ]">
@@ -21,10 +31,17 @@ const ShopProductView = ({ data }) => {
             <>
               <div className="All_product_data_child w-[250px]" key={item.id}>
                 <NavLink
-                  to={`/singleProduct/${item.id}`}
+                  to={`/singleProduct/${item._id}`}
                   className="All_product_data_image"
                 >
-                  <img src={item && item.images && item.images[item.images.length -1].url} alt="" />
+                  <img
+                    src={
+                      item &&
+                      item.images &&
+                      item.images[item.images.length - 1].url
+                    }
+                    alt=""
+                  />
                 </NavLink>
                 {/* ----------- content  */}
                 <div className="All_product_data_content">
@@ -33,7 +50,7 @@ const ShopProductView = ({ data }) => {
                       {data.shopName && data.shopName}
                     </p>
                   </NavLink>
-                  <NavLink to={`/singleProduct/${item.id}`}>
+                  <NavLink to={`/singleProduct/${item._id}`}>
                     <h2>
                       {item.description && item.description.slice(0, 55)}..
                     </h2>
@@ -53,11 +70,14 @@ const ShopProductView = ({ data }) => {
 
                 {/* ------------- icons  */}
                 <div className="All_product_data_icon">
-                  <AiOutlineEye
+                  {/* <AiOutlineEye
                     title="Quick View"
                     onClick={() => handleQuickView(item)}
                   />
-                  <AiOutlineShoppingCart title="Buy Now" />
+                  <AiOutlineShoppingCart
+                    title="Buy Now"
+                    onClick={() => additemTocard(item)}
+                  /> */}
                 </div>
               </div>
               <QuickView

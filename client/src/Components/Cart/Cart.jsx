@@ -8,6 +8,10 @@ import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 
 const Cart = ({ setOpenCart }) => {
   const cart = useSelector((state) => state.cart.cart);
+  const totalPriceofCart = cart.reduce(
+    (acc, item) => acc + item.quantity * item.discountPrice,
+    0
+  );
 
   return (
     <div className="cart">
@@ -22,7 +26,7 @@ const Cart = ({ setOpenCart }) => {
             cart.map((item) => {
               return <CartItems data={item} />;
             })}
-          <button className="checkout">Check Out</button>
+          <button className="checkout">{`Check Out  ($${totalPriceofCart})`}</button>
         </>
       ) : (
         <div
@@ -57,6 +61,9 @@ const CartItems = ({ data }) => {
       setCount(1);
     } else {
       setCount(count - 1);
+      const quantity = count - 1;
+      const allData = { ...data, quantity };
+      dispatch(addTocart(allData));
     }
   };
 

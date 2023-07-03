@@ -38,6 +38,7 @@ import {
   getAllEvents,
 } from "./redux/actions/OwnerDashboardAction";
 import ChangePassword from "./Components/Account/Profile/ChangePassword/ChangePassword";
+import ShippingInfo from "./Components/Cart/ShippingInfo/ShippingInfo";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -173,6 +174,9 @@ const App = () => {
 
         {/* -------------------- shop  */}
         <Route path="/shop/:id" exact element={<Shop />} />
+
+        {/* ---------------------------------- cart  */}
+        <Route path="/shippingInfo" exact element={<ShippingInfo />} />
       </Routes>
       <Footer />
     </BrowserRouter>

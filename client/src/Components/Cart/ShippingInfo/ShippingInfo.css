@@ -1,0 +1,43 @@
+.shippig_info{
+    padding: 10px ;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    background-color: whitesmoke;
+}
+.shippig_info h2{
+    margin: 15px 0px;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+    color: #112A45;
+}
+
+.shipping_info_child{
+    border: 2px solid green;
+    width: 600px;
+    padding: 5px;
+}
+
+.shippig_info input{
+    width: 100%;
+    border: 1px solid gray;
+    margin: 5px 0px;
+    padding: 5px 10px;
+}
+
+.shippig_info select{
+    width: 100%;
+    padding: 5px 0px;
+    margin: 5px 0px;
+}
+
+
+/* -------------------- shipping_cart_info  */
+.shipping_cart_info{
+    width: 300px;
+    height: 400px;
+    border: 2px solid gray;
+}

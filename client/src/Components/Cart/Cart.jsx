@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTocart, removeFromCart } from "../../redux/actions/CartAction";
 import { toast } from "react-toastify";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 const Cart = ({ setOpenCart }) => {
   const cart = useSelector((state) => state.cart.cart);
@@ -26,7 +27,9 @@ const Cart = ({ setOpenCart }) => {
             cart.map((item) => {
               return <CartItems data={item} />;
             })}
-          <button className="checkout">{`Check Out  ($${totalPriceofCart})`}</button>
+          <NavLink to="/shippingInfo">
+            <button className="checkout">{`Check Out  ($${totalPriceofCart})`}</button>
+          </NavLink>
         </>
       ) : (
         <div

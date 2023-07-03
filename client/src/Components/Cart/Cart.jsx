@@ -28,7 +28,10 @@ const Cart = ({ setOpenCart }) => {
               return <CartItems data={item} />;
             })}
           <NavLink to="/shippingInfo">
-            <button className="checkout">{`Check Out  ($${totalPriceofCart})`}</button>
+            <button
+              className="checkout"
+              onClick={() => setOpenCart(false)}
+            >{`Check Out  ($${totalPriceofCart})`}</button>
           </NavLink>
         </>
       ) : (

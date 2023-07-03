@@ -16,9 +16,9 @@
 }
 
 .shipping_info_child{
-    border: 2px solid green;
-    width: 600px;
-    padding: 5px;
+    border: 1px solid rgb(203, 196, 196);
+    width: 650px;
+    padding: 10px;
 }
 
 .shippig_info input{
@@ -32,12 +32,46 @@
     width: 100%;
     padding: 5px 0px;
     margin: 5px 0px;
+    border: 1px solid black;
 }
 
 
 /* -------------------- shipping_cart_info  */
 .shipping_cart_info{
-    width: 300px;
-    height: 400px;
-    border: 2px solid gray;
+    width: 350px;
+    height: 250px;
+    border: 1px solid rgb(192, 189, 189);
+}
+.shipping_cart_info img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+.cart_info_images{
+    height: 150;
+    border-bottom: 1px solid rgb(192, 189, 189);
+    overflow: hidden;
+}
+
+
+@media(max-width : 610px){
+    .shippig_info{
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0px;
+    }
+    .shipping_cart_info{
+        order: 1;
+    }
+    .shipping_info_child{
+        width: 100%;
+        padding: 15px;
+        order: 2;
+    }
+}
+
+@media(max-width : 400px){
+    .shipping_cart_info{
+        width: 100%;
+    }
 }

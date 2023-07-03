@@ -1,7 +1,14 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
-import { RxCross1 } from "react-icons/rx";
+import {
+  AiFillHome,
+  AiFillProfile,
+  AiFillWechat,
+  AiOutlineLogout,
+} from "react-icons/ai";
+import { BsFillBagCheckFill } from "react-icons/bs";
+import { MdPassword } from "react-icons/md";
 
 const ProfileSideBar = ({ showProfiletoggle, setShowProfile }) => {
   const { Logout } = UseUserContext();
@@ -10,9 +17,8 @@ const ProfileSideBar = ({ showProfiletoggle, setShowProfile }) => {
     Logout(navigate);
   };
   return (
-    <div className={showProfiletoggle ? "sidebar sidebar_mob" : "sidebar"}>
-      <RxCross1 onClick={() => setShowProfile(false)} />
-      <ul>
+    <div className={"sidebar"}>
+      <ul className="com_menu">
         <NavLink to="/">
           <button
             style={{
@@ -37,6 +43,30 @@ const ProfileSideBar = ({ showProfiletoggle, setShowProfile }) => {
         </NavLink>
         {/* <li>Adress</li> */}
         <li onClick={logoutuser}>Logout</li>
+        {/* <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li> */}
+      </ul>
+      {/* --------------------- mob menus  */}
+      <ul className="mob_menu">
+        <NavLink to="/">
+          <AiFillHome />
+        </NavLink>
+        <NavLink to="/profile">
+          <AiFillProfile />
+        </NavLink>
+        <NavLink to="/user/order">
+          <BsFillBagCheckFill />
+        </NavLink>
+        <AiFillWechat />
+        <NavLink to="/user/change/password">
+          <MdPassword />{" "}
+        </NavLink>
+        {/* <li>Adress</li> */}
+        <AiOutlineLogout onClick={logoutuser} />
         {/* <li></li>
     <li></li>
     <li></li>

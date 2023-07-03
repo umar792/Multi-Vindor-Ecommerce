@@ -74,6 +74,7 @@ const App = () => {
     dispatch(AllProductsfun());
     dispatch(getAllEvents());
   }, []);
+
   return (
     <BrowserRouter>
       <ToastContainer position="top-left" theme="colored" />

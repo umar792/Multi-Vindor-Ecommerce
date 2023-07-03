@@ -31,10 +31,21 @@
 .sidebar ul li:hover{
     color: red;
 }
-.sidebar svg{
+
+.mob_menu{
     display: none;
 }
-
+.mob_menu svg{
+    font-size: 23px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.mob_menu svg:hover{
+    color: brown;
+}
+.mob_menu a{
+    margin-bottom: 70px;
+}
 /* ------------------ profilecontent  */
 .profilecontent .burger{
     position: absolute;
@@ -69,37 +80,30 @@
         padding-left: 70px;
     }
 }
+@media(max-width : 530px){
+    .com_menu{
+      display: none;
+    }
+    .mob_menu{
+        display: block;
+    }
+    .sidebar{
+        width: 50px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
 @media(max-width : 500px){
     .profile{
-        grid-template-columns: 1fr;
+        grid-template-columns: 0.1fr 1fr;
     }
     .profilecontent{
         padding-left: 0;
     }
-    .sidebar{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100vh;
-        
-        transform: translateX(-100%);
-        transition:transform .2s linear ;
-        background-color: white;
-    }
-    .sidebar_mob{
-        transform: translateX(0);
-        transition:transform .2s linear ;
-        z-index: 99987868765765;
-    }
-    .sidebar svg{
-        display: block;
-        font-size: 25px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        margin-left: 10px;
-        cursor: pointer;
-    }
+   
+   
     .sidebar svg:hover{
         color: red;
     }

@@ -32,10 +32,6 @@ const ProfileContent = ({ active, setShowProfile, showProfiletoggle }) => {
       {active === 1 && (
         <>
           <div className="flex justify-center w-full">
-            <RxHamburgerMenu
-              className="burger"
-              onClick={() => setShowProfile(true)}
-            />
             <div className="relative">
               <img
                 src={`http://localhost:4000/${user.avatar}`}

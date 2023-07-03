@@ -66,6 +66,33 @@ const UserReducer = (state, action) => {
         user: {},
       };
 
+    // ------------- login user
+    case "CHANGE_PASSWORD_LOAD":
+      return {
+        ...state,
+        loading: true,
+        Authanticated: true,
+      };
+    case "CHANGE_PASSWORD_LOAD_FAIL":
+      return {
+        ...state,
+        loading: false,
+        Authanticated: true,
+      };
+    case "CHANGE_PASSWORD_LOAD_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        Authanticated: false,
+        user: {},
+      };
+    case "CHANGE_PASSWORD_LOAD_ERROR":
+      return {
+        ...state,
+        loading: false,
+        Authanticated: false,
+      };
+
     default:
       return state;
   }

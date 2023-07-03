@@ -32,6 +32,9 @@ const ProfileSideBar = ({ showProfiletoggle, setShowProfile }) => {
           <li>Orders</li>
         </NavLink>
         <li>Chat</li>
+        <NavLink to="/user/change/password">
+          <li>Change Password</li>
+        </NavLink>
         {/* <li>Adress</li> */}
         <li onClick={logoutuser}>Logout</li>
         {/* <li></li>

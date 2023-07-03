@@ -12,4 +12,6 @@ router.post("/login", controller.LoginUser);
 
 router.get("/loaduser", TokenVerfy, controller.LoadUser);
 
+router.put("/changepassword", TokenVerfy, controller.changePassword);
+
 module.exports = router;

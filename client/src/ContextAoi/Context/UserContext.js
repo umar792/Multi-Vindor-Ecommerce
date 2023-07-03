@@ -83,8 +83,41 @@ const UserContextProvider = ({ children }) => {
     navigate("/");
   };
 
+  // ----------------------------- change password
+
+  const changePassword = async (oldpassword, newpassword, navigate) => {
+    try {
+      dispatch({ type: "CHANGE_PASSWORD_LOAD" });
+      const res = await fetch(`${server}/user/changepassword`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("myecomtoken"),
+        },
+        body: JSON.stringify({
+          oldpassword,
+          newpassword,
+        }),
+      });
+      dispatch({ type: "CHANGE_PASSWORD_LOAD_FAIL" });
+      const data = await res.json();
+      if (res.status === 400 || !data) {
+        return toast.error(data.message);
+      } else {
+        toast.success(data.message);
+        navigate("/");
+      }
+
+      dispatch({ type: "CHANGE_PASSWORD_LOAD_SUCCESS" });
+    } catch (error) {
+      dispatch({ type: "CHANGE_PASSWORD_LOAD_ERROR", payload: error.message });
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ ...state, LoginUser, loadUser, Logout }}>
+    <UserContext.Provider
+      value={{ ...state, LoginUser, loadUser, Logout, changePassword }}
+    >
       {children}
     </UserContext.Provider>
   );

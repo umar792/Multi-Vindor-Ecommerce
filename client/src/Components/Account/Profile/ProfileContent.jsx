@@ -1,15 +1,11 @@
 import React, { useState } from "react";
-import {
-  AiOutlineArrowRight,
-  AiOutlineCamera,
-  AiOutlineDelete,
-} from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { MdTrackChanges } from "react-icons/md";
-import { RxCross1 } from "react-icons/rx";
-import { useEffect } from "react";
-import { toast } from "react-toastify";
-import axios from "axios";
+import { AiOutlineCamera } from "react-icons/ai";
+// import { Link } from "react-router-dom";
+// import { MdTrackChanges } from "react-icons/md";
+// import { RxCross1 } from "react-icons/rx";
+// import { useEffect } from "react";
+// import { toast } from "react-toastify";
+// import axios from "axios";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
 import { RxHamburgerMenu } from "react-icons/rx";
 
@@ -116,13 +112,13 @@ const ProfileContent = ({ active, setShowProfile, showProfiletoggle }) => {
       {active === 3 && <div>"AllRefundOrders"</div>}
 
       {/* Track order */}
-      {active === 5 && <div>"TrackOrder "</div>}
+      {active === 4 && <div>"TrackOrder "</div>}
 
       {/* Change Password */}
-      {active === 6 && <div>"ChangePassword "</div>}
+      {active === 5 && <div>"ChangePassword "</div>}
 
       {/*  user Address */}
-      {active === 7 && <div>"Address "</div>}
+      {active === 6 && <div>"Address "</div>}
     </div>
   );
 };

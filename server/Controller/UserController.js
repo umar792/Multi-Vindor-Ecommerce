@@ -215,4 +215,46 @@ module.exports = {
       });
     }
   },
+
+  // --------------------------------- change Password
+
+  changePassword: async (req, res) => {
+    try {
+      const { oldpassword, newpassword } = req.body;
+      if (!newpassword) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese Enter NewPassword",
+        });
+      }
+      if (!oldpassword) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese Enter OldPasasword",
+        });
+      }
+
+      const user = await UserModel.findById(req.user._id);
+
+      const isMatchchange = await bcrypt.compare(oldpassword, user.password);
+      if (!isMatchchange) {
+        return res.status(400).json({
+          success: false,
+          message: "Old password not match",
+        });
+      }
+
+      user.password = newpassword;
+      await user.save();
+      res.status(200).json({
+        success: true,
+        message: "Password change successfuly",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };

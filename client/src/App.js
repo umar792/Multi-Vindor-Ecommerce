@@ -37,6 +37,7 @@ import {
   AllProductsfun,
   getAllEvents,
 } from "./redux/actions/OwnerDashboardAction";
+import ChangePassword from "./Components/Account/Profile/ChangePassword/ChangePassword";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -132,6 +133,13 @@ const App = () => {
                 setShowProfile={setShowProfile}
               />
             }
+          />
+        </Route>
+        <Route path="/user/change/password" exact element={<PrivateRoute />}>
+          <Route
+            path="/user/change/password"
+            exact
+            element={<ChangePassword />}
           />
         </Route>
 

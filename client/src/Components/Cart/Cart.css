@@ -10,7 +10,7 @@
     z-index:200;
     color: black;
     padding: 10px 6px;
-    box-shadow: 10px 10px 30px 30px rgba(0, 0, 0, .7);
+    box-shadow: 2px 2px 30px 10px rgba(0, 0, 0, .7);
 }
 .cart .items_cart{
     display: flex;

@@ -56,7 +56,7 @@ const Cart = ({ setOpenCart }) => {
 // ------------ cart item
 
 const CartItems = ({ data }) => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(data && data.quantity && data.quantity);
   const dispatch = useDispatch();
   const removeitemfromCart = (i) => {
     dispatch(removeFromCart(i));

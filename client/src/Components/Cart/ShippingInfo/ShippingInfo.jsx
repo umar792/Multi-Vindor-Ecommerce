@@ -4,24 +4,42 @@ import { useNavigate } from "react-router-dom";
 import "./ShippingInfo.css";
 import { City, Country, State } from "country-state-city";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const ShippingInfo = () => {
+  const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo"));
   const { Authanticated, user } = UseUserContext();
   const [name, setName] = useState(user && user.name && user.name);
   const [userEmail, setUserEmail] = useState(user && user.email && user.email);
-  const [city, setCity] = useState("");
-  const [number, setnumber] = useState();
-  const [zipCode, setzipCode] = useState();
-  const [countonry, setCountry] = useState("");
-  const [countryState, setCountryState] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
+  const [Adress, setAdress] = useState(
+    shippingInfo && shippingInfo.Adress ? shippingInfo.Adress : ""
+  );
+  const [city, setCity] = useState(
+    shippingInfo && shippingInfo.city ? shippingInfo.city : ""
+  );
+  const [number, setnumber] = useState(
+    shippingInfo && shippingInfo.number ? shippingInfo.number : ""
+  );
+  const [zipCode, setzipCode] = useState(
+    shippingInfo && shippingInfo.zipCode ? shippingInfo.zipCode : ""
+  );
+  const [countonry, setCountry] = useState(
+    shippingInfo && shippingInfo.countonry ? shippingInfo.countonry : ""
+  );
+  const [countryState, setCountryState] = useState(
+    shippingInfo && shippingInfo.countryState ? shippingInfo.countryState : ""
+  );
 
   // ------------------- cart
   const cart = useSelector((state) => state.cart.cart);
 
+  // ------------------- totalItemQuantity
+  const totalItemQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   // ----------------- sub total
   const Subtotal =
-    cart && cart.reduce((acc, item) => acc + item.discountPrice, 0);
+    cart &&
+    cart.reduce((acc, item) => acc + item.discountPrice * item.quantity, 0);
 
   // -------------------- shippingcharges
   const shippingcharges = 2;
@@ -35,6 +53,33 @@ const ShippingInfo = () => {
       navigate("/login");
     }
   }, []);
+
+  const sendShippingInfo = () => {
+    if (
+      !city ||
+      !name ||
+      !userEmail ||
+      !Adress ||
+      !countonry ||
+      !countryState ||
+      !zipCode
+    ) {
+      return toast.error("Plaese fill al fields");
+    }
+    localStorage.setItem(
+      "shippingInfo",
+      JSON.stringify({
+        name: name,
+        email: userEmail,
+        Adress: Adress,
+        number: number,
+        city: city,
+        country: countonry,
+        state: countryState,
+        zipCode: zipCode,
+      })
+    );
+  };
 
   return (
     <div className="shippig_info">
@@ -67,6 +112,14 @@ const ShippingInfo = () => {
           placeholder="Please Enter zipCode"
           value={zipCode}
           onChange={(e) => setzipCode(e.target.value)}
+        />
+
+        <input
+          type="text"
+          value={Adress}
+          placeholder="Your Complete Adress"
+          onChange={(e) => setAdress(e.target.value)}
+          required={true}
         />
 
         <div>
@@ -107,8 +160,8 @@ const ShippingInfo = () => {
         {countryState && (
           <select
             required
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           >
             <option value="">City</option>
             {City.getCitiesOfState(countonry, countryState).map((item) => (
@@ -118,7 +171,10 @@ const ShippingInfo = () => {
             ))}
           </select>
         )}
-        <button className="mt-3 w-full bg-black text-white py-2">
+        <button
+          className="mt-3 w-full bg-black text-white py-2"
+          onClick={sendShippingInfo}
+        >
           Continue
         </button>
       </div>
@@ -130,6 +186,13 @@ const ShippingInfo = () => {
         >
           <p>Total Item :</p>
           <p>{cart && cart.length}</p>
+        </div>
+        <div
+          className="flex justify-between align-middle px-1 py-1 mb-2 font-bold"
+          style={{ borderBottom: "1px solid rgb(203, 196, 196)" }}
+        >
+          <p>Total Quantity :</p>
+          <p>{totalItemQuantity}</p>
         </div>
         <div className="flex justify-between align-middle px-1 py-3 my-2 mb-2">
           <p>Subtotal :</p>
@@ -144,7 +207,7 @@ const ShippingInfo = () => {
         </div>
 
         <div className="flex justify-between align-middle px-1 py-5 my-2 mb-2">
-          <p>Total :</p>
+          <p>Total Amount :</p>
           <p>${total}</p>
         </div>
       </div>

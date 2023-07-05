@@ -1,0 +1,29 @@
+.payment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.methos_payment{
+  border: 2px solid gray;
+  width: 600px;
+}
+.methos_payment button{
+    padding: 6px 20px;
+    border: 1px solid #112A45;
+    margin: 10px 0px;
+}
+.methos_payment button:hover{
+    background-color: #112A45;
+    color: white;
+}
+.card_payment_inputs{
+    margin: 10px 0px;
+}
+.card_payment_inputs input{
+    border: 1px solid rgb(212, 207, 207);
+    width: 45%;
+    padding: 5px 10px;
+    margin: 5px;
+
+}

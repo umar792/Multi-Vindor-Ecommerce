@@ -19,6 +19,7 @@
     border: 1px solid rgb(203, 196, 196);
     width: 650px;
     padding: 10px;
+    background-color: white;
 }
 
 .shippig_info input{
@@ -41,6 +42,7 @@
     width: 350px;
     height: 250px;
     border: 1px solid rgb(192, 189, 189);
+    background-color: white;
 }
 .shipping_cart_info img{
     width: 30px;
@@ -52,6 +54,33 @@
     border-bottom: 1px solid rgb(192, 189, 189);
     overflow: hidden;
 }
+
+
+/* ------------------------- status  */
+.status{
+    margin: 20px auto;
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+}
+
+.status_box_1{
+    background-color: red;
+    color: white;
+    padding: 4px 15px;
+    border-radius: 15px;
+    opacity: .4;
+    z-index: 10;
+}
+.status_box_active{
+    z-index: 10;
+    opacity: 1;
+    position: relative;
+}
+
 
 
 @media(max-width : 610px){
@@ -67,6 +96,15 @@
         width: 100%;
         padding: 15px;
         order: 2;
+    }
+    .status{
+        width: 100%;
+        font-size: 17px;
+        padding: 10px 5px;
+    }
+    .status_box_1{
+        padding: 4px 10px;
+        font-size: 14px;
     }
 }
 

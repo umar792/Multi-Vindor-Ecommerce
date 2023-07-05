@@ -77,6 +77,8 @@ const ShippingInfoCard = ({ setSelect }) => {
         country: countonry,
         state: countryState,
         zipCode: zipCode,
+        total: total,
+        shippingcharges: shippingcharges,
       })
     );
 

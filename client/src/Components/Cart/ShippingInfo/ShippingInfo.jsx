@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./ShippingInfo.css";
 import ShippingInfoCard from "./ShippingInfoCard";
 import Paymrent from "../ConformOrder/Paymrent";
+import OrderSuccess from "../OrderSuccessfull/OrderSuccess";
 
 const ShippingInfo = () => {
   const [select, setSelect] = useState(0);
@@ -49,7 +50,9 @@ const ShippingInfo = () => {
       ) : null}
 
       {/* ----------------------- conform order  */}
-      {select === 1 ? <Paymrent /> : null}
+      {select === 1 ? <Paymrent select={select} setSelect={setSelect} /> : null}
+      {/* ----------------------- successful order  */}
+      {select === 2 ? <OrderSuccess /> : null}
     </>
   );
 };

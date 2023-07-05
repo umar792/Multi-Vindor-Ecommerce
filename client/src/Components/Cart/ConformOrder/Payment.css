@@ -3,26 +3,33 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    gap: 50px;
 }
 .methos_payment{
-  border: 2px solid gray;
+  border: 1px solid rgb(218, 214, 214);
   width: 600px;
+  padding: 10px;
 }
 .methos_payment button{
     padding: 6px 20px;
     border: 1px solid #112A45;
     margin: 10px 0px;
-}
-.methos_payment button:hover{
     background-color: #112A45;
     color: white;
 }
+.methos_payment button:hover{
+    background-color: white;
+
+    color: black;
+}
 .card_payment_inputs{
     margin: 10px 0px;
+    padding: 10px;
 }
 .card_payment_inputs input{
     border: 1px solid rgb(212, 207, 207);
     width: 45%;
+    outline: none;
     padding: 5px 10px;
     margin: 5px;
 

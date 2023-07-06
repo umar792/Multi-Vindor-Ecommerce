@@ -111,24 +111,10 @@ module.exports = {
     try {
       const ownerId = req.user._id; // Get the authenticated user's ID
       const orders = await OrderModel.find();
-
-      console.log(orders.orderItem);
-
-      const matchingItems = [];
-      orders.orderItem.forEach((item) => {
-        if (item.owner._id === ownerId) {
-          matchingItems.push(item);
-        }
+      res.status(200).json({
+        success: true,
+        orders: orders.orderItem,
       });
-
-      if (matchingItems.length > 0) {
-        res.status(200).json({
-          success: true,
-          matchingItems,
-        });
-      } else {
-        res.send("No matching items found.");
-      }
     } catch (error) {
       res.status(400).json({
         success: false,

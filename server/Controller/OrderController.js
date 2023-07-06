@@ -113,7 +113,7 @@ module.exports = {
       const orders = await OrderModel.find();
       res.status(200).json({
         success: true,
-        orders: orders.orderItem,
+        orders: orders,
       });
     } catch (error) {
       res.status(400).json({

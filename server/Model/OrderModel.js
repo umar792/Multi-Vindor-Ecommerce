@@ -30,23 +30,19 @@ const OrderSchema = new Schema({
     },
   },
 
-  orderItem: [
-    {
-      product: {
-        type: mongoose.Types.ObjectId,
-        ref: "product",
-        required: true,
-      },
-    },
-  ],
+  orderItem: {
+    type: Array,
+    required: true,
+  },
   user: {
     type: mongoose.Types.ObjectId,
     ref: "user",
     required: true,
   },
+
   paymentStatus: {
     type: String,
-    default: "processing",
+    default: "Not Paid",
   },
   paymentmethod: {
     type: String,
@@ -82,6 +78,7 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  // cardQuantity: [{ type: Schema.Types.Mixed, required: true }],
 });
 
 const OrderModel = mongoose.model("order", OrderSchema);

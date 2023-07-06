@@ -1,0 +1,71 @@
+.SingleOrder{
+    margin: 20px 0px;
+    padding: 10px 20px;
+}
+.SingleOrder h2{
+    font-size: 30px;
+    margin: 15px 0px;
+    font-weight: bold;
+}
+.shippingInfo_SingleOrder{
+    margin: 10px 0px;
+}
+.shippingInfo_SingleOrder h2{
+    font-weight: normal;
+}
+.shippingInfo_SingleOrder p{
+    margin: 10px 0px;
+}
+.shippingInfo_SingleOrder span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+.payment_SingleOrder{
+    margin: 10px 0px;
+}
+.payment_SingleOrder h2{
+    font-weight: normal;
+
+}
+.payment_SingleOrder p{
+    margin: 10px 0px;
+}
+.payment_SingleOrder span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+.Order_SingleOrder{
+    margin: 10px 0px;
+}
+.Order_SingleOrder h2{
+    margin: 10px 0px;
+    font-weight: normal;
+}
+.Order_SingleOrder p{
+    margin: 10px 0px;
+}
+.Order_SingleOrder span{
+    margin-left: 10px;
+    font-weight: bold;
+}
+.order_single_item{
+    margin: 20px 0px;
+    padding: 10px;
+    border-top: 1px solid gray;
+}
+.single_order_child{
+    margin: 20px 0px;
+    padding: 5px;
+    max-width: 500px;
+}
+.single_order_child_1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order_single_item .single_order_child img{
+    width: 50px;
+    height: 60px;
+    margin-bottom: 10px;
+}

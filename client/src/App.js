@@ -39,6 +39,7 @@ import {
 } from "./redux/actions/OwnerDashboardAction";
 import ChangePassword from "./Components/Account/Profile/ChangePassword/ChangePassword";
 import ShippingInfo from "./Components/Cart/ShippingInfo/ShippingInfo";
+import SingleOrder from "./Components/Cart/SingleOrder/SingleOrder";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -177,6 +178,9 @@ const App = () => {
 
         {/* ---------------------------------- cart  */}
         <Route path="/shippingInfo" exact element={<ShippingInfo />} />
+        <Route path="/single/order/:id" exact element={<PrivateRoute />}>
+          <Route path="/single/order/:id" exact element={<SingleOrder />} />
+        </Route>
       </Routes>
       <Footer />
     </BrowserRouter>

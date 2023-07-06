@@ -19,4 +19,38 @@ export const OrderReducer = createReducer(initialValue, {
     state.orderLoading = false;
     state.ERROR = action.payload;
   },
+
+  // ------------------ get user order
+
+  GetUserOrderLoad: (state) => {
+    state.orderLoading = true;
+  },
+  GetUserOrderLoadFail: (state) => {
+    state.orderLoading = false;
+  },
+  getUserOrderSuccess: (state, action) => {
+    state.orderLoading = false;
+    state.UserAllOrderData = action.payload;
+  },
+  getUserOrderError: (state, action) => {
+    state.orderLoading = false;
+    state.ERROR = action.payload;
+  },
+
+  // --------------------------- get single order
+
+  GetSingleOrderLoad: (state) => {
+    state.orderLoading = true;
+  },
+  GetSingleOrderLoadFail: (state) => {
+    state.orderLoading = false;
+  },
+  GetSingleOrderSuccess: (state, action) => {
+    state.orderLoading = false;
+    state.SingleOrderdata = action.payload;
+  },
+  GetSingleOrderError: (state, action) => {
+    state.orderLoading = false;
+    state.ERROR = action.payload;
+  },
 });

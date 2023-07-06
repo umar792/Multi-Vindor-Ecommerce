@@ -33,7 +33,6 @@ const Paymrent = ({ select, setSelect }) => {
       navigate("/login");
     }
   }, []);
-  const cartItems = JSON.parse(localStorage.getItem("cartItems"));
   const ShippingInfouser = JSON.parse(localStorage.getItem("shippingInfo"));
 
   const dispatch = useDispatch();
@@ -48,18 +47,15 @@ const Paymrent = ({ select, setSelect }) => {
       name: ShippingInfouser.name,
       email: ShippingInfouser.email,
     };
-
-    const orderItems = cartItems.map((item) => {
-      return {
-        product: item._id,
-      };
-    });
+    const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    // const itemquantity = cart.map((item) => );
 
     const alldata = {
       shippingInfo: shippingInfo,
-      orderItem: orderItems,
+      orderItem: cart,
       shippingPrice: ShippingInfouser.shippingcharges,
       totalPrice: ShippingInfouser.total,
+      // quantity: itemquantity,
     };
 
     await dispatch(CreateOrder(alldata, setSelect));

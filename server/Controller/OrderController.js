@@ -62,4 +62,78 @@ module.exports = {
       });
     }
   },
+
+  // -------------------------- get user Order
+  getUserOrder: async (req, res) => {
+    try {
+      const userOrder = await OrderModel.find({ user: req.user._id })
+        .populate("orderItem")
+        .populate("user");
+      res.status(200).json({
+        success: true,
+        userOrder,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  // ----------------------- get single order
+  getSingleUserOrder: async (req, res) => {
+    try {
+      const order = await OrderModel.findById(req.params.id)
+        .populate("orderItem.product")
+        .populate("user");
+      if (!order) {
+        return res.status(400).json({
+          success: false,
+          message: "No Order Found",
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        order,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  // ----------------- get shop order
+  ownerOrder: async (req, res) => {
+    try {
+      const ownerId = req.user._id; // Get the authenticated user's ID
+      const orders = await OrderModel.find();
+
+      console.log(orders.orderItem);
+
+      const matchingItems = [];
+      orders.orderItem.forEach((item) => {
+        if (item.owner._id === ownerId) {
+          matchingItems.push(item);
+        }
+      });
+
+      if (matchingItems.length > 0) {
+        res.status(200).json({
+          success: true,
+          matchingItems,
+        });
+      } else {
+        res.send("No matching items found.");
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };

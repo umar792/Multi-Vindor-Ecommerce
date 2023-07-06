@@ -7,7 +7,7 @@ const OrderSuccess = () => {
     <div className="orderSuccess">
       <SuccessOrder />
       <parent>Your Order has been Placed successfully </parent>
-      <Link to="/order">View Orders</Link>
+      <Link to="/user/order">View Orders</Link>
     </div>
   );
 };

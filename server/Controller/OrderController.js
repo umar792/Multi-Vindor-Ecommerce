@@ -74,7 +74,7 @@ module.exports = {
       const orders = [];
 
       for (const [shopId, items] of shopItemsMap) {
-        const order = await Order.create({
+        const order = await OrderModel.create({
           cart: items,
           shippingAddress,
           user,

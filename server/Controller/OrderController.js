@@ -110,7 +110,7 @@ module.exports = {
   ownerOrder: async (req, res) => {
     try {
       const ownerId = req.user._id; // Get the authenticated user's ID
-      const orders = await OrderModel.find();
+      const orders = await OrderModel.find({ "orderItem.owner._id": ownerId });
       res.status(200).json({
         success: true,
         orders: orders,

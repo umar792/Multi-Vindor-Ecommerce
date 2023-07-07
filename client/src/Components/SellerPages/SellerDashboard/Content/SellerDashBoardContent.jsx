@@ -6,6 +6,7 @@ import CreateProduct from "../CreateProduct/CreateProduct";
 import OwnerAllProducts from "../OwnerAllProducts/OwnerAllProducts";
 import CreaventEvents from "../CreateEvents/CreaventEvents";
 import AllEvents from "../AllOwnerEvents/AllEvents";
+import OwnerAllOrder from "../OwnerAllOrder/OwnerAllOrder";
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
 
@@ -38,6 +39,8 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       ) : null}
       {/* --------------------------- dashboard all Event  */}
       {select === 4 ? <AllEvents /> : null}
+      {/* ------------------ AllOrders  */}
+      {select === 3 ? <OwnerAllOrder /> : null}
     </div>
   );
 };

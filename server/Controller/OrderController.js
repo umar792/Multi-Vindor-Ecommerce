@@ -3,57 +3,90 @@ const OrderModel = require("../Model/OrderModel");
 module.exports = {
   createOrder: async (req, res) => {
     try {
-      const { shippingInfo, orderItem, itemsPrice, shippingPrice, totalPrice } =
-        req.body;
+      // const { shippingInfo, orderItem, itemsPrice, shippingPrice, totalPrice } =
+      //   req.body;
 
-      if (!shippingInfo) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter Shipping Info",
-        });
+      // if (!shippingInfo) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: "Please enter Shipping Info",
+      //   });
+      // }
+
+      // if (!orderItem) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: "Please enter Order Item",
+      //   });
+      // }
+
+      // //   if (!itemsPrice) {
+      // //     return res.status(400).json({
+      // //       success: false,
+      // //       message: "Please enter Items Price",
+      // //     });
+      // //   }
+
+      // if (!shippingPrice) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: "Please enter Shipping Price",
+      //   });
+      // }
+
+      // if (!totalPrice) {
+      //   return res.status(400).json({
+      //     success: false,
+      //     message: "Please enter Total Price",
+      //   });
+      // }
+
+      // const order = await OrderModel.create({
+      //   shippingPrice,
+      //   shippingInfo,
+      //   orderItem,
+      //   totalPrice,
+      //   itemsPrice,
+      //   user: req.user._id,
+      //   paidAt: Date.now(),
+      // });
+      // res.status(200).json({
+      //   success: true,
+      //   message: "Your Order Place Successfuly",
+      //   order,
+      // });
+
+      // --------------------------------------------
+      const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
+
+      //   group cart items by shopId
+      const shopItemsMap = new Map();
+
+      for (const item of cart) {
+        const shopId = item.shopId;
+        if (!shopItemsMap.has(shopId)) {
+          shopItemsMap.set(shopId, []);
+        }
+        shopItemsMap.get(shopId).push(item);
       }
 
-      if (!orderItem) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter Order Item",
+      // create an order for each shop
+      const orders = [];
+
+      for (const [shopId, items] of shopItemsMap) {
+        const order = await Order.create({
+          cart: items,
+          shippingAddress,
+          user,
+          totalPrice,
+          paymentInfo,
         });
+        orders.push(order);
       }
 
-      //   if (!itemsPrice) {
-      //     return res.status(400).json({
-      //       success: false,
-      //       message: "Please enter Items Price",
-      //     });
-      //   }
-
-      if (!shippingPrice) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter Shipping Price",
-        });
-      }
-
-      if (!totalPrice) {
-        return res.status(400).json({
-          success: false,
-          message: "Please enter Total Price",
-        });
-      }
-
-      const order = await OrderModel.create({
-        shippingPrice,
-        shippingInfo,
-        orderItem,
-        totalPrice,
-        itemsPrice,
-        user: req.user._id,
-        paidAt: Date.now(),
-      });
-      res.status(200).json({
+      res.status(201).json({
         success: true,
-        message: "Your Order Place Successfuly",
-        order,
+        orders,
       });
     } catch (error) {
       res.status(400).json({
@@ -109,11 +142,11 @@ module.exports = {
   // ----------------- get shop order
   ownerOrder: async (req, res) => {
     try {
-      const ownerId = req.user._id; // Get the authenticated user's ID
       const orders = await OrderModel.find();
+
       res.status(200).json({
         success: true,
-        orders: orders,
+        orders,
       });
     } catch (error) {
       res.status(400).json({

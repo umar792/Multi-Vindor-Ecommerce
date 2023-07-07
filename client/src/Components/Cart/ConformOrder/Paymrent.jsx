@@ -51,11 +51,10 @@ const Paymrent = ({ select, setSelect }) => {
     // const itemquantity = cart.map((item) => );
 
     const alldata = {
-      shippingInfo: shippingInfo,
-      orderItem: cart,
-      shippingPrice: ShippingInfouser.shippingcharges,
+      shippingAddress: shippingInfo && shippingInfo,
+      cart: cart && cart,
       totalPrice: ShippingInfouser.total,
-      // quantity: itemquantity,
+      user: user,
     };
 
     await dispatch(CreateOrder(alldata, setSelect));

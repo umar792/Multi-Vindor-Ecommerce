@@ -63,7 +63,7 @@ module.exports = {
       const shopItemsMap = new Map();
 
       for (const item of cart) {
-        const shopId = item.shopId;
+        const shopId = item.owner._id;
         if (!shopItemsMap.has(shopId)) {
           shopItemsMap.set(shopId, []);
         }

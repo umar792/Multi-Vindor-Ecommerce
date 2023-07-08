@@ -32,6 +32,7 @@ export const CreateOrder = (orderData, setSelect) => async (dispatch) => {
 
 export const LoginUserOrder = () => async (dispatch) => {
   try {
+    console.log("umar");
     dispatch({ type: "GetUserOrderLoad" });
     const res = await fetch("http://localhost:4000/order/userOrder", {
       method: "get",
@@ -42,8 +43,10 @@ export const LoginUserOrder = () => async (dispatch) => {
     });
     dispatch({ type: "GetUserOrderLoadFail" });
     const data = await res.json();
+    console.log(data);
+    console.log('data');
     if (res.status === 400 || !data) {
-      return toast.error(data.message);
+      return
     } else {
       dispatch({ type: "getUserOrderSuccess", payload: data.userOrder });
     }

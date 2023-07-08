@@ -14,7 +14,17 @@ const UserOrder = () => {
   useEffect(() => {
     dispatch(LoginUserOrder());
   }, []);
-  // console.log(UserAllOrderData);
+
+  let totalPrice = 0;
+
+  UserAllOrderData && UserAllOrderData.forEach(order => {
+  order.cart.forEach(item => {
+    const itemTotalPrice = item.discountPrice * item.quantity;
+    totalPrice += itemTotalPrice;
+  });
+});
+
+
   return (
     <>
       {orderLoading ? (
@@ -94,15 +104,15 @@ const UserOrder = () => {
                           </span>
                         ))}
                     </td> */}
-                        <td>${item.totalPrice}</td>
+                        <td>${totalPrice}</td>
                         <td
                           style={
-                            item.orderStatus === "Processing"
+                            item.Orderstatus === "Processing"
                               ? { color: "red" }
                               : { color: "green" }
                           }
                         >
-                          {item.orderStatus}
+                          {item.Orderstatus}
                         </td>
                         <td>
                           <NavLink to={`/single/order/${item._id}`}>

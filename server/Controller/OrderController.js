@@ -77,7 +77,7 @@ module.exports = {
         const order = await OrderModel.create({
           cart: items,
           shippingAddress,
-          user,
+          user: req.user._id,
           totalPrice,
           paymentInfo,
         });
@@ -99,7 +99,7 @@ module.exports = {
   // -------------------------- get user Order
   getUserOrder: async (req, res) => {
     try {
-      const userOrder = await OrderModel.find({ 'user._id': req.user._id })
+      const userOrder = await OrderModel.find({ user: req.user._id })
         .populate("user");
       res.status(200).json({
         success: true,

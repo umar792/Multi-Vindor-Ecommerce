@@ -54,7 +54,7 @@ const Paymrent = ({ select, setSelect }) => {
       shippingAddress: shippingInfo && shippingInfo,
       cart: cart && cart,
       totalPrice: ShippingInfouser.total,
-      user: user,
+      // user: user,
     };
 
     await dispatch(CreateOrder(alldata, setSelect));

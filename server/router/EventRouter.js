@@ -19,4 +19,7 @@ router.get("/getOwnerEvents", ShopTokenVerify, controller.ownerEvensts);
 
 router.get("/getAllEvents", controller.ALLEvents);
 
+router.get("/singleEvent/:id", controller.SingleEvent);
+
+
 module.exports = router;

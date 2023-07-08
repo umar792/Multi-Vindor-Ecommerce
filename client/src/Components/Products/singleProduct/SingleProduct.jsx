@@ -4,7 +4,7 @@ import "./SingleProduct.css";
 import SugestedPrpducts from "../SuggestProducts/SugestedPrpducts";
 import ProductMoreInfo from "../singleProduct/ProductMoreInfo.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../../../redux/actions/OwnerDashboardAction";
+import { getSingleEvent, getSingleProduct } from "../../../redux/actions/OwnerDashboardAction";
 import { addTocart } from "../../../redux/actions/CartAction";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
@@ -23,6 +23,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
+    dispatch(getSingleEvent(id));
   }, [id]);
   useEffect(() => {
     if (

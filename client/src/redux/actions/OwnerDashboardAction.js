@@ -96,44 +96,44 @@ export const CreateEventProduct =
     endDate,
     setSelect
   ) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: "LoadEventCreateProduct" });
-      const res = await fetch(
-        "http://localhost:4000/event/createEventProduct",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            token: localStorage.getItem("shopownerToken"),
-          },
-          body: JSON.stringify({
-            name,
-            description,
-            category,
-            Tags,
-            originalPrice,
-            discountPrice,
-            stock,
-            images,
-            startDate,
-            endDate,
-          }),
+    async (dispatch) => {
+      try {
+        dispatch({ type: "LoadEventCreateProduct" });
+        const res = await fetch(
+          "http://localhost:4000/event/createEventProduct",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              token: localStorage.getItem("shopownerToken"),
+            },
+            body: JSON.stringify({
+              name,
+              description,
+              category,
+              Tags,
+              originalPrice,
+              discountPrice,
+              stock,
+              images,
+              startDate,
+              endDate,
+            }),
+          }
+        );
+        const data = await res.json();
+        if (res.status === 400 || !data) {
+          dispatch({ type: "ShopEventCreateProductFail" });
+          return toast.error(data.message);
+        } else {
+          toast.success(data.message);
+          dispatch({ type: "CreateEventProductSuccess" });
+          setSelect(3);
         }
-      );
-      const data = await res.json();
-      if (res.status === 400 || !data) {
-        dispatch({ type: "ShopEventCreateProductFail" });
-        return toast.error(data.message);
-      } else {
-        toast.success(data.message);
-        dispatch({ type: "CreateEventProductSuccess" });
-        setSelect(3);
+      } catch (error) {
+        dispatch({ type: "CreateEventProductError", payload: error.message });
       }
-    } catch (error) {
-      dispatch({ type: "CreateEventProductError", payload: error.message });
-    }
-  };
+    };
 
 // ------------------ delete Eventr by owner
 
@@ -214,6 +214,28 @@ export const getSingleProduct = (id) => async (dispatch) => {
     dispatch({ type: "getSingleProductDataLoad" });
     const res = await fetch(
       `http://localhost:4000/product/singleProduct/${id}`,
+      {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "getSingleProducttDataLoadFail" });
+    const data = await res.json();
+    dispatch({ type: "getSingleProductDataSuccess", payload: data.product });
+  } catch (error) {
+    dispatch({
+      type: "getSingleProductDataSuccessError",
+      payload: error.message,
+    });
+  }
+};
+export const getSingleEvent = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "getSingleProductDataLoad" });
+    const res = await fetch(
+      `http://localhost:4000/event/singleEvent/${id}`,
       {
         method: "get",
         headers: {

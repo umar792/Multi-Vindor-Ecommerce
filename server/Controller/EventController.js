@@ -178,4 +178,29 @@ module.exports = {
       });
     }
   },
+
+
+  // ------------------- get single Event
+  SingleEvent: async (req, res) => {
+    try {
+      const product = await EventModel.findById(req.params.id).populate(
+        "owner"
+      );
+      if (!product) {
+        return res.status(400).json({
+          success: false,
+          message: "Product not found",
+        });
+      }
+
+      res.status(200).json({
+        product,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
 };

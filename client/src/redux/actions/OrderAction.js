@@ -81,3 +81,26 @@ export const SingleOrderFunc = (id) => async (dispatch) => {
     dispatch({ type: "GetSingleOrderError", payload: error.message });
   }
 };
+
+// ----------------------- get single Order Data
+
+export const OwnerOrderFunc = () => async (dispatch) => {
+  try {
+    dispatch({ type: "GetAllOrderLoad" });
+    const res = await fetch(`http://localhost:4000/order/owner/order`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch({ type: "GetAllOrderLoadFail" });
+    const data = await res.json();
+    if (res.status === 400 || !data) {
+      return toast.error(data.message);
+    } else {
+      dispatch({ type: "GetAllOrderSuccess", payload: data.orders });
+    }
+  } catch (error) {
+    dispatch({ type: "GetAllOrderError", payload: error.message });
+  }
+};

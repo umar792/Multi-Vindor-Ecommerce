@@ -53,4 +53,21 @@ export const OrderReducer = createReducer(initialValue, {
     state.orderLoading = false;
     state.ERROR = action.payload;
   },
+
+  // --------------------------- get all order
+
+  GetAllOrderLoad: (state) => {
+    state.orderLoading = true;
+  },
+  GetAllOrderLoadFail: (state) => {
+    state.orderLoading = false;
+  },
+  GetAllOrderSuccess: (state, action) => {
+    state.orderLoading = false;
+    state.ownerOrder = action.payload;
+  },
+  GetAllOrderError: (state, action) => {
+    state.orderLoading = false;
+    state.ERROR = action.payload;
+  },
 });

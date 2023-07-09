@@ -141,15 +141,20 @@ module.exports = {
   ownerOrder: async (req, res) => {
     try {
       const ownerId = req.user._id; // Get the authenticated user's ID
-      const orders = await Order.find({
-        "cart.shopId": ownerId,
-      }).sort({
-        createdAt: -1,
+      const orders = await OrderModel.find();
+      const filteredData = [];
+
+      orders && orders.forEach((item) => {
+        item.cart.forEach((i) => {
+          if (i.owner._id.toString() === ownerId.toString()) {
+            filteredData.push(i)
+          }
+        });
       });
 
       res.status(200).json({
         success: true,
-        orders,
+        data: filteredData,
       });
     } catch (error) {
       res.status(400).json({

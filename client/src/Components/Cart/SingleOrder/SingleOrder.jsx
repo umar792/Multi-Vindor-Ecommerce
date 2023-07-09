@@ -14,6 +14,12 @@ const SingleOrder = () => {
     dispatch(SingleOrderFunc(id));
   }, []);
 
+  let cartTotal = 0;
+  SingleOrderdata && SingleOrderdata.cart && SingleOrderdata.cart.forEach(orderItem => {
+    const totalPrice = orderItem.discountPrice * orderItem.quantity;
+    cartTotal += totalPrice;
+  });
+
   return (
     <>
       {orderLoading ? (
@@ -28,8 +34,8 @@ const SingleOrder = () => {
               Name :{" "}
               <span>
                 {SingleOrderdata &&
-                  SingleOrderdata.shippingInfo &&
-                  SingleOrderdata.shippingInfo.name}
+                  SingleOrderdata.shippingAddress &&
+                  SingleOrderdata.shippingAddress.name}
               </span>
             </p>
             <p>
@@ -37,16 +43,16 @@ const SingleOrder = () => {
               <span>
                 +92
                 {SingleOrderdata &&
-                  SingleOrderdata.shippingInfo &&
-                  SingleOrderdata.shippingInfo.number}
+                  SingleOrderdata.shippingAddress &&
+                  SingleOrderdata.shippingAddress.number}
               </span>
             </p>
             <p>
               Mobile NO :{" "}
               <span>
                 {SingleOrderdata &&
-                  SingleOrderdata.shippingInfo &&
-                  SingleOrderdata.shippingInfo.Adress}
+                  SingleOrderdata.shippingAddress &&
+                  SingleOrderdata.shippingAddress.Adress}
               </span>
             </p>
           </div>
@@ -55,11 +61,11 @@ const SingleOrder = () => {
             <h2>Payment</h2>
             <p>
               Status:{" "}
-              <span>{SingleOrderdata && SingleOrderdata.paymentStatus}</span>
+              <span>{SingleOrderdata && SingleOrderdata.paymentstatus}</span>
             </p>
             <p>
               Total Amount:{" "}
-              <span>${SingleOrderdata && SingleOrderdata.totalPrice}</span>
+              <span>${cartTotal}</span>
             </p>
           </div>
           {/* ------------------------ order status  */}
@@ -68,14 +74,14 @@ const SingleOrder = () => {
 
             <p>
               OrderStatus :{" "}
-              <span>{SingleOrderdata && SingleOrderdata.orderStatus}</span>
+              <span className={SingleOrderdata && SingleOrderdata.Orderstatus === "Processing" ? "text-[red]" : "text-[green]"}>{SingleOrderdata && SingleOrderdata.Orderstatus}</span>
             </p>
           </div>
           {/* ----------------------------- order item  */}
           <div className="order_single_item">
             <h2 className="mb-3">Items</h2>
             {SingleOrderdata &&
-              SingleOrderdata.orderItem.map((item) => {
+              SingleOrderdata.cart && SingleOrderdata.cart.map((item) => {
                 return (
                   <div className="single_order_child" key={item._id}>
                     <div className="single_order_child_1">

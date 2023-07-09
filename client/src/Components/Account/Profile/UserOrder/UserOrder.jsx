@@ -15,14 +15,25 @@ const UserOrder = () => {
     dispatch(LoginUserOrder());
   }, []);
 
-  let totalPrice = 0;
+//   let totalPrice = 0;
 
-  UserAllOrderData && UserAllOrderData.forEach(order => {
-  order.cart.forEach(item => {
-    const itemTotalPrice = item.discountPrice * item.quantity;
-    totalPrice += itemTotalPrice;
-  });
-});
+//   UserAllOrderData && UserAllOrderData.forEach(order => {
+//   order.cart.forEach(item => {
+//     const itemTotalPrice = item.discountPrice * item.quantity;
+//     totalPrice += itemTotalPrice;
+//   });
+// });
+
+
+// let cartTotal = 0;
+// UserAllOrderData && UserAllOrderData.forEach(order => {
+//   order.cart.forEach(item => {
+//     const { discountPrice, quantity } = item;
+//     const totalPrice = discountPrice * quantity;
+//     cartTotal += totalPrice;
+//   });
+//   order.cartTotalPrice = cartTotal;
+// });
 
 
   return (
@@ -69,6 +80,11 @@ const UserOrder = () => {
                 UserAllOrderData.length > 0 &&
                 UserAllOrderData ? (
                   UserAllOrderData.map((item, index) => {
+                    let cartTotal = 0;
+                    item.cart.forEach(orderItem => {
+                      const totalPrice = orderItem.discountPrice * orderItem.quantity;
+                      cartTotal += totalPrice;
+                    });
                     return (
                       <tr key={item._id}>
                         <td>{index + 1}</td>
@@ -104,7 +120,7 @@ const UserOrder = () => {
                           </span>
                         ))}
                     </td> */}
-                        <td>${totalPrice}</td>
+                        <td>${cartTotal}</td>
                         <td
                           style={
                             item.Orderstatus === "Processing"

@@ -117,7 +117,6 @@ module.exports = {
   getSingleUserOrder: async (req, res) => {
     try {
       const order = await OrderModel.findById(req.params.id)
-        .populate("orderItem.product")
         .populate("user");
       if (!order) {
         return res.status(400).json({

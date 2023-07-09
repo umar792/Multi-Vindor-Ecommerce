@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./QuickView.css";
 import { RxCross1 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTocart } from "../../../redux/actions/CartAction";
 import { toast } from "react-toastify";
 
@@ -23,11 +23,19 @@ const QuickView = ({ showQuick, SetShowQuick, item }) => {
     }
   };
   const dispatch = useDispatch();
+  const cart = useSelector((state)=> state.cart.cart)
   const addDataToCart = async (i) => {
-    const quantity = counter;
-    const alldata = { ...i, quantity };
-    await dispatch(addTocart(alldata));
-    await toast.success("Product add to card successfuly");
+    const isProductInCart =cart && cart.some((item) => item._id === i._id);
+
+    if (isProductInCart) {
+      toast.error("Product already in cart");
+    } else {
+      const quantity = counter;
+      const alldata = { ...i, quantity };
+      await dispatch(addTocart(alldata));
+      await toast.success("Product add to card successfuly");
+    }
+   
   };
 
   return (

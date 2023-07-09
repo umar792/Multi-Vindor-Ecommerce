@@ -16,7 +16,7 @@
     background: url("https://images.pexels.com/photos/5650023/pexels-photo-5650023.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")no-repeat center center/cover;
     z-index: -1;
     /* background-color: rgba(0, 0, 0,0.5);  */
-    /* opacity: .7; */
+    /* opacity: .7; */object-fit: contain;
 }
 .home_content{
     max-width: 700px;

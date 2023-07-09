@@ -140,13 +140,17 @@ module.exports = {
   // ----------------- get shop order
   ownerOrder: async (req, res) => {
     try {
-      // const orders = await OrderModel.find();
-      // const ownerId = req.user._id; // Get the authenticated user's ID
-      // const orders = await OrderModel.find({ "orderItem.owner._id": ownerId });
-      // res.status(200).json({
-      //   success: true,
-      //   orders,
-      // });
+      const ownerId = req.user._id; // Get the authenticated user's ID
+      const orders = await Order.find({
+        "cart.shopId": ownerId,
+      }).sort({
+        createdAt: -1,
+      });
+
+      res.status(200).json({
+        success: true,
+        orders,
+      });
     } catch (error) {
       res.status(400).json({
         success: false,

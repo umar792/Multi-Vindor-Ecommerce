@@ -45,6 +45,7 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
   const addItemtotheCart = async (item) => {
     const isProductInCart =cart && cart.some((i) => i._id === item._id);
 
+
     if (isProductInCart) {
       toast.error("Product already in cart");
     } else {

@@ -49,12 +49,14 @@ const Paymrent = ({ select, setSelect }) => {
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
     // const itemquantity = cart.map((item) => );
+    // const ownershop = cartItems && cartItems.map((item)=>  item.owner._id) 
+    // console.log(ownershop);
 
     const alldata = {
       shippingAddress: shippingInfo && shippingInfo,
       cart: cart && cart,
       totalPrice: ShippingInfouser.total,
-      // user: user,
+      // owner: ownershop,
     };
 
     await dispatch(CreateOrder(alldata, setSelect));

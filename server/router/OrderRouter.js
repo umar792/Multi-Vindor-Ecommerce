@@ -10,7 +10,7 @@ router.get("/userOrder", TokenVerfy, controller.getUserOrder);
 
 router.get("/user/single/order/:id", TokenVerfy, controller.getSingleUserOrder);
 
-router.get("/owner/order", controller.ownerOrder);
+router.get("/owner/order", ShopTokenVerify, controller.ownerOrder);
 
 
 

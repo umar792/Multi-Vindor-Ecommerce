@@ -1,6 +1,7 @@
 const OrderModel = require("../Model/OrderModel");
 const ProductModel = require("../Model/ProductSchema");
 const UserModel = require("../Model/UserSchema");
+const EventModel = require("../Model/EventsSchema");
 
 module.exports = {
   createOrder: async (req, res) => {
@@ -126,12 +127,13 @@ module.exports = {
       }
 
       const order = await OrderModel.findById(req.params.id);
-      if (!order) {
-        res.status(400).json({
-          success: false,
-          message: "No Order Found",
-        });
-      }
+      const event = await EventModel.findById(req.params.id);
+      // if (!order) {
+      //   res.status(400).json({
+      //     success: false,
+      //     message: "No Order Found",
+      //   });
+      // }
 
       if (order.Orderstatus === "Delivered") {
         return res.status(400).json({
@@ -145,6 +147,13 @@ module.exports = {
         await order.save();
         order.cart.forEach(async (o) => {
           await updateStock(o._id, o.quantity);
+        });
+      }
+      if (order.Orderstatus === "Shipped") {
+        order.paymentstatus = "Paid";
+        await order.save();
+        order.cart.forEach(async (o) => {
+          await updateStockEvent(o._id, o.quantity);
         });
       }
       order.Orderstatus = status;
@@ -163,6 +172,20 @@ module.exports = {
     // -------------------------
     async function updateStock(id, quantity) {
       const product = await ProductModel.findById(id);
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: "product not found",
+        });
+      }
+
+      product.stock = product.stock - quantity;
+      product.sold_out = product.sold_out + quantity;
+      await product.save();
+    }
+    // -------------------------updateStockEvent
+    async function updateStockEvent(id, quantity) {
+      const product = await EventModel.findById(id);
       if (!product) {
         return res.status(404).json({
           success: false,

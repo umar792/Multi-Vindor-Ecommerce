@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import EventCard from "./EventCard";
 import { productData } from "../../../DataStatic/Data";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllEvents } from "../../../redux/actions/OwnerDashboardAction";
 
 const Events = () => {
-  // const EventProduct = productData.filter((item) => {
-  //   return item.Event === true;
-  // });
-
   const AllEventsData = useSelector((state) => state.owner.AllEventsData);
   const productWithMostSales =
     AllEventsData &&
@@ -19,6 +16,12 @@ const Events = () => {
         return maxSalesProduct;
       }
     });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, []);
   return (
     <div>
       <div>

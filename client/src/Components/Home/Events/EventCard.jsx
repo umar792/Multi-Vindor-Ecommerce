@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 const EventCard = ({ data }) => {
   const { ShopOwner } = UseShopContext();
   const dispatch = useDispatch();
-  const cart = useSelector((state)=> state.cart.cart)
+  const cart = useSelector((state) => state.cart.cart);
 
   const deleteevent = async (id) => {
     await dispatch(deleteEventbyOwner(id));
@@ -24,16 +24,14 @@ const EventCard = ({ data }) => {
   const addItemtotheCart = async (data) => {
     const isProductInCart = cart.some((item) => item._id === data._id);
 
-  if (isProductInCart) {
-    toast.error("Product already in cart");
-  } else {
-    const quantity = 1;
-    const allData = { ...data, quantity };
-    await dispatch(addTocart(allData));
-        toast.success("Product added to cart successfully");
-  }
-  
-
+    if (isProductInCart) {
+      toast.error("Product already in cart");
+    } else {
+      const quantity = 1;
+      const allData = { ...data, quantity };
+      await dispatch(addTocart(allData));
+      toast.success("Product added to cart successfully");
+    }
   };
   return (
     <>
@@ -69,10 +67,14 @@ const EventCard = ({ data }) => {
                   {data && data.discountPrice}$
                 </h5>
               </div>
-              <span className="pr-3 font-[400] text-[17px] text-[#44a55e]">
+
+              <span className="pr-3 font-[400] text-[17px] text-[green]">
                 {data.sold_out} sold
               </span>
             </div>
+            <h5 className="font-bold text-[20px] text-[red] font-Roboto">
+              InStock {data && data.stock}
+            </h5>
             <div className="timer_parent">
               <p className="t_show">Time Remaning</p>
               <CountDown
@@ -81,26 +83,34 @@ const EventCard = ({ data }) => {
               />
             </div>
             <br />
-           {
-           new Date(data.endDate) > new Date() ?  <div className="flex items-center">
-            <Link to={`/singleProduct/${data._id}`}>
-              <div className={`bg-black py-2 px-6 text-[#fff]`}>See Details</div>
-            </Link>
-            <div
-              className={` text-[#fff] ml-5 bg-black py-2 px-6 cursor-pointer`}
-              onClick={()=> addItemtotheCart(data)}
-            >
-              Add to cart
-            </div>
-          </div> :  <div className="flex items-center">
-                <div className={`bg-black py-2 px-6 text-[#fff] opacity-[.3] cursor-pointer`}>See Details</div>
-              <div
-                className={` text-[#fff] ml-5 bg-black py-2 px-6 cursor-pointer opacity-[.3]`}
-              >
-                Add to cart
+            {new Date(data.endDate) > new Date() ? (
+              <div className="flex items-center">
+                <Link to={`/singleProduct/${data._id}`}>
+                  <div className={`bg-black py-2 px-6 text-[#fff]`}>
+                    See Details
+                  </div>
+                </Link>
+                <div
+                  className={` text-[#fff] ml-5 bg-black py-2 px-6 cursor-pointer`}
+                  onClick={() => addItemtotheCart(data)}
+                >
+                  Add to cart
+                </div>
               </div>
-            </div>
-           }
+            ) : (
+              <div className="flex items-center">
+                <div
+                  className={`bg-black py-2 px-6 text-[#fff] opacity-[.3] cursor-pointer`}
+                >
+                  See Details
+                </div>
+                <div
+                  className={` text-[#fff] ml-5 bg-black py-2 px-6 cursor-pointer opacity-[.3]`}
+                >
+                  Add to cart
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (

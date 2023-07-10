@@ -64,7 +64,12 @@ const Header = ({
                       className="search_data_show_item"
                       onClick={() => SetSearchItem("")}
                     >
-                      <img src={item.images && item.images[0].url} alt="" />
+                      <img
+                        src={
+                          item.images && item.images[item.images.length - 1].url
+                        }
+                        alt=""
+                      />
                       <div className="search_data_show_item_text">
                         <h3>{item.name}</h3>
                       </div>

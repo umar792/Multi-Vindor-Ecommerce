@@ -29,4 +29,8 @@ export const cartReducer = createReducer(initialState, {
       cart: state.cart.filter((i) => i._id !== action.payload),
     };
   },
+
+  ClearCart: (state) => {
+    state.cart = [];
+  },
 });

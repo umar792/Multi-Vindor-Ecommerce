@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
 import { CreateOrder } from "../../../redux/actions/OrderAction";
 import Loading from "../../Loading/Loading";
+import { ClearCart } from "../../../redux/actions/CartAction";
 
 const Paymrent = ({ select, setSelect }) => {
   const [method, setmethods] = useState(6);
@@ -49,7 +50,7 @@ const Paymrent = ({ select, setSelect }) => {
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
     // const itemquantity = cart.map((item) => );
-    // const ownershop = cartItems && cartItems.map((item)=>  item.owner._id) 
+    // const ownershop = cartItems && cartItems.map((item)=>  item.owner._id)
     // console.log(ownershop);
 
     const alldata = {
@@ -60,6 +61,7 @@ const Paymrent = ({ select, setSelect }) => {
     };
 
     await dispatch(CreateOrder(alldata, setSelect));
+    await dispatch(ClearCart());
   };
 
   const orderLoading = useSelector((state) => state.order.orderLoading);

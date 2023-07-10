@@ -41,9 +41,9 @@ export const LoginUserOrder = () => async (dispatch) => {
       },
     });
     dispatch({ type: "GetUserOrderLoadFail" });
-    const data = await res.json();;
+    const data = await res.json();
     if (res.status === 400 || !data) {
-      return
+      return;
     } else {
       dispatch({ type: "getUserOrderSuccess", payload: data.userOrder });
     }
@@ -88,6 +88,7 @@ export const OwnerOrderFunc = () => async (dispatch) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        token: localStorage.getItem("shopownerToken"),
       },
     });
     dispatch({ type: "GetAllOrderLoadFail" });
@@ -95,9 +96,40 @@ export const OwnerOrderFunc = () => async (dispatch) => {
     if (res.status === 400 || !data) {
       return toast.error(data.message);
     } else {
-      dispatch({ type: "GetAllOrderSuccess", payload: data.orders });
+      dispatch({ type: "GetAllOrderSuccess", payload: data.data });
     }
   } catch (error) {
     dispatch({ type: "GetAllOrderError", payload: error.message });
+  }
+};
+
+// ----------------------- Update Order Status
+
+export const UpdateOrderStatus = (status, id, navigate) => async (dispatch) => {
+  try {
+    console.log(status);
+    dispatch({ type: "UpadteOrderStatusLoad" });
+    const res = await fetch(
+      `http://localhost:4000/order/orderStatusUpdate/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("shopownerToken"),
+        },
+        body: JSON.stringify({ status }),
+      }
+    );
+    dispatch({ type: "UpadteOrderStatusLoadFail" });
+    const data = await res.json();
+    if (res.status === 400 || !data) {
+      return toast.error(data.message);
+    } else {
+      toast.success(data.message);
+      navigate("/Shop/Owner/Dashboard");
+      dispatch({ type: "UpadteOrderStatusSuccess" });
+    }
+  } catch (error) {
+    dispatch({ type: "UpadteOrderStatusError", payload: error.message });
   }
 };

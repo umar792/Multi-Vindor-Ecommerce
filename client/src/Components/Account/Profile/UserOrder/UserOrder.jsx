@@ -15,27 +15,6 @@ const UserOrder = () => {
     dispatch(LoginUserOrder());
   }, []);
 
-//   let totalPrice = 0;
-
-//   UserAllOrderData && UserAllOrderData.forEach(order => {
-//   order.cart.forEach(item => {
-//     const itemTotalPrice = item.discountPrice * item.quantity;
-//     totalPrice += itemTotalPrice;
-//   });
-// });
-
-
-// let cartTotal = 0;
-// UserAllOrderData && UserAllOrderData.forEach(order => {
-//   order.cart.forEach(item => {
-//     const { discountPrice, quantity } = item;
-//     const totalPrice = discountPrice * quantity;
-//     cartTotal += totalPrice;
-//   });
-//   order.cartTotalPrice = cartTotal;
-// });
-
-
   return (
     <>
       {orderLoading ? (
@@ -69,11 +48,8 @@ const UserOrder = () => {
                   }}
                 >
                   <th>id</th>
-                  {/* <th>Image</th>
-              <th>Name</th> */}
                   <th>price</th>
                   <th>Status</th>
-                  {/* <th>Image</th> */}
                   <th>Action</th>
                 </tr>
                 {UserAllOrderData &&
@@ -81,45 +57,15 @@ const UserOrder = () => {
                 UserAllOrderData ? (
                   UserAllOrderData.map((item, index) => {
                     let cartTotal = 0;
-                    item.cart.forEach(orderItem => {
-                      const totalPrice = orderItem.discountPrice * orderItem.quantity;
+                    item.cart.forEach((orderItem) => {
+                      const totalPrice =
+                        orderItem.discountPrice * orderItem.quantity;
                       cartTotal += totalPrice;
                     });
                     return (
                       <tr key={item._id}>
                         <td>{index + 1}</td>
-                        {/* <td>
-                      {item &&
-                        item.orderItem &&
-                        item.orderItem.length > 0 &&
-                        item.orderItem.map((item, innerIndex) => (
-                          <span key={innerIndex}>
-                            {
-                              <img
-                                src={
-                                  item.images &&
-                                  item.images[item.images.length - 1].url
-                                }
-                                alt=""
-                                style={{ width: "50px", height: "50px" }}
-                              />
-                            }
-                          </span>
-                        ))}
-                    </td>
-                    <td>
-                      {item &&
-                        item.orderItem &&
-                        item.orderItem.length > 0 &&
-                        item.orderItem.map((item, innerIndex) => (
-                          <span key={innerIndex}>
-                            {item &&
-                              item &&
-                              item.name &&
-                              item.name.slice(0, 15)}
-                          </span>
-                        ))}
-                    </td> */}
+
                         <td>${cartTotal}</td>
                         <td
                           style={

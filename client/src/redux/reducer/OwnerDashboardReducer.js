@@ -126,6 +126,20 @@ const ownerReducer = createReducer(initailValue, {
     state.ownerLoading = false;
     state.ERROR = action.payload;
   },
+  // ---------------- create review
+  createReviewDataLoad: (state) => {
+    state.ownerLoading = true;
+  },
+  createReviewLoadFail: (state) => {
+    state.ownerLoading = false;
+  },
+  createReviewSuccess: (state, action) => {
+    state.ownerLoading = false;
+  },
+  createReviewSuccessError: (state, action) => {
+    state.ownerLoading = false;
+    state.ERROR = action.payload;
+  },
 });
 
 export default ownerReducer;

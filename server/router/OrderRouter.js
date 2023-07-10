@@ -12,6 +12,10 @@ router.get("/user/single/order/:id", TokenVerfy, controller.getSingleUserOrder);
 
 router.get("/owner/order", ShopTokenVerify, controller.ownerOrder);
 
-
+router.put(
+  "/orderStatusUpdate/:id",
+  ShopTokenVerify,
+  controller.changeOrderStatus
+);
 
 module.exports = router;

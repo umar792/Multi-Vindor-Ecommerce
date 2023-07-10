@@ -1,9 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import DashboardAllProductView from "../SellerPages/SellerDashboard/DashboardAllProductView/DashboardAllProductView";
+import { AllProductsfun } from "../../redux/actions/OwnerDashboardAction";
 
 const Products = () => {
   const AllProductsData = useSelector((state) => state.owner.AllProductsData);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(AllProductsfun());
+  }, []);
 
   return (
     <>

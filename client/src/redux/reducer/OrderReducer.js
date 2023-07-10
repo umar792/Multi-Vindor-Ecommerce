@@ -70,4 +70,19 @@ export const OrderReducer = createReducer(initialValue, {
     state.orderLoading = false;
     state.ERROR = action.payload;
   },
+  // --------------------------- Update order status
+
+  UpadteOrderStatusLoad: (state) => {
+    state.orderLoading = true;
+  },
+  UpadteOrderStatusLoadFail: (state) => {
+    state.orderLoading = false;
+  },
+  UpadteOrderStatusSuccess: (state, action) => {
+    state.orderLoading = false;
+  },
+  UpadteOrderStatusError: (state, action) => {
+    state.orderLoading = false;
+    state.ERROR = action.payload;
+  },
 });

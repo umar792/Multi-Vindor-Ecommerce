@@ -42,7 +42,6 @@ const ShopContextPrpvider = ({ children }) => {
       } else {
         toast.success(data.message);
         localStorage.setItem("shopownerToken", data.Token);
-        console.log(state.ShopAuthenticatd);
         navigate("/Shop/Owner/Dashboard");
       }
       dispatch({ type: "SHOP_OWNER_LOGIN_SUCCESS", payload: data.ShopOwner });

@@ -42,6 +42,19 @@ const ProductSchema = new Schema({
       },
     },
   ],
+  reviews: [
+    {
+      user: {
+        type: mongoose.Types.ObjectId,
+        ref: "user",
+        required: true,
+      },
+      comment: {
+        type: String,
+        required: [true, "Plaese Enter Your Review"],
+      },
+    },
+  ],
   owner: {
     type: mongoose.Types.ObjectId,
     ref: "shop",

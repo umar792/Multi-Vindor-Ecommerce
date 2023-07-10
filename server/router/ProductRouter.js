@@ -1,5 +1,6 @@
 const express = require("express");
 const ShopTokenVerify = require("../middleware/ShopOwner");
+const TokenVerfy = require("../middleware/VerifyToken");
 const router = express.Router();
 const controller = require("../Controller/ProductController");
 
@@ -16,5 +17,7 @@ router.delete(
   ShopTokenVerify,
   controller.deleteProductByOwner
 );
+
+router.put("/addreview", TokenVerfy, controller.createReview);
 
 module.exports = router;

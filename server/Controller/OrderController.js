@@ -1,63 +1,12 @@
 const OrderModel = require("../Model/OrderModel");
+const ProductModel = require("../Model/ProductSchema");
+const UserModel = require("../Model/UserSchema");
 
 module.exports = {
   createOrder: async (req, res) => {
     try {
-      // const { shippingInfo, orderItem, itemsPrice, shippingPrice, totalPrice } =
-      //   req.body;
-
-      // if (!shippingInfo) {
-      //   return res.status(400).json({
-      //     success: false,
-      //     message: "Please enter Shipping Info",
-      //   });
-      // }
-
-      // if (!orderItem) {
-      //   return res.status(400).json({
-      //     success: false,
-      //     message: "Please enter Order Item",
-      //   });
-      // }
-
-      // //   if (!itemsPrice) {
-      // //     return res.status(400).json({
-      // //       success: false,
-      // //       message: "Please enter Items Price",
-      // //     });
-      // //   }
-
-      // if (!shippingPrice) {
-      //   return res.status(400).json({
-      //     success: false,
-      //     message: "Please enter Shipping Price",
-      //   });
-      // }
-
-      // if (!totalPrice) {
-      //   return res.status(400).json({
-      //     success: false,
-      //     message: "Please enter Total Price",
-      //   });
-      // }
-
-      // const order = await OrderModel.create({
-      //   shippingPrice,
-      //   shippingInfo,
-      //   orderItem,
-      //   totalPrice,
-      //   itemsPrice,
-      //   user: req.user._id,
-      //   paidAt: Date.now(),
-      // });
-      // res.status(200).json({
-      //   success: true,
-      //   message: "Your Order Place Successfuly",
-      //   order,
-      // });
-
       // --------------------------------------------
-      const { cart, shippingAddress, user, totalPrice, paymentInfo } = req.body;
+      const { cart, shippingAddress, totalPrice, paymentInfo } = req.body;
 
       //   group cart items by shopId
       const shopItemsMap = new Map();
@@ -99,8 +48,9 @@ module.exports = {
   // -------------------------- get user Order
   getUserOrder: async (req, res) => {
     try {
-      const userOrder = await OrderModel.find({ user: req.user._id })
-        .populate("user");
+      const userOrder = await OrderModel.find({ user: req.user._id }).populate(
+        "user"
+      );
       res.status(200).json({
         success: true,
         userOrder,
@@ -116,8 +66,7 @@ module.exports = {
   // ----------------------- get single order
   getSingleUserOrder: async (req, res) => {
     try {
-      const order = await OrderModel.findById(req.params.id)
-        .populate("user");
+      const order = await OrderModel.findById(req.params.id).populate("user");
       if (!order) {
         return res.status(400).json({
           success: false,
@@ -144,13 +93,14 @@ module.exports = {
       const orders = await OrderModel.find();
       const filteredData = [];
 
-      orders && orders.forEach((item) => {
-        item.cart.forEach((i) => {
-          if (i.owner._id.toString() === ownerId.toString()) {
-            filteredData.push(i)
-          }
+      orders &&
+        orders.forEach((item) => {
+          item.cart.forEach((i) => {
+            if (i.owner._id.toString() === ownerId.toString()) {
+              filteredData.push(item);
+            }
+          });
         });
-      });
 
       res.status(200).json({
         success: true,
@@ -161,6 +111,68 @@ module.exports = {
         success: false,
         message: error.message,
       });
+    }
+  },
+
+  // ----------------------- update order status
+  changeOrderStatus: async (req, res) => {
+    try {
+      const { status } = req.body;
+      if (!status) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese enter status",
+        });
+      }
+
+      const order = await OrderModel.findById(req.params.id);
+      if (!order) {
+        res.status(400).json({
+          success: false,
+          message: "No Order Found",
+        });
+      }
+
+      if (order.Orderstatus === "Delivered") {
+        return res.status(400).json({
+          success: false,
+          message: "You have already delivered this order",
+        });
+      }
+
+      if (order.Orderstatus === "Shipped") {
+        order.paymentstatus = "Paid";
+        await order.save();
+        order.cart.forEach(async (o) => {
+          await updateStock(o._id, o.quantity);
+        });
+      }
+      order.Orderstatus = status;
+      await order.save();
+      res.status(200).json({
+        success: true,
+        message: "Order Status Update Successfuly",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    // -------------------------
+    async function updateStock(id, quantity) {
+      const product = await ProductModel.findById(id);
+      if (!product) {
+        return res.status(404).json({
+          success: false,
+          message: "product not found",
+        });
+      }
+
+      product.stock = product.stock - quantity;
+      product.sold_out = product.sold_out + quantity;
+      await product.save();
     }
   },
 };

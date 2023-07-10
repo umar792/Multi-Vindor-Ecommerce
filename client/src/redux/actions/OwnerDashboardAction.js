@@ -96,44 +96,44 @@ export const CreateEventProduct =
     endDate,
     setSelect
   ) =>
-    async (dispatch) => {
-      try {
-        dispatch({ type: "LoadEventCreateProduct" });
-        const res = await fetch(
-          "http://localhost:4000/event/createEventProduct",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              token: localStorage.getItem("shopownerToken"),
-            },
-            body: JSON.stringify({
-              name,
-              description,
-              category,
-              Tags,
-              originalPrice,
-              discountPrice,
-              stock,
-              images,
-              startDate,
-              endDate,
-            }),
-          }
-        );
-        const data = await res.json();
-        if (res.status === 400 || !data) {
-          dispatch({ type: "ShopEventCreateProductFail" });
-          return toast.error(data.message);
-        } else {
-          toast.success(data.message);
-          dispatch({ type: "CreateEventProductSuccess" });
-          setSelect(3);
+  async (dispatch) => {
+    try {
+      dispatch({ type: "LoadEventCreateProduct" });
+      const res = await fetch(
+        "http://localhost:4000/event/createEventProduct",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.getItem("shopownerToken"),
+          },
+          body: JSON.stringify({
+            name,
+            description,
+            category,
+            Tags,
+            originalPrice,
+            discountPrice,
+            stock,
+            images,
+            startDate,
+            endDate,
+          }),
         }
-      } catch (error) {
-        dispatch({ type: "CreateEventProductError", payload: error.message });
+      );
+      const data = await res.json();
+      if (res.status === 400 || !data) {
+        dispatch({ type: "ShopEventCreateProductFail" });
+        return toast.error(data.message);
+      } else {
+        toast.success(data.message);
+        dispatch({ type: "CreateEventProductSuccess" });
+        setSelect(3);
       }
-    };
+    } catch (error) {
+      dispatch({ type: "CreateEventProductError", payload: error.message });
+    }
+  };
 
 // ------------------ delete Eventr by owner
 
@@ -234,21 +234,46 @@ export const getSingleProduct = (id) => async (dispatch) => {
 export const getSingleEvent = (id) => async (dispatch) => {
   try {
     dispatch({ type: "getSingleProductDataLoad" });
-    const res = await fetch(
-      `http://localhost:4000/event/singleEvent/${id}`,
-      {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch(`http://localhost:4000/event/singleEvent/${id}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     dispatch({ type: "getSingleProducttDataLoadFail" });
     const data = await res.json();
     dispatch({ type: "getSingleProductDataSuccess", payload: data.product });
   } catch (error) {
     dispatch({
       type: "getSingleProductDataSuccessError",
+      payload: error.message,
+    });
+  }
+};
+export const createReview = (comment, id) => async (dispatch) => {
+  try {
+    dispatch({ type: "createReviewDataLoad" });
+    const res = await fetch(`http://localhost:4000/product/addreview`, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        token: localStorage.getItem("myecomtoken"),
+      },
+      body: JSON.stringify({ comment, id }),
+    });
+    console.log("hello");
+    dispatch({ type: "createReviewLoadFail" });
+    const data = await res.json();
+    console.log(data);
+    if (res.status === 400 || !data) {
+      return toast.error(data.message);
+    } else {
+      toast.success(data.message);
+    }
+    dispatch({ type: "createReviewSuccess" });
+  } catch (error) {
+    dispatch({
+      type: "createReviewSuccessError",
       payload: error.message,
     });
   }

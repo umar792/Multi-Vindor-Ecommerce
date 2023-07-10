@@ -1,6 +1,7 @@
 const ProductModel = require("../Model/ProductSchema");
 const cloudinary = require("cloudinary");
 const ShopModal = require("../Model/ShopCreateSchema");
+const UserModel = require("../Model/UserSchema");
 
 module.exports = {
   // ------------------------- create Products
@@ -172,9 +173,9 @@ module.exports = {
   // ------------------- get single products
   SingleProduct: async (req, res) => {
     try {
-      const product = await ProductModel.findById(req.params.id).populate(
-        "owner"
-      );
+      const product = await ProductModel.findById(req.params.id)
+        .populate("owner")
+        .populate("reviews.user");
       if (!product) {
         return res.status(400).json({
           success: false,
@@ -184,6 +185,52 @@ module.exports = {
 
       res.status(200).json({
         product,
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+  // ---------------------------- product review
+  createReview: async (req, res) => {
+    try {
+      const { comment, id } = req.body;
+      if (!comment) {
+        return res.status(400).json({
+          success: false,
+          message: "Plaese Enter Your Review Comment",
+        });
+      }
+      if (!id) {
+        return res.status(400).json({
+          success: false,
+          message: "Product id must required",
+        });
+      }
+
+      const product = await ProductModel.findById(id);
+      const user = await UserModel.findById(req.user._id);
+      if (!product) {
+        return res.status(400).json({
+          success: false,
+          message: "Product not found",
+        });
+      }
+
+      const review = {
+        user: user._id,
+        comment: comment,
+      };
+
+      product.reviews.push(review);
+      await product.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Review add successfuly",
       });
     } catch (error) {
       res.status(400).json({

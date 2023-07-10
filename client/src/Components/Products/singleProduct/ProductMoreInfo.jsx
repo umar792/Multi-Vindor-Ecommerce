@@ -53,29 +53,36 @@ const ProductMoreInfo = ({ data }) => {
       ) : null}
 
       {active === 2 ? (
-        <div className="w-full min-h-[40vh] flex flex-col items-center py-3 overflow-y-scroll">
-          {/* {data &&
-            data.reviews.map((item, index) => (
-              <div className="w-full flex my-2">
+        data && data.reviews && data.reviews.length > 0 ? (
+          <div className="reviews">
+            {data.reviews.map((item, index) => (
+              <div className="w-full flex my-2" key={index}>
                 <img
-                  src={`https://i0.wp.com/eccocibd.com/wp-content/uploads/2022/01/1802NL02_1.png?fit=550%2C550&ssl=1`}
+                  src={
+                    item.user &&
+                    item.user.avatar &&
+                    `http://localhost:4000/${item.user.avatar}`
+                  }
                   alt=""
                   className="w-[50px] h-[50px] rounded-full"
                 />
-                <div className="pl-2 ">
+                <div className="pl-2">
                   <div className="w-full flex items-center">
-                    <h1 className="font-[500] mr-3">{item.user.name}</h1>
-                    <Ratings rating={data?.ratings} />
+                    <h1 className="font-[500] mr-3">
+                      {item.user && item.user.name}
+                    </h1>
+                    {/* <Ratings rating={data?.ratings} /> */}
                   </div>
                   <p>{item.comment}</p>
                 </div>
               </div>
-            ))} */}
-
-          <div className="w-full flex justify-center">
-            <h5>No Reviews have for this product!</h5>
+            ))}
           </div>
-        </div>
+        ) : (
+          <div className="w-full flex justify-center">
+            <h5>No reviews for this product!</h5>
+          </div>
+        )
       ) : null}
 
       {active === 3 && (

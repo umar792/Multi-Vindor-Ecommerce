@@ -7,7 +7,7 @@ const BestSelling = () => {
   const SellingProducts =
     AllProductsData &&
     AllProductsData.filter((item) => {
-      return item.sold_out > 15;
+      return item.sold_out > 20;
     });
 
   return (

@@ -40,6 +40,7 @@ import {
 import ChangePassword from "./Components/Account/Profile/ChangePassword/ChangePassword";
 import ShippingInfo from "./Components/Cart/ShippingInfo/ShippingInfo";
 import SingleOrder from "./Components/Cart/SingleOrder/SingleOrder";
+import OwnerSingleOrder from "./Components/SellerPages/SellerDashboard/Content/OwnerSingelOrderDetailes/OwnerSingleOrder";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -170,6 +171,17 @@ const App = () => {
             path="/Shop/Owner/Dashboard"
             exact
             element={<SellerDashBoard />}
+          />
+        </Route>
+        <Route
+          path="/owner/single/order/:id"
+          exact
+          element={<ShopOwnerPrivateRoute />}
+        >
+          <Route
+            path="/owner/single/order/:id"
+            exact
+            element={<OwnerSingleOrder />}
           />
         </Route>
 

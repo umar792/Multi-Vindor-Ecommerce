@@ -63,7 +63,7 @@ module.exports = {
         password: password,
         avatar: fileUrl,
         OTP: myOTP,
-        Expire_otp: Date.now() + 5 * 60 * 1000,
+        Expire_otp: Date.now() + 10 * 60 * 1000,
       };
 
       // --------------------------- ActivationTokon

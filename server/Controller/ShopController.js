@@ -88,7 +88,7 @@ module.exports = {
         zipcode,
         shopDescription,
         OTP: myOTP,
-        OTP_Expire: Date.now() + 5 * 60 * 1000,
+        OTP_Expire: Date.now() + 10 * 60 * 1000,
         avatar: {
           public_id: mycloud.public_id,
           url: mycloud.secure_url,

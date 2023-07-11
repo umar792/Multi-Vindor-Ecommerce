@@ -106,6 +106,12 @@ const BottomHeader = ({
       image:
         "https://hips.hearstapps.com/hmg-prod/images/po-motorcycles-index-1586887896.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*",
     },
+    {
+      id: 13,
+      value: "Other",
+      image:
+        "https://hips.hearstapps.com/hmg-prod/images/po-motorcycles-index-1586887896.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*",
+    },
   ];
 
   const { ShopAuthanticated } = UseShopContext();

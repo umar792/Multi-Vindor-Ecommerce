@@ -198,6 +198,7 @@ const ShippingInfoCard = ({ setSelect }) => {
           <p>Total Quantity :</p>
           <p>{totalItemQuantity}</p>
         </div>
+
         <div className="flex justify-between align-middle px-1 py-3 my-2 mb-2">
           <p>Subtotal :</p>
           <p>${Subtotal}</p>

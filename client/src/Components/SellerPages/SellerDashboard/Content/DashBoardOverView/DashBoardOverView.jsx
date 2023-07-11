@@ -41,6 +41,8 @@ const DashBoardOverView = () => {
   useEffect(() => {
     dispatch(OwnerOrderFunc());
   }, []);
+  console.log(ShopOwner);
+
   return (
     <div className="DashBoardOverView">
       <div className="DashBoardOverView_header">

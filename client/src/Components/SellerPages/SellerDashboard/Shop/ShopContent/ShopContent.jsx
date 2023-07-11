@@ -32,12 +32,12 @@ const ShopContent = () => {
               >
                 Events
               </p>
-              <p
+              {/* <p
                 onClick={() => setSelect(2)}
                 style={select === 2 ? { color: "red" } : { color: "black" }}
               >
                 Reviews
-              </p>
+              </p> */}
             </div>
             <div className="left_content_shop">
               <NavLink to="/Shop/Owner/Dashboard">

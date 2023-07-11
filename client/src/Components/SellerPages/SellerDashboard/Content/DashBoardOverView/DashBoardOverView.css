@@ -1,0 +1,56 @@
+.DashBoardOverView{
+    padding: 10px;
+}
+.DashBoardOverView_header{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.DashBoardOverView_header_box{
+    width: 300px;
+    padding: 10px 10px;
+    border: 1px solid rgb(225, 222, 222);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgb(242, 240, 240);
+    flex-direction: column;
+    cursor: pointer;
+}
+.DashBoardOverView_header_box:hover{
+    transform: translateY(3px);
+    transition:transform .1s linear ;
+}
+.DashBoardOverView_header_box_child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.DashBoardOverView_header_box_child svg{
+    font-size: 30px;
+    margin-right: 10px;
+}
+.DashBoardOverView_header_box_child span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.DashBoardOverView_header_box p{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* --------------------latest_order */
+.latest_order{
+    height: 400px;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+@media(max-width : 400px){
+    .DashBoardOverView_header_box{
+        width: 100%;
+    }
+}

@@ -5,7 +5,8 @@ import DashboardAllProductView from "../../SellerPages/SellerDashboard/Dashboard
 
 const FeaturedProduct = () => {
   const AllProductsData = useSelector((state) => state.owner.AllProductsData);
-
+  const AllProductsDatanew =
+    AllProductsData && AllProductsData && AllProductsData.slice(0, 40);
   return (
     <div className="my-[50px]">
       <div className={``}>
@@ -16,7 +17,7 @@ const FeaturedProduct = () => {
         </div>
         {productData && productData.length !== 0 && (
           <>
-            <DashboardAllProductView data={AllProductsData} />
+            <DashboardAllProductView data={AllProductsDatanew} />
           </>
         )}
       </div>

@@ -107,7 +107,6 @@ export const OwnerOrderFunc = () => async (dispatch) => {
 
 export const UpdateOrderStatus = (status, id, navigate) => async (dispatch) => {
   try {
-    console.log(status);
     dispatch({ type: "UpadteOrderStatusLoad" });
     const res = await fetch(
       `http://localhost:4000/order/orderStatusUpdate/${id}`,
@@ -125,8 +124,8 @@ export const UpdateOrderStatus = (status, id, navigate) => async (dispatch) => {
     if (res.status === 400 || !data) {
       return toast.error(data.message);
     } else {
-      toast.success(data.message);
       navigate("/Shop/Owner/Dashboard");
+      toast.success(data.message);
       dispatch({ type: "UpadteOrderStatusSuccess" });
     }
   } catch (error) {

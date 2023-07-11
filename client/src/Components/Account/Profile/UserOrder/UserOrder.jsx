@@ -59,7 +59,7 @@ const UserOrder = () => {
                     let cartTotal = 0;
                     item.cart.forEach((orderItem) => {
                       const totalPrice =
-                        orderItem.discountPrice * orderItem.quantity;
+                        orderItem.discountPrice * orderItem.quantity + 2;
                       cartTotal += totalPrice;
                     });
                     return (

@@ -9,6 +9,7 @@ import {
 import { FiShoppingBag } from "react-icons/fi";
 import { AiOutlineDropbox, AiOutlineSetting } from "react-icons/ai";
 import { FaGifts } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 
 const menus = [
   {
@@ -65,8 +66,10 @@ const menus = [
 const SellerDashBoardSidebar = ({ select, setSelect }) => {
   return (
     <div className="SellerDashBoardSidebar">
-      <NavLink to="/">
-        <button>Home</button>
+      <NavLink to="/" className="flex align-middle home_dash">
+        {/* <button>Home</button> */}
+        <AiFillHome className="text-2xl ml-[10px] mb-3" />
+        <span className="ml-2">Home</span>
       </NavLink>
 
       {/* ------------- menus  */}

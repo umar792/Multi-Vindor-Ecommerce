@@ -7,6 +7,7 @@ import OwnerAllProducts from "../OwnerAllProducts/OwnerAllProducts";
 import CreaventEvents from "../CreateEvents/CreaventEvents";
 import AllEvents from "../AllOwnerEvents/AllEvents";
 import OwnerAllOrder from "../OwnerAllOrder/OwnerAllOrder";
+import DashBoardOverView from "./DashBoardOverView/DashBoardOverView";
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
 
@@ -15,7 +16,7 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       <div className="SellerDashBoardContent_header">
         {/* --------- */}
         <h2>
-          Welcome to your Dashboard:
+          <p> Welcome to your Dashboard:</p>
           <font> {ShopOwner && ShopOwner.shopName}</font>
         </h2>
         {/* ---------- */}
@@ -24,7 +25,7 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
         </NavLink>
       </div>
       {/* ------------------------------------ dashboard  */}
-      {select === 0 ? "Dashboard" : null}
+      {select === 0 ? <DashBoardOverView /> : null}
 
       {/* ------------------ create Product  */}
       {select === 1 ? <CreateProduct /> : null}

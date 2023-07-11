@@ -29,7 +29,7 @@ const ShopSidebar = () => {
         </p>
         {ShopAuthanticated && (
           <>
-            <button className="shop_btn">Edit Shop</button>
+            {/* <button className="shop_btn">Edit Shop</button> */}
             <button className="shop_btn" onClick={() => LogoutShop(navigate)}>
               Logout
             </button>

@@ -2,6 +2,8 @@
     border-right: 1px solid gray;
     height: 100vh;
     padding: 10px;
+    position: sticky;
+    top: 0;
 }
 .SellerDashBoardSidebar button{
     background-color: black;
@@ -34,4 +36,18 @@
 .dash_menus_item li:hover{
     border-bottom: 1px solid gray;
     color: red;
+}
+
+
+@media(max-width : 600px){
+    .dashoard_menus li{
+        display: none;
+    }
+    .home_dash span{
+        display: none;
+    }
+    .SellerDashBoardSidebar{
+        /* width: 50px;
+        padding: 15px 5px; */
+    }
 }

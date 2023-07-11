@@ -74,10 +74,10 @@ const Paymrent = ({ select, setSelect }) => {
         <div className="payment">
           <div className="methos_payment">
             <div className="card_payment">
-              <button onClick={() => setmethods(0)}>
+              {/* <button onClick={() => setmethods(0)}>
                 {" "}
                 Pay With Debit/Credit card{" "}
-              </button>
+              </button> */}
               {method === 0 ? (
                 <div className="card_payment_inputs">
                   <div className="iputs">

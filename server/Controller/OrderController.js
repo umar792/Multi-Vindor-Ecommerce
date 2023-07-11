@@ -128,13 +128,6 @@ module.exports = {
 
       const order = await OrderModel.findById(req.params.id);
       const event = await EventModel.findById(req.params.id);
-      // if (!order) {
-      //   res.status(400).json({
-      //     success: false,
-      //     message: "No Order Found",
-      //   });
-      // }
-
       if (order.Orderstatus === "Delivered") {
         return res.status(400).json({
           success: false,
@@ -142,19 +135,23 @@ module.exports = {
         });
       }
 
-      if (order.Orderstatus === "Shipped") {
-        order.paymentstatus = "Paid";
-        await order.save();
-        order.cart.forEach(async (o) => {
-          await updateStock(o._id, o.quantity);
-        });
+      if (order) {
+        if (order.Orderstatus === "Shipped") {
+          order.paymentstatus = "Paid";
+          await order.save();
+          order.cart.forEach(async (o) => {
+            await updateStock(o._id, o.quantity);
+          });
+        }
       }
-      if (order.Orderstatus === "Shipped") {
-        order.paymentstatus = "Paid";
-        await order.save();
-        order.cart.forEach(async (o) => {
-          await updateStockEvent(o._id, o.quantity);
-        });
+      if (event) {
+        if (event.Orderstatus === "Shipped") {
+          event.paymentstatus = "Paid";
+          await event.save();
+          event.cart.forEach(async (o) => {
+            await updateStockEvent(o._id, o.quantity);
+          });
+        }
       }
       order.Orderstatus = status;
       await order.save();

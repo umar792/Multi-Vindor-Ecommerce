@@ -74,10 +74,14 @@ const SellerAccountCreate = () => {
   return (
     <>
       {loading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <p className="my-2 text-[red] text-xl">
+              <span className="text-black font-bold">Note:</span> Plaese enter
+              Valid Information after create account you cannot change anything
+            </p>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
               Register as a seller
             </h2>

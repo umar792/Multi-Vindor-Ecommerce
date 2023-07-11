@@ -4,7 +4,10 @@ import "./SingleProduct.css";
 import SugestedPrpducts from "../SuggestProducts/SugestedPrpducts";
 import ProductMoreInfo from "../singleProduct/ProductMoreInfo.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleEvent, getSingleProduct } from "../../../redux/actions/OwnerDashboardAction";
+import {
+  getSingleEvent,
+  getSingleProduct,
+} from "../../../redux/actions/OwnerDashboardAction";
 import { addTocart } from "../../../redux/actions/CartAction";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
@@ -108,7 +111,14 @@ const SingleProduct = () => {
                   <button onClick={() => additemTocard(singleProduct)}>
                     Ad to card
                   </button>
-                  <button className="mx-[20px] by_single">By Now</button>
+                  <NavLink to="/shippingInfo">
+                    <button
+                      className="mx-[20px] by_single"
+                      onClick={() => additemTocard(singleProduct)}
+                    >
+                      By Now
+                    </button>
+                  </NavLink>
                 </div>
               ) : (
                 <div className="single_buttons">

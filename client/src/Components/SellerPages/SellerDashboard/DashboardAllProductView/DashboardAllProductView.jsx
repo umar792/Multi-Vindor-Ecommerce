@@ -43,8 +43,7 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
   const cart = useSelector((state) => state.cart.cart);
 
   const addItemtotheCart = async (item) => {
-    const isProductInCart =cart && cart.some((i) => i._id === item._id);
-
+    const isProductInCart = cart && cart.some((i) => i._id === item._id);
 
     if (isProductInCart) {
       toast.error("Product already in cart");
@@ -54,7 +53,6 @@ const DashboardAllProductView = ({ data, select, setSelect }) => {
       await dispatch(addTocart(allData));
       await toast.success("Product add to card successfuly");
     }
-
   };
 
   return (

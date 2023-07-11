@@ -8,7 +8,7 @@ const BestDeals = () => {
   const sortedData =
     AllProductsData &&
     [...AllProductsData].sort((a, b) => b.sold_out - a.sold_out);
-  const sliceData = sortedData && sortedData.slice(0, 5);
+  const sliceData = sortedData && sortedData.slice(0, 10);
   return (
     <div className="BestDeals">
       <h2 className="BestDeals_heading">Best Deals</h2>

@@ -55,10 +55,18 @@ module.exports = {
         crop: "scale",
       });
       const isExistUser = await UserModel.findOne({ email });
+      const isExistShopName = await ShopModal.findOne({ shopName });
       if (!isExistUser) {
         return res.status(400).json({
           success: false,
           message: "Plaese Register Your Email First Then You will Create Shop",
+        });
+      }
+      if (!isExistShopName) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Cannot create shop becasue a shop already present with this name",
         });
       }
       const isNumber = await ShopModal.findOne({ number });

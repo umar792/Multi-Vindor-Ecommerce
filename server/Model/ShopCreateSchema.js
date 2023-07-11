@@ -8,6 +8,10 @@ const ShopCreateschema = new Schema({
   shopName: {
     type: String,
     required: [true, "Plaese Enter Your Shop Name"],
+    unique: [
+      true,
+      "Cannot create shop becasue a shop already present with this name",
+    ],
   },
   number: {
     type: Number,

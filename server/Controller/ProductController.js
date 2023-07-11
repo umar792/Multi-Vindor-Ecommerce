@@ -159,6 +159,7 @@ module.exports = {
   AllProducts: async (req, res) => {
     try {
       const products = await ProductModel.find().populate("owner");
+      products.reverse();
       res.status(200).json({
         products,
       });

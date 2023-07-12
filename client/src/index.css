@@ -15,3 +15,33 @@ body.no-scroll {
     overflow: hidden;
   }
   
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: max-content;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .table-container {
+      overflow-x: scroll;
+    }
+    
+    table {
+      width: 100%;
+    }
+    
+    th, td {
+      white-space: nowrap;
+    }
+  }

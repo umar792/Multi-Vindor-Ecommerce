@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "./SingleProduct.css";
 import SugestedPrpducts from "../SuggestProducts/SugestedPrpducts";
 import ProductMoreInfo from "../singleProduct/ProductMoreInfo.jsx";
@@ -11,11 +11,13 @@ import {
 import { addTocart } from "../../../redux/actions/CartAction";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
+import { UseUserContext } from "../../../ContextAoi/Context/UserContext";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const singleProduct = useSelector((state) => state.owner.singleProduct);
   const ownerLoading = useSelector((state) => state.owner.ownerLoading);
+  const { user, Authanticated } = UseUserContext();
   const { id } = useParams();
   const [count, setCount] = useState(1);
   const [iamge, setImage] = useState(
@@ -62,6 +64,42 @@ const SingleProduct = () => {
     const alldata = { ...i, quantity };
     dispatch(addTocart(alldata));
     toast.success("Product add to card successfuly");
+  };
+  const navigate = useNavigate();
+
+  const CreatEChat = async () => {
+    if (Authanticated) {
+      const userId = user && user._id;
+      const productId = singleProduct && singleProduct._id;
+      const sellerId = singleProduct && singleProduct.owner._id;
+      const groupTitle = userId + sellerId;
+      try {
+        const res = await fetch(
+          "http://localhost:4000/chat/createConversationgroup",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              groupTitle: groupTitle,
+              userId: userId,
+              sellerId: sellerId,
+            }),
+          }
+        );
+        const data = await res.json();
+        if (res.status === 400 || !data) {
+          return toast.error(data.message);
+        } else {
+          navigate(`/conversation/${data.conversation._id}`);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+    } else {
+      toast.error("Plaese Login First");
+    }
   };
 
   return (
@@ -157,7 +195,7 @@ const SingleProduct = () => {
                     </p>
                   </div>
                 </NavLink>
-                <button>Send Message</button>
+                {/* <button onClick={CreatEChat}>Send Message</button> */}
               </div>
             </div>
 

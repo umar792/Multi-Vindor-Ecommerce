@@ -90,6 +90,7 @@ const DashBoardOverView = () => {
           </tr>
           {lastFiveOrders && lastFiveOrders.length > 0 && lastFiveOrders ? (
             lastFiveOrders.map((item, index) => {
+              const localTime = new Date(item.createdAt).toLocaleString();
               let cartTotal = 0;
               item.cart &&
                 item.cart.forEach((orderItem) => {
@@ -100,8 +101,9 @@ const DashBoardOverView = () => {
               return (
                 <tr key={item._id}>
                   <td>{index + 1}</td>
-                  <td className="font-bold">
-                    {item.createdAt && item.createdAt.slice(0, 10)}
+                  <td className="">
+                    {/* {item.createdAt && item.createdAt.slice(0, 10)} /{" "} */}
+                    {localTime}
                   </td>
 
                   <td>${cartTotal}</td>

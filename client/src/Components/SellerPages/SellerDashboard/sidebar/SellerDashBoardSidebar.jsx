@@ -9,7 +9,7 @@ import {
 import { FiShoppingBag } from "react-icons/fi";
 import { AiOutlineDropbox, AiOutlineSetting } from "react-icons/ai";
 import { FaGifts } from "react-icons/fa";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome, AiFillWechat } from "react-icons/ai";
 
 const menus = [
   {
@@ -57,9 +57,9 @@ const menus = [
   },
   {
     id: 8,
-    title: "Setting",
+    title: "Chat",
     path: "Shop/Owner/Dashboard/settings",
-    icon: <AiOutlineSetting />,
+    icon: <AiFillWechat />,
   },
 ];
 

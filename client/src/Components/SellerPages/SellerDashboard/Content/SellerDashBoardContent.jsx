@@ -8,6 +8,7 @@ import CreaventEvents from "../CreateEvents/CreaventEvents";
 import AllEvents from "../AllOwnerEvents/AllEvents";
 import OwnerAllOrder from "../OwnerAllOrder/OwnerAllOrder";
 import DashBoardOverView from "./DashBoardOverView/DashBoardOverView";
+import ShopChats from "./ShopChats/ShopChats";
 const SellerDashBoardContent = ({ select, setSelect }) => {
   const { ShopOwner } = UseShopContext();
 
@@ -42,6 +43,7 @@ const SellerDashBoardContent = ({ select, setSelect }) => {
       {select === 4 ? <AllEvents /> : null}
       {/* ------------------ AllOrders  */}
       {select === 3 ? <OwnerAllOrder /> : null}
+      {select === 7 ? <ShopChats /> : null}
     </div>
   );
 };

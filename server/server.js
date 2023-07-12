@@ -35,6 +35,7 @@ app.use("/product", require("./router/ProductRouter"));
 app.use("/event", require("./router/EventRouter"));
 app.use("/apyment", require("./router/PaymentRouter"));
 app.use("/order", require("./router/OrderRouter"));
+app.use("/chat", require("./router/ConversationRouter"));
 
 const server = app.listen(process.env.PORT, () => {
   console.log(`Express Server runing on port ${process.env.PORT}`);

@@ -4,83 +4,159 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../Utils/SendEmail");
 const bcrypt = require("bcrypt");
+const cloudinary = require("cloudinary");
 
 module.exports = {
+  // createUser: async (req, res) => {
+  //   try {
+  //     const { name, email, password } = req.body;
+  //     if (!name) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "Please Enter Name",
+  //       });
+  //     }
+  //     if (!email) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "Please Enter Email",
+  //       });
+  //     }
+  //     if (!password) {
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "Please Enter Password",
+  //       });
+  //     }
+
+  //     const userExist = await UserModel.findOne({ email });
+  //     if (userExist) {
+  //       const filename = req.file.filename;
+  //       const filepath = `./uploads/${filename}`;
+  //       fs.unlink(filepath, (err) => {
+  //         if (err) {
+  //           console.log(`Error in file deleting ${err.message}`);
+  //           // res.status(400).json({ message: "Error in file deleting" });
+  //         } else {
+  //           console.log("file deleted successfuly");
+  //           // res.status(400).json({ message: "file deleting" });
+  //         }
+  //       });
+  //       return res.status(400).json({
+  //         success: false,
+  //         message: "User Already Exist",
+  //       });
+  //     }
+
+  //     // const filename = req.file.filename;
+  //     // if (filename === "undefined") {
+  //     //   return res.status(400).json({
+  //     //     success: false,
+  //     //     message: "Please Select Your Profile Picture",
+  //     //   });
+  //     // }
+  //     // const fileUrl = path.join(filename);
+  //     const myOTP = Math.floor(Math.random() * 999 + 1000);
+
+  //     const user = {
+  //       name: name,
+  //       email: email,
+  //       password: password,
+  //       avatar: fileUrl,
+  //       OTP: myOTP,
+  //       Expire_otp: Date.now() + 10 * 60 * 1000,
+  //     };
+
+  //     // --------------------------- ActivationTokon
+  //     // const createActivationToken = async (user) => {
+  //     //   try {
+  //     //     const token = await jwt.sign(user, process.env.ACTIVATION_SECRET, {
+  //     //       expiresIn: "5m",
+  //     //     });
+  //     //     return token;
+  //     //   } catch (error) {
+  //     //     console.log(error.message);
+  //     //   }
+  //     // };
+
+  //     // const ActivationTokon = await createActivationToken(user);
+  //     // var ActivationUrl = `http://localhost:3000/activation/${ActivationTokon}`;
+  //     await UserModel.create(user);
+
+  //     try {
+  //       await sendMail({
+  //         email: user.email,
+  //         subject: "Active your Account from YourShop",
+  //         message: `Hello ${user.name} Your OTP is ${myOTP}`,
+  //       });
+  //       res.status(200).json({
+  //         success: true,
+  //         message: `Please Check Your ${user.email} Email To active account`,
+  //       });
+  //     } catch (error) {
+  //       res.status(400).json({
+  //         success: false,
+  //         message: error.message,
+  //       });
+  //     }
+  //   } catch (error) {
+  //     if (error.code === 11000) {
+  //       res.status(400).json({
+  //         success: false,
+  //         message: `Duplicate ${Object.keys(error.keyValue)} error`,
+  //       });
+  //     }
+
+  //     res.status(400).json({
+  //       success: false,
+  //       message: error.message,
+  //     });
+  //   }
+  // },
+
+  // ---------------------------------------
+  // ----------------------------- create Account
+
   createUser: async (req, res) => {
     try {
       const { name, email, password } = req.body;
       if (!name) {
         return res.status(400).json({
           success: false,
-          message: "Please Enter Name",
+          message: "Plaese fill name",
         });
       }
       if (!email) {
         return res.status(400).json({
           success: false,
-          message: "Please Enter Email",
+          message: "Plaese fill email",
         });
       }
       if (!password) {
         return res.status(400).json({
           success: false,
-          message: "Please Enter Password",
+          message: "Plaese fill password with profile photo",
         });
       }
+      const mycloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "sample",
+        width: 150,
+        crop: "scale",
+      });
 
-      const userExist = await UserModel.findOne({ email });
-      if (userExist) {
-        const filename = req.file.filename;
-        const filepath = `./uploads/${filename}`;
-        fs.unlink(filepath, (err) => {
-          if (err) {
-            console.log(`Error in file deleting ${err.message}`);
-            // res.status(400).json({ message: "Error in file deleting" });
-          } else {
-            console.log("file deleted successfuly");
-            // res.status(400).json({ message: "file deleting" });
-          }
-        });
-        return res.status(400).json({
-          success: false,
-          message: "User Already Exist",
-        });
-      }
-
-      const filename = req.file.filename;
-      if (filename === "undefined") {
-        return res.status(400).json({
-          success: false,
-          message: "Please Select Your Profile Picture",
-        });
-      }
-      const fileUrl = path.join(filename);
       const myOTP = Math.floor(Math.random() * 999 + 1000);
 
-      const user = {
+      const user = await UserModel.create({
         name: name,
         email: email,
         password: password,
-        avatar: fileUrl,
         OTP: myOTP,
         Expire_otp: Date.now() + 10 * 60 * 1000,
-      };
-
-      // --------------------------- ActivationTokon
-      // const createActivationToken = async (user) => {
-      //   try {
-      //     const token = await jwt.sign(user, process.env.ACTIVATION_SECRET, {
-      //       expiresIn: "5m",
-      //     });
-      //     return token;
-      //   } catch (error) {
-      //     console.log(error.message);
-      //   }
-      // };
-
-      // const ActivationTokon = await createActivationToken(user);
-      // var ActivationUrl = `http://localhost:3000/activation/${ActivationTokon}`;
-      await UserModel.create(user);
+        avatar: {
+          public_id: mycloud.public_id,
+          url: mycloud.secure_url,
+        },
+      });
 
       try {
         await sendMail({
@@ -136,7 +212,7 @@ module.exports = {
         (user.verify = true), await user.save();
         res.status(200).json({
           success: true,
-          message: "Your Account  Craeted Successfuly",
+          message: "Your Account is Craeted Successfuly",
         });
       } else {
         res.status(400).json({
@@ -153,7 +229,6 @@ module.exports = {
   },
 
   // ------------------ login User
-
   LoginUser: async (req, res) => {
     try {
       const { email, password } = req.body;

@@ -62,7 +62,7 @@ module.exports = {
           message: "Plaese Register Your Email First Then You will Create Shop",
         });
       }
-      if (!isExistShopName) {
+      if (isExistShopName) {
         return res.status(400).json({
           success: false,
           message:
